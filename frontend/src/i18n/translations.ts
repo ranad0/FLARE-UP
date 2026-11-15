@@ -76,7 +76,7 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       fireLab: 'Fire Lab',
       langToggle: 'العربية',
     },
-    honestyNotice: 'Evidence-informed visualization — not a numerical combustion simulation.',
+    honestyNotice: 'Explore flame behavior through NASA evidence. Visuals illustrate concepts, not measured predictions.',
     offlineMessage: 'FLARE UP Evidence Engine is not connected.',
     home: {
       heading: 'How does fire behave in space?',
@@ -156,7 +156,7 @@ export const TRANSLATIONS: Record<Language, TranslationBundle> = {
       fireLab: 'مختبر اللهب',
       langToggle: 'English',
     },
-    honestyNotice: 'تصور علمي مستند إلى الأدلة — وليس محاكاة عددية للاحتراق.',
+    honestyNotice: 'استكشف سلوك اللهب من خلال أدلة ناسا. توضح المشاهد مفاهيم علمية، ولا تمثل تنبؤات مقاسة.',
     offlineMessage: 'FLARE UP Evidence Engine is not connected.',
     home: {
       heading: 'كيف يتصرف اللهب في الفضاء؟',
