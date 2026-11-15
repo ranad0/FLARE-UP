@@ -60,15 +60,10 @@ export function HomePage({ t, mode, onModeChange, onOpenLab }: HomePageProps) {
     void submitQuestion(question);
   };
 
-  const handleSuggestedClick = (q: string) => {
-    setQuestion(q);
-    void submitQuestion(q);
-  };
-
   return (
     <main className="home-page relative z-10 mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-6xl flex-col justify-between px-5 pb-6 pt-4 sm:px-8">
       <div className="hero-layout">
-        {/* Primary Focus: Heading + Ask FLARE UP Search + Two Suggested Questions */}
+        {/* Primary focus: heading and Ask FLARE UP search. */}
         <section className="hero-copy space-y-6">
 
           <h1
@@ -100,20 +95,6 @@ export function HomePage({ t, mode, onModeChange, onOpenLab }: HomePageProps) {
               </button>
             </div>
           </form>
-
-          {/* Exactly two suggested questions only */}
-          <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
-            {t.home.suggestedQuestions.map((sq, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => handleSuggestedClick(sq)}
-                className="rounded-lg border border-[#7A5498]/30 bg-[#180F28]/70 px-4 py-3 text-start text-xs leading-relaxed text-[#D6CBE8] transition-colors duration-150 hover:border-[#E1B983]/55 hover:bg-[#231538] hover:text-[#F5F1FA] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E1B983] sm:text-sm"
-              >
-                {sq}
-              </button>
-            ))}
-          </div>
 
           <button className="lab-link" type="button" onClick={onOpenLab}>{t.home.exploreLabCta} ↗</button>
         </section>

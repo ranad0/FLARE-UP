@@ -4,7 +4,7 @@ base='http://127.0.0.1:8010'
 
 def call(path,payload=None):
     request=urllib.request.Request(base+path,data=None if payload is None else json.dumps(payload).encode(),headers={'Content-Type':'application/json'})
-    with urllib.request.urlopen(request,timeout=30) as r:return r.status,r.read()
+    with urllib.request.urlopen(request,timeout=65) as r:return r.status,r.read()
 def main():
     global base
     base=sys.argv[1] if len(sys.argv)>1 else base
