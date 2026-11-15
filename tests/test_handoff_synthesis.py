@@ -60,6 +60,11 @@ class SynthesisTests(unittest.TestCase):
         draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':False}]):
             self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'extractive-fallback')
+    def test_grounding_revision_is_independently_rechecked(self):
+        draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':False,'feedback':'Retain tested conditions.'},draft,{'supported':True,'feedback':''}]) as call:
+            self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'groq-grounded')
+            self.assertEqual(call.call_count,4)
     def test_verified_cache_is_bound_to_evidence(self):
         draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':True},TimeoutError]) as call:
