@@ -19,3 +19,5 @@ Recommended next improvements:
 The backend/corpus/pipeline remain unchanged in this launch pass. Deployment verification and URLs are recorded separately when available.
 
 Final browser review fixed the desktop Fire Lab grid: long evidence no longer expands the canvas beyond the viewport. Evidence scrolls independently. Verified with the full scenario response visible.
+
+Search readability update: removed duplicated numeric prose, show four rows initially, expose original conditions per row, and show three relevance-ranked source previews. Previews select an existing sentence by question-term overlap; they are quotations, not new scientific conclusions. Full passages, remaining sources, routing notes and original backend answer remain expandable. Abstentions, ground-data exclusions and quality warnings remain visible. Backend/data unchanged.

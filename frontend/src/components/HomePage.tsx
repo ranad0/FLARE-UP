@@ -1,49 +1,17 @@
 import type {VisualMode} from './visualMode';
 import { FormEvent, useEffect, useRef, useState } from 'react';
-import { ExternalLink, Loader2, Search, X } from 'lucide-react';
+import { Loader2, Search, X } from 'lucide-react';
 import { askFlareUp } from '../services/flareApi';
-import { AskResponse, FlareApiError, SourceItem, StructuredResultRow } from '../types/flare';
+import { AskResponse, FlareApiError } from '../types/flare';
 import type { TranslationBundle } from '../i18n/translations';
 import { HomeFlameScene } from './OrbScene';
+import { AnswerPanel } from './AnswerPanel';
 
 interface HomePageProps {
   t: TranslationBundle;
   onOpenLab: () => void;
   mode: VisualMode;
   onModeChange: (mode:VisualMode) => void;
-}
-
-function renderSourceEntry(src: SourceItem | string, idx: number) {
-  if (typeof src === 'string') {
-    return (
-      <li key={idx} className="border-b border-[#7A5498]/15 py-2.5 text-xs text-[#D6CBE8] last:border-b-0">
-        {src}
-      </li>
-    );
-  }
-  const title = src.title || src.investigation_id || src.name || `Source ${idx + 1}`;
-  const citation = [src.source_file, src.source_location, src.content_type].filter(Boolean).join(' · ');
-  const url = String(src.citation_url || src.url || src.link || '');
-
-  return (
-    <li key={idx} className="border-b border-[#7A5498]/15 py-2.5 last:border-b-0">
-      <div className="flex items-start justify-between gap-3">
-        <span className="text-xs font-medium text-[#F5F1FA]">{String(title)}</span>
-        {url && (
-          <a
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex shrink-0 items-center gap-1 text-xs text-[#22D3EE] hover:underline"
-          >
-            <span>Link</span>
-            <ExternalLink className="h-3 w-3" />
-          </a>
-        )}
-      </div>
-      {citation && <p className="mt-1 text-xs leading-relaxed text-[#B8A9CE]">{String(citation)}</p>}
-    </li>
-  );
 }
 
 export function HomePage({ t, mode, onModeChange, onOpenLab }: HomePageProps) {
@@ -96,17 +64,6 @@ export function HomePage({ t, mode, onModeChange, onOpenLab }: HomePageProps) {
     setQuestion(q);
     void submitQuestion(q);
   };
-
-  const structuredList: StructuredResultRow[] = Array.isArray(response?.structured_results)
-    ? (response.structured_results as StructuredResultRow[])
-    : response?.structured_results && typeof response.structured_results === 'object'
-      ? Object.entries(response.structured_results).map(
-          ([k, v]): StructuredResultRow => ({
-            parameter: k,
-            value: typeof v === 'object' ? JSON.stringify(v) : String(v),
-          })
-        )
-      : [];
 
   return (
     <main className="home-page relative z-10 mx-auto flex min-h-[calc(100vh-72px)] w-full max-w-6xl flex-col justify-between px-5 pb-6 pt-4 sm:px-8">
@@ -210,56 +167,7 @@ export function HomePage({ t, mode, onModeChange, onOpenLab }: HomePageProps) {
           {errorMessage ? (
             <p className="mt-4 text-sm font-medium text-[#E1B983]">{errorMessage}</p>
           ) : (
-            <div className="mt-4 space-y-5">
-              {response?.answer && (
-                <p className="whitespace-pre-line text-sm leading-relaxed text-[#F5F1FA] sm:text-base">
-                  {response.answer}
-                </p>
-              )}
-
-              {structuredList.length > 0 && (
-                <div>
-                  <h3 className="mb-2 text-xs font-semibold text-[#E1B983]">
-                    {t.home.structuredHeading}
-                  </h3>
-                  <div className="overflow-x-auto rounded-lg border border-[#7A5498]/20">
-                    <table className="w-full text-left text-xs">
-                      <tbody className="divide-y divide-[#7A5498]/15">
-                        {structuredList.map((row, i) => (
-                          <tr key={i} className="bg-[#1B102B]/50">
-                            <td className="px-3 py-2 font-medium text-[#D6CBE8]">
-                              {String(row.quantity_name || row.title || row.investigation || row.parameter || `Record ${i + 1}`)}
-                              {Array.isArray(row.quality_flags) && row.quality_flags.length > 0 && <span className="block mt-1 text-[#E1B983]">{row.quality_flags.map(String).join(' · ')}</span>}
-                            </td>
-                            <td className="px-3 py-2 font-mono-tabular text-[#22D3EE]">
-                              {row.value !== undefined ? `${row.value}${row.unit ? ` ${row.unit}` : ' (unit unknown)'}` : ''}
-                            </td>
-                            <td className="px-3 py-2 text-[#B8A9CE]">
-                              {row.source_file ? `${row.investigation_id} · ${row.source_file} · ${row.source_location}` : row.source
-                                ? String(row.source)
-                                : typeof row.conditions === 'string'
-                                  ? row.conditions
-                                  : ''}
-                              {typeof row.citation_url === 'string' && <a className="block text-[#22D3EE]" href={row.citation_url} target="_blank" rel="noreferrer">NASA source ↗</a>}
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              )}
-
-              {Array.isArray(response?.sources) && response.sources.length > 0 && (
-                <div>
-                  <h3 className="mb-1.5 text-xs font-semibold text-[#E1B983]">
-                    {t.home.sourcesHeading}
-                  </h3>
-                  <ul>{response.sources.map((src, idx) => renderSourceEntry(src, idx))}</ul>
-                </div>
-              )}
-              <details className="text-xs text-[#B8A9CE]"><summary className="cursor-pointer">Retrieval method & limits</summary><p className="mt-2">{String(response?.routing_reason || '')}</p>{Array.isArray(response?.notes) && response.notes.filter(Boolean).map((note,i)=><p className="mt-2" key={i}>{String(note)}</p>)}</details>
-            </div>
+            response && <AnswerPanel response={response} arabic={t.nav.home !== "Home"} />
           )}
         </section>
       )}
