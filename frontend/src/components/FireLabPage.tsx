@@ -391,7 +391,7 @@ export function FireLabPage({ t, mode, onModeChange }: FireLabPageProps) {
       {/* Clear & unobtrusive Scientific Honesty Notice */}
       <footer className="text-center">
         <p className="text-xs text-[#9D8EC0]">{t.honestyNotice}</p>
-        <p className="mt-2 text-[11px] text-[#9D8EC0]">{t.nav.home==='Home'?'Gravity and airflow illustrate transport. Oxygen and pressure are evidence-query inputs, not measured predictions of flame appearance.':'الجاذبية والتهوية توضحان حركة اللهب والدخان. الأكسجين والضغط مدخلات للبحث في الأدلة، وليسا تنبؤًا مقاسًا لشكل اللهب.'}</p>
+        <p className="mt-2 text-[11px] text-[#9D8EC0]">{t.nav.home==='Home'?'Illustrative mode: changes in size, glow and motion are designed visual responses, not measured predictions or universal trends. Analyze NASA Evidence for reported findings.':'وضع توضيحي: تغيّر الحجم والإضاءة والحركة استجابة بصرية مصممة، وليس تنبؤًا مقاسًا أو قاعدة عامة. اضغط تحليل أدلة ناسا للاطلاع على النتائج الموثقة.'}</p>
       </footer>
     </main>
   );

@@ -233,8 +233,8 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
 
     // Smoothly damped state + second-order spring cursor disturbance
     let smoothGravity = paramsRef.current.gravity === 'microgravity' ? 1 : 0;
-    let smoothOxygen = 0.24;
-    let smoothPressure = 0.7;
+    let smoothOxygen = (paramsRef.current.oxygenPercent - 15) / 25;
+    let smoothPressure = (paramsRef.current.pressurePsi - 4.3) / 10.4;
     let smoothAirflow = paramsRef.current.airflow;
     let smoothDirRad = THREE.MathUtils.degToRad(paramsRef.current.airflowDirectionDegrees);
     let smoothBaseY = SAMPLE_BASE_Y[paramsRef.current.sampleType];
@@ -393,9 +393,9 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
 
       // Smooth parameter damping
       const targetG = p.gravity === 'microgravity' ? 1 : 0;
-      // No validated pressure/oxygen-to-appearance mapping: keep artistic reference values.
-      const targetOx = 0.24;
-      const targetPr = 0.7;
+      // Authored illustrative response only, not a calibrated physical prediction.
+      const targetOx = THREE.MathUtils.clamp((p.oxygenPercent - 15) / 25, 0, 1);
+      const targetPr = THREE.MathUtils.clamp((p.pressurePsi - 4.3) / 10.4, 0, 1);
       const targetAir = THREE.MathUtils.clamp(p.airflow, 0, 1);
       const targetDir = THREE.MathUtils.degToRad(p.airflowDirectionDegrees);
 
