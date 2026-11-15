@@ -43,13 +43,13 @@ export function TopNav({ mode, page, onNavigate, lang, onToggleLang, t }: TopNav
 
         onClick={() => onNavigate('home')}
 
-        className="flex shrink-0 items-center gap-2.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E1B983] rounded-md"
+        className="flex shrink-0 items-center gap-1.5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E1B983] rounded-md"
 
       >
 
         <span className="brand-flame" aria-hidden="true"><img src="/flare-up-mark-transparent.png" alt="" className="original-brand-mark" data-mode={mode} /></span>
 
-        <span className="whitespace-nowrap text-base font-semibold tracking-wider text-[#F5F1FA]">
+        <span className="whitespace-nowrap text-base font-semibold tracking-[0.025em] text-[#F5F1FA]">
 
           {t.brand}
 
