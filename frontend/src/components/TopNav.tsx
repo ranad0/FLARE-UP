@@ -1,4 +1,5 @@
 import {HomeFlameScene} from './OrbScene';
+import { Globe } from 'lucide-react';
 import type {VisualMode} from './visualMode';
 import type { Language, PageView } from '../types/flare';
 import type { TranslationBundle } from '../i18n/translations';
@@ -59,9 +60,10 @@ export function TopNav({ mode, page, onNavigate, lang, onToggleLang, t }: TopNav
           type="button"
           onClick={onToggleLang}
           aria-label={lang === 'en' ? 'Switch language to Arabic' : 'Switch language to English'}
-          className="whitespace-nowrap rounded-lg border border-[#7A5498]/40 bg-[#1B102B]/80 px-3.5 py-1.5 text-xs font-medium text-[#E1B983] transition-colors duration-150 hover:border-[#E1B983]/60 hover:bg-[#2D1C42] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E1B983]"
+          title={lang === 'en' ? 'Switch language to Arabic' : 'Switch language to English'}
+          className="flex h-11 w-11 items-center justify-center rounded-lg border border-[#7A5498]/40 bg-[#1B102B]/80 text-[#E1B983] transition-colors duration-150 hover:border-[#E1B983]/60 hover:bg-[#2D1C42] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E1B983]"
         >
-          {t.nav.langToggle}
+          <Globe size={20} strokeWidth={1.7} aria-hidden="true" />
         </button>
       </div>
     </header>
