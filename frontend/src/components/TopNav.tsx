@@ -49,7 +49,7 @@ export function TopNav({ mode, page, onNavigate, lang, onToggleLang, t }: TopNav
 
         <span className="brand-flame" aria-hidden="true"><img src="/flare-up-mark-transparent.png" alt="" className="original-brand-mark" data-mode={mode} /></span>
 
-        <span className="whitespace-nowrap text-base font-semibold tracking-[0.025em] text-[#F5F1FA]">
+        <span className="whitespace-nowrap text-base font-[550] tracking-[0.015em] text-[#F4EFE5]">
 
           {t.brand}
 
@@ -73,9 +73,9 @@ export function TopNav({ mode, page, onNavigate, lang, onToggleLang, t }: TopNav
 
             page === 'home'
 
-              ? 'border-b border-[#E1B983] text-[#F5F1FA]'
+              ? 'border-b border-[#E1B983] text-[#F4EFE5]'
 
-              : 'border-b border-transparent text-[#B8A9CE] hover:text-[#F5F1FA]'
+              : 'border-b border-transparent text-[#D5CED7] hover:text-[#F4EFE5]'
 
           }`}
 
@@ -95,9 +95,9 @@ export function TopNav({ mode, page, onNavigate, lang, onToggleLang, t }: TopNav
 
             page === 'lab'
 
-              ? 'border-b border-[#E1B983] text-[#F5F1FA]'
+              ? 'border-b border-[#E1B983] text-[#F4EFE5]'
 
-              : 'border-b border-transparent text-[#B8A9CE] hover:text-[#F5F1FA]'
+              : 'border-b border-transparent text-[#D5CED7] hover:text-[#F4EFE5]'
 
           }`}
 
@@ -107,7 +107,7 @@ export function TopNav({ mode, page, onNavigate, lang, onToggleLang, t }: TopNav
 
         </button>
 
-      <button type="button" onClick={()=>onNavigate('research')} className={`text-sm whitespace-nowrap ${page==='research'?'text-[#E1B983]':'text-[#B8A9CE]'}`}>{lang==='ar'?'الأدلة':'Evidence'}</button></nav>
+      <button type="button" onClick={()=>onNavigate('research')} className={`whitespace-nowrap shrink-0 pb-1 text-sm font-medium transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E1B983] rounded-sm ${page==='research'?'border-b border-[#E1B983] text-[#F4EFE5]':'border-b border-transparent text-[#D5CED7] hover:text-[#F4EFE5]'}`}>{lang==='ar'?'الأدلة':'Evidence'}</button></nav>
 
 
 
