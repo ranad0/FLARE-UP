@@ -4,7 +4,7 @@ Numbers are rendered by the server from structured records, never by the model.
 Claim/quotation checks and a separate entailment review reduce (not eliminate)
 paraphrase errors. Original passages and provenance remain available for inspection.
 """
-import json,os,re,urllib.request
+import json,os,re,urllib.request,urllib.error
 MODEL='openai/gpt-oss-20b'
 ENDPOINT='https://api.groq.com/openai/v1/chat/completions'
 NUMBER_WORDS=re.compile(r'\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|percent|percentage|double[ds]?|triple[ds]?|twice|half)\b',re.I)
@@ -130,6 +130,14 @@ def synthesize(question,route,sources,records):
         # Never surface API exception bodies (which may contain provider details).
         answer['status']='extractive-fallback'
         answer['fallback_reason']=type(exc).__name__
+        if isinstance(exc,urllib.error.HTTPError):
+            answer['fallback_reason']='provider_http_'+str(exc.code)
+            # Only a fixed provider error category is public; never return its message/body.
+            try:
+                code=json.loads(exc.read(65536)).get('error',{}).get('code')
+                if code in {'rate_limit_exceeded','invalid_api_key','model_not_found','json_validate_failed','context_length_exceeded','insufficient_quota'}:
+                    answer['provider_error_code']=code
+            except (ValueError,AttributeError):pass
         # Safe, fixed diagnostic codes only; never expose provider response bodies.
         known={'sections','claim limit','claim shape','numeric or oversized prose','model citation',
                'missing support','invalid quotation','empty or long answer','entailment review rejected'}
