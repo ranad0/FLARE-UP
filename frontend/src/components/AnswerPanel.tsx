@@ -3,6 +3,9 @@ import type { AskResponse, SourceItem, StructuredResultRow } from '../types/flar
 
 const text = (value: unknown) => value == null ? '' : String(value);
 const roleName = (source: SourceItem) => text(source.content_type || source.evidence_type || 'Source passage').replaceAll('_', ' ');
+const describe = (value: unknown): string => value && typeof value === 'object'
+  ? Object.entries(value).map(([key, v]) => `${key.replaceAll('_', ' ')}: ${describe(v)}`).join(' · ')
+  : value == null ? 'unknown' : String(value);
 // Select an existing sentence, never rewrite it. Full context stays one click away.
 function previewPassage(passage: string, question: string) {
   const stop = new Set(['how','does','what','which','compare','explain','about','with','from','that','this','the','and','for','space','experiment','psi']);
@@ -45,10 +48,10 @@ export function AnswerPanel({ response, arabic }: { response: AskResponse; arabi
             <th className="p-3 text-start font-medium">{choose('Evidence', 'الدليل')}</th>
           </tr></thead>
           <tbody className="divide-y divide-white/5">{(allRows ? rows : rows.slice(0, 4)).map((row, i) => <tr key={i}>
-            <td className="p-3 align-top text-[#D6CBE8]">{text(row.quantity_name || row.parameter || row.title || 'Record')}
+            <td className="p-3 align-top text-[#D6CBE8]">{text(row.quantity_name || row.parameter || row.facet || row.title || 'Record')}
               {Array.isArray(row.quality_flags) && row.quality_flags.map((flag, n) => <span key={n} className="mt-1 block text-xs text-[#E1B983]">{text(flag)}</span>)}
             </td>
-            <td className="p-3 align-top font-mono text-[#78CFFF]">{text(row.value)} <span className="text-xs">{text(row.unit) || choose('(unit unknown)', '(الوحدة غير معروفة)')}</span></td>
+            <td className="p-3 align-top font-mono text-[#78CFFF]">{text(row.value)} <span className="text-xs">{row.kind === 'facet' ? choose('(category)', '(فئة)') : text(row.unit) || choose('(unit unknown)', '(الوحدة غير معروفة)')}</span></td>
             <td className="min-w-36 p-3 align-top text-xs text-[#B8A9CE]">
               <details><summary className="cursor-pointer leading-6 text-[#D6CBE8]">{text(row.investigation_id || row.investigation)} · {text(row.source_location) || choose('Provenance', 'المصدر')}</summary>
                 <div className="mt-2 space-y-2 break-words leading-6">
@@ -82,6 +85,14 @@ export function AnswerPanel({ response, arabic }: { response: AskResponse; arabi
         </article>;
       })}</div>
     </section>}
+    <details className="rounded-xl border border-[#78CFFF]/20 p-4 text-sm text-[#B8A9CE]"><summary className="cursor-pointer text-[#D6CBE8]">{choose('Why these results?', 'لماذا ظهرت هذه النتائج؟')}</summary>
+      <div className="mt-4 space-y-4 text-xs leading-6">
+        <div><h4 className="font-semibold text-[#E1B983]">{choose('Search path', 'مسار البحث')}</h4><p>{text(response.routing_reason)}</p></div>
+        {response.structured_query && typeof response.structured_query === 'object' && Object.values(response.structured_query).some(Boolean) ? <div><h4 className="font-semibold text-[#E1B983]">{choose('Recognized filters', 'عوامل التصفية المعروفة')}</h4><dl>{Object.entries(response.structured_query).filter(([, v]) => v != null && v !== false).map(([key,v]) => <div key={key}><dt className="inline">{key.replaceAll('_',' ')}: </dt><dd className="inline text-[#EEE7F7]">{describe(v)}</dd></div>)}</dl></div> : null}
+        <div><h4 className="font-semibold text-[#E1B983]">{choose('Ranking & limits', 'الترتيب والحدود')}</h4><p>{choose('Text passages follow the backend’s query-relevance order. Numeric records follow recognized filters. Relevance is not scientific confidence, and returned records do not establish causation or safe operating limits.', 'تتبع المقاطع ترتيب الصلة بالسؤال من المحرك، وتتبع السجلات عوامل التصفية المعروفة. الصلة ليست ثقة علمية، ولا تثبت السجلات السببية أو حدود التشغيل الآمن.')}</p></div>
+        <p>{choose('Only the verified judged corpus is searched here. Supporting NASA resources are separate; ground investigations are excluded.', 'يقتصر البحث هنا على مجموعة الأدلة المتحقق منها. موارد ناسا الداعمة منفصلة، والتحقيقات الأرضية مستبعدة.')}</p>
+      </div>
+    </details>
     <details className="border-t border-white/10 pt-4 text-sm text-[#B8A9CE]"><summary className="cursor-pointer py-1">{choose(`All sources & retrieval details (${sources.length})`, `جميع المصادر وتفاصيل الاسترجاع (${sources.length})`)}</summary>
       <ol className="mt-4 space-y-4">{(response.sources || []).map((source, i) => <li key={i} className="text-xs leading-6">{typeof source === 'string' ? source : <><a className="text-[#78CFFF] underline" href={sourceUrl(source)} target="_blank" rel="noreferrer">{text(source.title || source.investigation_id)}</a><p>{roleName(source)} · {text(source.source_file)} · {text(source.source_location)}</p><details><summary className="cursor-pointer">{choose('Full source passage', 'المقطع المصدري الكامل')}</summary><p className="mt-2 whitespace-pre-line">{text(source.excerpt || source.text)}</p></details></>}</li>)}</ol>
       <p className="mt-4 text-xs leading-6">{text(response.routing_reason)}</p>
