@@ -67,13 +67,14 @@ source files, one catalog entry without a URL, and one exact duplicate preserved
 
 Retrieval routes and existing response fields remain; additive `synthesis` and `extractive_evidence`
 fields support a concise answer above expandable evidence. Optional Groq `openai/gpt-oss-20b`
-uses only the retrieved text bundle. It must supply exact supporting quotes and valid source IDs;
-the server checks them, rejects numerical prose, and requests a separate entailment check.
+uses only the retrieved text bundle. It selects source IDs; the server resolves
+the exact supporting text, rejects numerical prose, and requests a separate entailment check.
 Numeric summaries are formatted from structured records only. These checks reduce errors but are
 not proof of scientific validity. Full source passages remain available. Missing key, timeout,
 invalid output or failed grounding checks produce an explicit extractive fallback.
 
-No direct OpenAI API is used. A live Groq response has not been verified without a configured key.
+No direct OpenAI API is used. Groq is configured on the live backend; provider failures and rejected
+drafts still use the extractive fallback. See the architecture document for the current synthesis contract.
 Model output is separated into Reported by Sources, Interpretation, Not Established, and Sources.
 No model confidence percentages or physical predictions are introduced.
 

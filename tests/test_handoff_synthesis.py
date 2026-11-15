@@ -84,6 +84,12 @@ class SynthesisTests(unittest.TestCase):
         for field,value in [('source_id','T99'),('quote','Invented scientific finding not in the source passage.')]:
             claim=json.loads(json.dumps(self.valid));claim['reported_by_sources'][0]['supports'][0][field]=value
             with self.assertRaises(ValueError):_validate(claim,{'T1':self.sources[0]})
+    def test_opposed_flow_direction_regression(self):
+        source={'text':'In the microgravity regime, the spread rate is known to decrease as the opposed flow is reduced. Under certain conditions, this can lead to flame extinguishment.'}
+        bad={'reported_by_sources':[{'text':'Opposing airflow reduces flame spread in microgravity.','supports':[{'source_id':'T1','quote':source['text']}]}],'interpretation':[]}
+        with self.assertRaisesRegex(ValueError,'input change omitted'):_validate(bad,{'T1':source})
+        bad['reported_by_sources'][0]['text']='Reducing opposing airflow can slow flame spread in the microgravity regime.'
+        _validate(bad,{'T1':source})
     def test_network_failure_falls_back(self):
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=TimeoutError):
             self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'extractive-fallback')

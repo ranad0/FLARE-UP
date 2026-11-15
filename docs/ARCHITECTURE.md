@@ -58,9 +58,17 @@ The teammate `pipeline/` owns ingestion. `scripts/merge_handoff.py` explicitly a
 `data_handoffs/handoff_3` is a review snapshot, never a retrieval input directory.
 See [the handoff report](HANDOFF_3_REPORT.md) for exact boundaries.
 
-`app/synthesis.py` adds Groq `openai/gpt-oss-20b` after retrieval. It checks exact quotes/source IDs,
+`app/synthesis.py` adds Groq `openai/gpt-oss-20b` after retrieval. The model selects source IDs;
+the server attaches the exact full retrieved passages (legacy span IDs are still accepted). It checks quotes/source IDs,
 rejects numerical prose, and runs a separate entailment review. The model cannot supply numeric
 summary values: the server renders those from retrieved records. Automated entailment is a
-safeguard, not scientific certification. Two calls can add latency; each has an 18-second timeout.
+safeguard, not scientific certification. Groq JSON mode is checked locally, followed by an
+independent evidence review. A rejected draft can receive one grounding revision and another review.
+Each provider request has an 18-second timeout; short rate-limit delays permit one bounded retry.
+At most four full retrieved passages are used for prose synthesis, with reviewed findings preferred.
+The complete retrieval results remain available. Source text is not duplicated in the draft payload;
+the reviewer receives the full cited passages. Successful answers alone are cached for ten minutes
+(at most 64 entries), keyed to the exact question, route, evidence and records. Hybrid prose answers
+the descriptive part; the server continues to render every numerical value from structured records.
 No key or failed checks → extractive fallback. Existing `/ask` fields remain; additive fields
 `synthesis` and `extractive_evidence` expose the answer sections and original retrieval assembly.

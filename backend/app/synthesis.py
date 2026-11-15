@@ -67,6 +67,12 @@ def _validate(d,bundle):
             for s in c['supports']:
                 source=bundle.get(s.get('source_id'));quote=s.get('quote')
                 if not source or not isinstance(quote,str) or len(quote)<30 or _normal(quote) not in _normal(source['text']):raise ValueError('invalid quotation')
+            evidence=' '.join(bundle[s['source_id']]['text'] for s in c['supports'])
+            # Conservative regression guard: a response to reducing flow is not an
+            # effect of flow itself. The entailment model missed this distinction live.
+            if re.search(r'decreas\w* as [^.]{0,70}flow is reduced',evidence,re.I) and re.search(r'\bspread\b',t,re.I) and re.search(r'\b(?:airflow|flow)\b',t,re.I):
+                input_change=re.search(r'\b(?:reduc\w*|lower\w*|decreas\w*|weaker|slower|less)\b(?:[\s-]+\w+){0,5}[\s-]+(?:airflow|flow)\b|\b(?:airflow|flow)\b(?:[\s-]+\w+){0,5}[\s-]+(?:reduced|lowered|decreases?|weaker|slower)\b',t,re.I)
+                if not input_change:raise ValueError('input change omitted')
     if total>150 or not d['reported_by_sources']:raise ValueError('empty or long answer')
     return d
 def _fallback(question,sources):
@@ -151,7 +157,11 @@ def _synthesize(question,route,sources,records):
             'Do not put investigation identifiers, numbered lists, counts, or chemical formulas with digits in prose; citations are separate. '
             'If evidence is inadequate return empty arrays. Keep each claim below forty words and total prose below eighty words.')
         prompt+=' The only valid source_id values are: '+', '.join(selected)+'. Do not use investigation names or sentence IDs as source_id.'
-        payload={'question':question,'route':route,'structured_measurements_displayed_separately':bool(records),'evidence':{sid:{'role':s['role'],'text':s['text']} for sid,s in selected.items()}}
+        prose_question=question
+        if route=='hybrid':
+            descriptive=re.search(r'\band\s+((?:explain|describe|why|how|interpret)\b.*)',question,re.I)
+            if descriptive:prose_question=descriptive.group(1)
+        payload={'question':prose_question,'route':route,'structured_measurements_displayed_separately':bool(records),'evidence':{sid:{'role':s['role'],'text':s['text']} for sid,s in selected.items()}}
         messages=[{'role':'system','content':prompt},{'role':'user','content':json.dumps(payload)}]
         draft=_call(messages,SCHEMA)
         try:
@@ -159,7 +169,7 @@ def _synthesize(question,route,sources,records):
         except ValueError as error:
             # One bounded repair attempt; the same strict checks still apply.
             messages += [{'role':'assistant','content':json.dumps(draft)},
-                {'role':'user','content':'The validator rejected the draft: '+str(error)+'. Return corrected JSON. Each short qualitative claim must have one to three supports with valid source_id references. Remove numerical assertions, identifiers, counts and spelled-out numbers from prose. Retain scientific qualifications; if this is impossible, return empty arrays. Do not add evidence.'}]
+                {'role':'user','content':'The validator rejected the draft: '+str(error)+'. Return corrected JSON. Each short qualitative claim must have one to three supports with valid source_id references. Remove numerical assertions, identifiers, counts and spelled-out numbers from prose. If input change omitted, explicitly describe reducing the input, not the mere presence of that input, as the cause of the response. Retain scientific qualifications; if this is impossible, return empty arrays. Do not add evidence.'}]
             proposed=_validate(_resolve_quotes(_call(messages,SCHEMA),bundle),bundle)
         for review_attempt in range(2):
             used={s['source_id'] for claims in proposed.values() for c in claims for s in c['supports']}
@@ -196,7 +206,7 @@ def _synthesize(question,route,sources,records):
             except (ValueError,AttributeError):pass
         # Safe, fixed diagnostic codes only; never expose provider response bodies.
         known={'sections','claim limit','claim shape','numeric or oversized prose','model citation',
-               'missing support','invalid quotation','empty or long answer','entailment review rejected','review shape'}
+               'missing support','invalid quotation','empty or long answer','entailment review rejected','review shape','input change omitted'}
         if isinstance(exc,ValueError) and str(exc) in known:
             answer['fallback_reason']=str(exc)
     return answer
