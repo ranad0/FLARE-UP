@@ -114,9 +114,9 @@ export function FireLabPage({ t, mode, onModeChange }: FireLabPageProps) {
   const indicatorY = 32 - Math.cos(airflowRad) * 21;
 
   return (
-    <main className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col gap-4 px-4 pb-5 pt-1 sm:px-6 lg:h-[calc(100vh-68px)] lg:overflow-hidden">
+    <main className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col gap-4 px-4 pb-5 pt-1 sm:px-6 lg:h-[calc(100vh-68px)] lg:flex-none lg:min-h-0 lg:overflow-hidden">
       <div
-        className={`grid flex-1 grid-cols-1 gap-4 lg:min-h-0 ${
+        className={`grid flex-1 grid-cols-1 gap-4 lg:min-h-0 lg:grid-rows-[minmax(0,1fr)] ${
           evidenceOpen ? 'lg:grid-cols-12' : 'lg:grid-cols-12'
         }`}
       >

@@ -17,3 +17,5 @@ Recommended next improvements:
 5. Validate the optional MiniLM setup before describing it as active AI; the tested default remains local lexical/latent retrieval and extractive answers.
 
 The backend/corpus/pipeline remain unchanged in this launch pass. Deployment verification and URLs are recorded separately when available.
+
+Final browser review fixed the desktop Fire Lab grid: long evidence no longer expands the canvas beyond the viewport. Evidence scrolls independently. Verified with the full scenario response visible.
