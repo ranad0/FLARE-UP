@@ -11,11 +11,13 @@ function previewPassage(passage: string, question: string) {
   const stop = new Set(['how','does','what','which','compare','explain','about','with','from','that','this','the','and','for','space','experiment','psi']);
   const terms = [...new Set(question.toLowerCase().match(/[a-z]{3,}/g) || [])].filter(t => !stop.has(t));
   const sentences = passage.split(/(?<=[.!?])\s+(?=[A-Z])/);
-  let best = sentences[0] || passage, bestScore = 0;
-  for (const sentence of sentences) {
+  let best = sentences[0] || passage, bestScore = 0, bestIndex = 0;
+  for (const [index, sentence] of sentences.entries()) {
     const score = terms.filter(term => sentence.toLowerCase().includes(term)).length;
-    if (score > bestScore) { best = sentence; bestScore = score; }
+    if (score > bestScore) { best = sentence; bestScore = score; bestIndex = index; }
   }
+  const next = sentences[bestIndex + 1];
+  if (next && /^(However|But|Under|Nevertheless|Although|Only|These|This)\b/.test(next)) best += ' ' + next;
   return best.length > 650 ? best.slice(0,650).replace(/\s+\S*$/, '') + ' […]' : best;
 }
 
