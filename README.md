@@ -1,10 +1,12 @@
 # FLARE UP
 
-### Flame in Freefall
+### [Launch FLARE UP — live demo →](https://flare-up-ranad0.netlify.app/)
+
+**Flame in Freefall · NASA Space Apps**
 
 **Explore fire beyond Earth. Follow every answer back to the evidence.**
 
-FLARE UP transforms NASA microgravity combustion research into an interactive experience for students, researchers, and curious explorers. Ask a question, inspect reported measurements, and explore how gravity and environmental conditions relate to fire research—without losing the sources or the uncertainty behind the answer.
+We built FLARE UP to turn NASA microgravity combustion research into an interactive experience for students, researchers, and curious explorers. Ask a question, inspect reported measurements, and explore how gravity and environmental conditions relate to fire research—without losing the sources or the uncertainty behind the answer.
 
 [**Explore the live experience →**](https://flare-up-ranad0.netlify.app/) · [Full-app mirror](https://flare-up-ranad0.onrender.com/) · [NASA Space Apps challenge](https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/)
 
@@ -14,7 +16,7 @@ FLARE UP transforms NASA microgravity combustion research into an interactive ex
 
 Understanding fire aboard spacecraft means asking questions that everyday experience cannot fully answer. How does ventilation affect flame spread? What can smoke experiments tell us about detection? Which observations support a comparison—and which conditions differ?
 
-NASA's Physical Sciences Informatics (PSI) repository holds the research. FLARE UP makes that evidence easier to find, compare, and understand through a focused search experience and an interactive Fire Lab.
+NASA's Physical Sciences Informatics (PSI) repository holds the research. We make that evidence easier to find, compare, and understand through a focused search experience and an interactive Fire Lab.
 
 ## Explore, ask, investigate
 
@@ -65,9 +67,9 @@ The public service uses free hosting and may need a short wake-up period after i
 
 ## Built for Flame in Freefall
 
-FLARE UP addresses the NASA Space Apps challenge through accessible investigation discovery, traceable comparisons, evidence-grounded explanations, and an interactive scientific exhibit. Its intended impact is to make spacecraft fire research more understandable and easier to interrogate—not to issue operational safety advice.
+We address the NASA Space Apps challenge through accessible investigation discovery, traceable comparisons, evidence-grounded explanations, and an interactive scientific exhibit. Its intended impact is to make spacecraft fire research more understandable and easier to interrogate—not to issue operational safety advice.
 
-[Seven-slide presentation and demo](docs/DEMO_SCRIPT.md) · [Challenge alignment](docs/JUDGING_MAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation](docs/HANDOFF_3_VALIDATION.json)
+[Seven-slide presentation and demo](docs/DEMO_SCRIPT.md) · [Challenge alignment](docs/JUDGING_MAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation and limitations](docs/VALIDATION.md)
 
 ## Team & contributors
 

@@ -9,7 +9,7 @@ the frontend, backend, router, Fire Lab, or deployment configuration.
 | Category | Finding and decision |
 |---|---|
 | NEW | Six PSI-98 scalar fields; six PSI-101 engineering PDFs; supporting safety-case collection; additional BASS documents. No new investigation admitted. |
-| UPDATED | Seven teammate pipeline Python files; explicit CSV encoding, OOXML support, identifier exclusions, scoped finalization. Four new helper modules. |
+| UPDATED | Seven team pipeline Python files; explicit CSV encoding, OOXML support, identifier exclusions, scoped finalization. Four new helper modules. |
 | UNCHANGED | Eighteen pipeline Python files, including the 2.0.0 data contract. Existing 12,154 scientific values/units preserved. |
 | DUPLICATE | 5,607 numeric records match existing source-hash/row/column keys and values/units; ten raw files match existing bytes. Not appended. |
 | INCOMPATIBLE | Unversioned PSI-10 processed output lacks a matching source in the handoff raw collection; no automatic import. 2.0.0 cannot be silently mixed into app 3.0. |
@@ -24,7 +24,7 @@ the frontend, backend, router, Fire Lab, or deployment configuration.
 - PSI-101: one reviewed opening paragraph of section 2.3 in *SAME Baseline Concept Description*,
   PDF page 7 / printed page 3. Explicitly labelled historical design objective, not reflight results.
   No numerical measurements were extracted from the PDF or figures.
-- Original teammate pipeline source and immutable handoff JSONL/QA snapshots in isolated directories.
+- Original team pipeline source and immutable handoff JSONL/QA snapshots in isolated directories.
   Other staged material is pending; it is not read by `/ask` or Fire Lab.
 
 NASA's live investigation API confirmed both selected IDs as Combustion Science / Microgravity

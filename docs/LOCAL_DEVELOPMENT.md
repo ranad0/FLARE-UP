@@ -39,6 +39,6 @@ Vite runs at http://127.0.0.1:5173 and proxies `/api` to the backend on 8010. Af
 
 Run `python -m unittest discover -s tests -p "test_*.py"` and `python scripts/verify_corpus.py` from the project root. With the API running, run `python tests/test_http.py http://127.0.0.1:8010`.
 
-The teammate ingestion subsystem is in `pipeline/`. Approved handoff records pass through the explicit compatibility adapter in `scripts/merge_handoff.py`; `python scripts/build_corpus.py` rebuilds the curated corpus and applies that adapter. Restart the API after a rebuild. Pending material in `data_handoffs/` is not searched.
+Our ingestion subsystem is in `pipeline/`. Approved handoff records pass through the explicit compatibility adapter in `scripts/merge_handoff.py`; `python scripts/build_corpus.py` rebuilds the curated corpus and applies that adapter. Restart the API after a rebuild. Pending material in `data_handoffs/` is not searched.
 
 Set server-side `GROQ_API_KEY` to enable Groq `openai/gpt-oss-20b` synthesis. The key is optional for retrieval and must never appear in frontend code. See [deployment](../DEPLOYMENT.md), [architecture](ARCHITECTURE.md), and [data audit](HANDOFF_3_REPORT.md).

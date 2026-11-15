@@ -9,7 +9,7 @@ Ten reviewed text sections were added from two existing NASA PSI reports. These 
 
 NASA's official investigation metadata was checked again before admission. Both are Combustion Science / Microgravity Investigation. DOIs: PSI-23 `10.60555/k57n-p030`; PSI-25 `10.60555/4qc4-de67`.
 
-The [review manifest](../backend/data/meta/review_additions_2026-11-15.json) records exact selection boundaries, original file hashes, approved text hashes, roles and limitations. The existing corpus adapter reads this allowlist and checks it during rebuild. The authoritative teammate ingestion pipeline is unchanged. Full source files remain immutable.
+The [review manifest](../backend/data/meta/review_additions_2026-11-15.json) records exact selection boundaries, original file hashes, approved text hashes, roles and limitations. The existing corpus adapter reads this allowlist and checks it during rebuild. The authoritative team ingestion pipeline is unchanged. Full source files remain immutable.
 
 No figure was digitized. Ground comparisons, equations and table cells were not promoted as new measurements. The chemistry-name inconsistency on CFI report page 7 was left out. Research rationale is labelled separately from findings; Nomex and candle observations remain specific to the reported tests.
 

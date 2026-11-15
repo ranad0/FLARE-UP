@@ -53,7 +53,7 @@ Scenario analysis is explicit about evidence gaps: only gaseous-fuel microgravit
 
 ## Handoff compatibility and optional synthesis
 
-The teammate `pipeline/` owns ingestion. `scripts/merge_handoff.py` explicitly adapts approved
+Our `pipeline/` owns ingestion. `scripts/merge_handoff.py` explicitly adapts approved
 2.0.0 records into application 3.0, preserving complete originals and checking source cells.
 `data_handoffs/handoff_3` is a review snapshot, never a retrieval input directory.
 See [the handoff report](HANDOFF_3_REPORT.md) for exact boundaries.

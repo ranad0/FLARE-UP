@@ -1,28 +1,21 @@
-# Validation — 15 November 2026
+# Validation and scientific limits
 
-## Passed
-- 15 backend regression/integrity tests: text, structured, hybrid, Arabic topic expansion, legacy Dext parser, eligibility, excluded ground columns, unknown units, no invented numeric match, unrelated-query abstention, routing contract, separate supporting collection, scenario evidence limits.
-- Corpus verifier: 112 judged chunks and 12,154 numeric cells; source hashes, unique IDs, original CSV values and permitted gravity scope. 122 contextual chunks checked for source hashes and separation.
-- Real HTTP checks: homepage, health, docs, OpenAPI, investigation catalog, provenance, logo and resources returned successfully; text/structured/hybrid `/ask`, scenario analysis, supporting resource search and invalid-request validation passed.
-- TypeScript typecheck and Vite production build passed.
-- Chrome: search/API connection, scenario evidence response, investigation catalog, NASA context search and 3D chamber inspected. Desktop and 390×844 phone homepage checked; Arabic RTL switch checked. No browser console errors in the inspected preview session.
+We validate retrieval, provenance, API behavior and presentation separately. Automated checks do not constitute scientific certification.
 
-## Practical limits
-- The lazy-loaded Three.js lab bundle is approximately 644 KB before gzip (162 KB gzip); Vite reports its bundle-size advisory. The lab is loaded on entry, separate from the homepage.
-- Default local retrieval tested. Optional MiniLM neural dependencies/model download/indexing have not been executed in this build.
-- Docker/host deployment is prepared, not executed. No public project link has been created.
-- No claim of full scientific peer review, calibrated CFD, exhaustive NASA coverage, or validated safety guidance. Read provenance for unit concerns and unreviewed reports.
-- Automated tests validate transcription, scope and behavior, not the correctness of every original NASA source interpretation.
+## Current checks
+- 40 offline unit tests passed, covering routing, source traceability, ground-data exclusion, unknown units, schema compatibility, synthesis citation checks and fallback behavior.
+- Local HTTP tests passed for text, structured and hybrid queries, English/Arabic retrieval, all four Fire Lab sample categories, supporting-resource separation and request validation.
+- Corpus verification passed for 123 text chunks and 12,160 scalar records. Original source values and hashes remain traceable. The 122 supporting chunks are separate.
+- Frontend type checking and production build passed. Browser checks covered language selection, gravity modes, search, source links and Fire Lab evidence.
+- Canvas checks cover mode transitions, cursor recovery, reduced-motion preferences and rendering cleanup.
 
-Screenshots: `home-preview.jpg`, `mobile-preview.jpg`, `lab-preview.jpg`.
+## Interpretation and generation
+We use optional Groq synthesis only after retrieval. Generated qualitative claims must retain source support and pass validation. Numeric values come from structured records. If generation is unavailable or fails a check, we display original evidence and explicitly label the fallback. Offline mocked-provider tests do not establish live-provider availability or scientific correctness.
 
-## Visual restoration verification
-- Shared Earth/micro mode verified in Chrome for both flame canvases, cursor mode, search border and atmosphere. CSS transitions are 0.8 seconds; 234 stars remain in three layers.
-- Renderer behavioral checks pass: Earth/micro geometry, continuous morph, directional spring response and recovery, reduced-motion static behavior/live change, cursor suppression/cleanup, Earth upward motion versus micro radial motion.
-- Mobile 390×844 inspected: no horizontal overflow, compact switch (~47px), usable search. Fixed inherited height selector affecting the switch.
-- Browser Ask returns sourced text; lab returns Evidence Match, Reported by Sources, Interpretation and Not Established. Existing HTTP checks cover text/structured/hybrid routes.
-- SHA-256 comparison confirms all 123 protected backend/data/scripts/existing-test files unchanged. Corpus QA and all 15 backend tests pass again.
-- See VISUAL_STATE.md for test scope and JUDGING_MAP.md for presentation mapping.
+## Fire Lab
+We illustrate buoyancy and ventilation qualitatively. Smoke visibility is intentionally faint, decorative sparks are removed, and microgravity has no imposed upward buoyant velocity. Oxygen and pressure remain evidence-query inputs; there is no validated mapping from them to rendered flame size, brightness or extinction. A related investigation or nearby pressure is not an exact scenario match.
 
-## Public deployment verification — 2026-11-15
-Render Docker deployment succeeded. `tests/test_http.py https://flare-up-ranad0.onrender.com` passed all 14 checks (eight GET endpoints, three answer routes, scenario analysis, supporting-resource separation and request validation). The 120-second frontend timeout accommodates free-host wake-up; backend and data files remain unchanged.
+## Coverage limits
+The corpus is selective. Metadata, objectives, hypotheses, methods and findings retain distinct roles. Ground investigations and pending material are excluded from judged retrieval; unknown units remain unknown. There is no operational safety recommendation or calibrated combustion prediction.
+
+Historical handoff checks are retained in HANDOFF_3_VALIDATION.json as a dated snapshot, not as the current deployment status.

@@ -22,19 +22,19 @@ From the project root, first install only the browser binary if it is not alread
 ```powershell
 $projectPath = (Resolve-Path .).Path
 $env:PLAYWRIGHT_BROWSERS_PATH = Join-Path $projectPath 'data\tmp\playwright-browsers'
-& 'C:\Users\USER\Desktop\flare-up\.venv\Scripts\python.exe' -m playwright install chromium
+python -m playwright install chromium
 ```
 
 Then run one file only:
 
 ```powershell
-& 'C:\Users\USER\Desktop\flare-up\.venv\Scripts\python.exe' .\src\download_psi_browser.py PSI-10
+python .\src\download_psi_browser.py PSI-10
 ```
 
 To select a specific visible file after confirming its exact name on the page:
 
 ```powershell
-& 'C:\Users\USER\Desktop\flare-up\.venv\Scripts\python.exe' .\src\download_psi_browser.py PSI-10 --file 'exact filename.csv'
+python .\src\download_psi_browser.py PSI-10 --file 'exact filename.csv'
 ```
 
 The first run defaults to the first CSV discovered from live page requests. A successful result reports the exact local path, byte count, SHA-256, and a manifest record. Review and open the file before passing it to handlers or RAG. The old `download_psi_pilot.py` used a direct HTTP request and rejected NASA's HTML response; use `download_psi_browser.py` for the UI-driven test.
@@ -44,8 +44,8 @@ The first run defaults to the first CSV discovered from live page requests. A su
 Review `requirements-gdrive.txt` before installing its two OAuth/API packages. Save an OAuth Desktop client file as `config/oauth/google_oauth_client.json`; `.gitignore` excludes that file and the OAuth directory. Run:
 
 ```powershell
-& 'C:\Users\USER\Desktop\flare-up\.venv\Scripts\python.exe' -m pip install -r .\requirements-gdrive.txt
-& 'C:\Users\USER\Desktop\flare-up\.venv\Scripts\python.exe' .\src\gdrive_upload.py '.\data\tmp\psi_downloads\PSI-10\exact filename.csv'
+python -m pip install -r .\requirements-gdrive.txt
+python .\src\gdrive_upload.py '.\data\tmp\psi_downloads\PSI-10\exact filename.csv'
 ```
 
 The uploader verifies the remote byte size and MD5 before reporting success. It never deletes the local file by default. If local removal is explicitly requested with `--remove-local-after-verified`, the user must type `REMOVE LOCAL FILE` after verification; otherwise the local file remains.
