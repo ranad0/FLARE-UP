@@ -1,0 +1,5 @@
+# Original local MiniLM neural embedding path, optional; no inference API.
+-r requirements.txt
+torch>=2.1,<3
+transformers>=4.41,<6
+huggingface-hub>=0.30,<2

@@ -1,0 +1,11 @@
+**/node_modules/
+**/__pycache__/
+**/.venv/
+**/.env
+**/.env.local
+backend/storage/
+frontend/dist/
+*.log
+.DS_Store
+
+**/.visual-test/

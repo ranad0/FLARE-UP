@@ -1,0 +1,236 @@
+[
+  {
+    "id": "PSI-22",
+    "title": "Advanced Combustion via Microgravity Experiments Electric-Field Effects on Laminar Diffusion Flames",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "a491519f60b91c9eb2272e651846103f34006867fb74535911e8c18448e48a09",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-22",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-10",
+    "title": "Advanced Combustion via Microgravity Experiments / Flame Design",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "a20756e7acf67f0046a21a3bce9bfca7f142cd5350350c0dad29997cf8fe28db",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-10",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-159",
+    "title": "Advanced Combustion via Microgravity Experiments / Cool Flames Investigation with Gases",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "e01abe2caa309753a9bee1b0c3c79dec194a2a7300d0d13541e0dcf25e3b0ea5",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-159",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-107",
+    "title": "Smoke Point In Co-flow Experiment",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "f31081deb2b079373a0cbc98ad8483d87856aeca1aa6946ce31acff6cefcfbf2",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-107",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-106",
+    "title": "Structure and Liftoff In Combustion Experiment",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "f705b2e04bd00d05f3c74ae55391c340b5a08d60efa8193e66b7c4e2518d9d5d",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-106",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-100",
+    "title": "Spacecraft Fire Experiment-III",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "9c836955a28ff129b2f239f9499e06f4ca52ba58f7a03d384a7bd0528c8bbe10",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-100",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-102",
+    "title": "Smoke and Aerosol Measurement Experiment",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "fe221f1380ad3317f70b559a3213c4e00ef3676b40838a49cb5b3cba89dea5ba",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-102",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-69",
+    "title": "Flame Extinguishment Experiment",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "a2d8ec5d0e9ad1060f6ecc7a850598634cc5519c373ae70462bf76c31fc8731c",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-69",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-39",
+    "title": "Cool Flames Investigation",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "ab2501bbe6200dabd012e7bf199e79426f8d19eb484c2af421183bb61b558d35",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-39",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-21",
+    "title": "Advanced Combustion via Microgravity Experiments / Coflow Laminar Diffusion Flame",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "99a5e58119a9c01ec1b57dfe03d696fb8d05b494a3658338b0f2abb077a72ac5",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-21",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-68",
+    "title": "Flame Extinguishment Experiment - 2",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "de041dc1dc8b093e8f168b36d3b06cab257b4d75ffb24ff21754b8af4256ebcf",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-68",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-26",
+    "title": "Burning and Suppression of Solids",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "9dee45d44bb736178db270a07c9ee8f98ac02ee810189ab518271fd4720c0533",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-26",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-117",
+    "title": "Effect of External Thermo-Convective Perturbation on Cool Flame Dynamics: A Multidimensional Multi-Physics CFD Analysis",
+    "project_type": "Ground Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "13e50b67d851dcf8bfc09103055995a17d89174589080d7103fa54ef1e02a794",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-117",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-23",
+    "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "a89bd634a661e724b9bc766a8f217bc0c76c816f0db973991847bce6b53802d7",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-23",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-20",
+    "title": "Advanced Combustion via Microgravity Experiments - Burning Rate Emulator",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "ea118e19d02785f54d246406aacea93878053ff95ddd5bdca44bd29c09a753d1",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-20",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-142",
+    "title": "Quantitative Studies of Cool Flame Transitions at Radiation / Stretch Extinction Using Counterflow Flames",
+    "project_type": "Ground Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "c55ab5d3140025e16ef25ac37a99158d510c2e3c170c04dabc8993bd548a3506",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-142",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-60",
+    "title": "Computational and Experimental Analysis of SPICE Data Sets",
+    "project_type": "Ground Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "cc7a61fee3ea20466b58462bdf57af6648dea0a99d8c4936828a471cbfa73051",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-60",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-62",
+    "title": "Concurrent Flame Spread Modeling using Flamelet Generated Manifolds in Microgravity with Comparison to BASS Experiments using Two-Color Tomography",
+    "project_type": "Ground Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "e4325a65cecdbbc8104502ddbf4d8cec42c463e8e8bc9d61d92b939614cff444",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-62",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-99",
+    "title": "Spacecraft Fire Experiment-II",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "2c042a6bd82fa6b437cae61490d54ea91f890a52282bc5949b4a0119bcbf6633",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-99",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-25",
+    "title": "Burning and Suppression of Solids - II",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "b9234754db5da651ad27d888af082b889d07210b018e543369662f065b4ec2da",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-25",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-115",
+    "title": "Utilization of the Smoke Aerosol Measurement Experiment Data for Advanced Modeling and Simulation of Smoke Generation in Micro-Gravity",
+    "project_type": "Ground Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "9c5b463fbe8fe8ed034229cbabd6c498f48ca9bb636196084ed2046eb2e41484",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-115",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-47",
+    "title": "Dust and Aerosol Measurement Feasibility Test / Dust and Aerosol Measurement Feasibility Test-2",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "60ff7a7d0ef34c3043dda4133f277045ba72addb1fb2fc2e9f02e0550d0eb389",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-47",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-98",
+    "title": "Spacecraft Fire Safety Experiment-I",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "501b5f625733e29c0c6ff0c12b3de1a3e960a159a8c8f8a21ba5c5803afe0570",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-98",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-181",
+    "title": "Structure and Properties of Pb-Sn and Pb-free Sn-Ag-Cu Solders Produced in Terrestrial vs. Microgravity Environments under Extremes of Elevated and Cryo Temperatures",
+    "project_type": "Ground Investigation",
+    "research_area": "Materials Science",
+    "sha256": "7db2c6f4a3046bc6d23320b25b65afc19f94736ff9134817a618afba7fd7ca04",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-181",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-108",
+    "title": "Surface Tension Driven Convection Experiment-1",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Fluid Physics",
+    "sha256": "0ff23962e77b55cc2d8c93c25c63e03dd94bf9be16aa1d80ca9992b7dadaaa46",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-108",
+    "status": "metadata_downloaded"
+  },
+  {
+    "id": "PSI-101",
+    "title": "Smoke Aerosol Measurement Experiment-Reflight",
+    "project_type": "Microgravity Investigation",
+    "research_area": "Combustion Science",
+    "sha256": "e0aa75d015705a5943b51dbb4a8ba52751a35e4cafc2307d9201d77ebed711a5",
+    "source_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-101",
+    "status": "metadata_downloaded"
+  }
+]

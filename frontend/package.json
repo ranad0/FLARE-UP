@@ -1,0 +1,30 @@
+{
+  "name": "flare-up",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5173",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "preview": "vite preview --host 127.0.0.1",
+    "test:visual": "tsc --ignoreConfig --target es2022 --module esnext --jsx react-jsx --outDir .visual-test --noEmit false --moduleResolution bundler --skipLibCheck src/components/OrbScene.tsx src/components/CursorAtmosphere.tsx && node visual-checks.mjs"
+  },
+  "dependencies": {
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "three": "^0.187.0",
+    "lucide-react": "^0.546.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
+    "@vitejs/plugin-react": "^6.1.1",
+    "vite": "^8.3.0",
+    "@types/three": "^0.187.0",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2"
+  }
+}

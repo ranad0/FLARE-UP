@@ -1,0 +1,14 @@
+**/node_modules
+**/__pycache__
+**/.venv
+**/.env
+**/.env.local
+.git
+legacy
+docs
+frontend/dist
+backend/data/review
+backend/data/raw
+backend/data/supplemental/raw
+
+**/.visual-test/
