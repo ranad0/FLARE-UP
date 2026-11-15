@@ -1,0 +1,49 @@
+{
+  "run_at_utc": "2026-11-13T20:02:08+00:00",
+  "summary": {
+    "files_found": 4,
+    "processed": 4,
+    "failed": 0,
+    "unsupported": 0,
+    "retained_archives": 0
+  },
+  "files": [
+    {
+      "source": "PSI-117/PSI-117_Analyzed Data_MST_2024_Burning_history_Flame_diameter.csv",
+      "status": "processed",
+      "output": "PSI-117/PSI-117_Analyzed Data_MST_2024_Burning_history_Flame_diameter.jsonl",
+      "details": {
+        "rows": 683
+      },
+      "error": ""
+    },
+    {
+      "source": "PSI-117/PSI-117_Analyzed Data_MST_2024_Dext.csv",
+      "status": "processed",
+      "output": "PSI-117/PSI-117_Analyzed Data_MST_2024_Dext.jsonl",
+      "details": {
+        "rows": 9
+      },
+      "error": ""
+    },
+    {
+      "source": "PSI-117/PSI-117_Analyzed Data_ReadMe_List_of_Data.xlsx",
+      "status": "processed",
+      "output": "PSI-117/PSI-117_Analyzed Data_ReadMe_List_of_Data.jsonl",
+      "details": {
+        "rows": 16
+      },
+      "error": ""
+    },
+    {
+      "source": "PSI-117/PSI-117_Presentations_PSI_Users_Group_Cool_Flames_in_Space_03302026 (8).pdf",
+      "status": "processed",
+      "output": "PSI-117/PSI-117_Presentations_PSI_Users_Group_Cool_Flames_in_Space_03302026 (8).jsonl",
+      "details": {
+        "pages": 36,
+        "images_extracted": 81
+      },
+      "error": ""
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "2.0.0",
+  "pipeline_version": "0.2.0",
+  "generated_at_utc": "2026-11-14T20:09:25+00:00",
+  "status": "structurally_valid_with_review_flags",
+  "summary": {
+    "jsonl_files": 7,
+    "records": 3590,
+    "errors": 0,
+    "missing_required_fields": 0,
+    "review_flags": {
+      "records_with_unit_needing_review": 1330
+    }
+  },
+  "errors": [],
+  "missing_required_fields": [],
+  "note": "Review flags preserve scientific uncertainty; they do not indicate structural failure."
+}

@@ -1,0 +1,23 @@
+{
+  "run_at_utc": "2026-11-14T19:56:48Z",
+  "chunk_schema_version": "2.0.0",
+  "chunking_method": "word_window_per_page_record_or_transcript_time_range",
+  "target_words": 250,
+  "overlap_words": 40,
+  "output": "data/processed/PSI-159/chunks.jsonl",
+  "investigation_filter": "PSI-159",
+  "summary": {
+    "source_files_seen": 5,
+    "records_seen": 3580,
+    "text_records_chunked": 1,
+    "transcript_segments_chunked": 0,
+    "transcript_chunks_created": 0,
+    "dataset_index_entries": 2,
+    "csv_tables_indexed": 2,
+    "structured_rows_preserved": 333,
+    "empty_text_records": 0,
+    "chunks_created": 7
+  },
+  "failures": [],
+  "note": "Word counts are an initial proxy. Match chunk limits to the selected embedding model tokenizer before production RAG ingestion."
+}

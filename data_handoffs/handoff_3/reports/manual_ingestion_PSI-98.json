@@ -1,0 +1,22 @@
+{
+  "schema_version": "2.0.0",
+  "investigation_id": "PSI-98",
+  "investigation_id_status": "verified",
+  "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-98",
+  "processed_at_utc": "2026-11-15T12:21:20+00:00",
+  "archives": [],
+  "processed_files": [
+    {
+      "source_relative_path": "PSI-98/PSI-98_Experimental table_SAFFIRE-1.csv",
+      "output_relative_path": "data/processed/PSI-98/PSI-98_Experimental table_SAFFIRE-1.jsonl",
+      "status": "processed",
+      "rows_or_lines": 4,
+      "details": {
+        "rows": 4
+      },
+      "sha256": "c01f29c62455f0a3b512290ab85e5687ecded326733189f002f580368402308d"
+    }
+  ],
+  "raw_inventory_manifest": "reports/manifest.csv",
+  "note": "CSV rows preserve source columns and values. PDFs preserve page numbers and extracted image references. ZIP members are extracted only after path and size safety checks."
+}

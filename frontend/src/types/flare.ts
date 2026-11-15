@@ -45,6 +45,14 @@ export interface StructuredResultRow {
 }
 
 export interface AskResponse {
+  synthesis?: {
+    reported_by_sources: Array<{text: string; source_ids: string[]; kind: string}>;
+    interpretation: Array<{text: string; source_ids: string[]; kind: string}>;
+    not_established: string[];
+    sources: Array<{id: string; url?: string; source_file?: string; source_location?: string}>;
+    status: string;
+    model?: string | null;
+  };
   route?: string;
   answer?: string;
   sources?: Array<SourceItem | string>;

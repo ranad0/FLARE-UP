@@ -1,0 +1,38 @@
+{
+  "schema_version": "2.0.0",
+  "investigation_id": "PSI-69",
+  "generated_at_utc": "2026-11-15T12:27:04+00:00",
+  "files": [
+    {
+      "schema_version": "2.0.0",
+      "investigation_id": "PSI-69",
+      "source_file": "PSI-69_Experimental table_FLEX.csv",
+      "source_encoding": "cp1252",
+      "source_relative_path": "PSI-69/PSI-69_Experimental table_FLEX.csv",
+      "output": "data/processed/structured/PSI-69_Experimental table_FLEX_observations.jsonl",
+      "source_row_count": 274,
+      "nonempty_source_rows": 274,
+      "normalized_measurement_records": 2353,
+      "measurement_records_by_column": {
+        "Ambient pressure; mmHg": 274,
+        "O initial ambient composition; mole fraction": 274,
+        "N initial ambient composition; mole fraction": 274,
+        "CO initial ambient composition; mole fraction": 274,
+        "He initial ambient composition; mole fraction": 274,
+        "Droplet initial diameter; mm": 262,
+        "Visible flame extinction diameter; mm": 197,
+        "Burning rate; mm": 258,
+        "Burn time; s": 266
+      },
+      "empty_rows_skipped": 0,
+      "rows_with_unlabeled_extra_values": [],
+      "measurements_without_explicit_unit": 0,
+      "units_policy": "Only explicit units in column headers are assigned; all other units remain null and flagged."
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "normalized_measurement_records": 2353,
+    "measurements_without_explicit_unit": 0
+  }
+}

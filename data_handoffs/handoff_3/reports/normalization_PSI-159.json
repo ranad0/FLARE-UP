@@ -1,0 +1,64 @@
+{
+  "schema_version": "2.0.0",
+  "investigation_id": "PSI-159",
+  "generated_at_utc": "2026-11-14T19:37:19+00:00",
+  "files": [
+    {
+      "schema_version": "2.0.0",
+      "investigation_id": "PSI-159",
+      "source_file": "PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+      "source_relative_path": "PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+      "output": "data/processed/structured/PSI-159_Experimental table_CFI-G_Inverse Flames_observations.jsonl",
+      "source_row_count": 1015,
+      "nonempty_source_rows": 154,
+      "normalized_measurement_records": 1689,
+      "measurement_records_by_column": {
+        "Xf  before test": 154,
+        "Xf  after test": 154,
+        "approx p (bar)": 154,
+        "XO2": 154,
+        "HC burnrate (mg/s)": 154,
+        "O2 flow rate (mg/s)": 154,
+        "Tad (K)": 154,
+        "Zst": 154,
+        "burn time (sec)": 154,
+        "Peak burner Temp (C)": 151,
+        "Peak burner temp (K)": 152
+      },
+      "empty_rows_skipped": 861,
+      "rows_with_unlabeled_extra_values": [],
+      "measurements_without_explicit_unit": 0,
+      "units_policy": "Only explicit units in column headers are assigned; all other units remain null and flagged."
+    },
+    {
+      "schema_version": "2.0.0",
+      "investigation_id": "PSI-159",
+      "source_file": "PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+      "source_relative_path": "PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+      "output": "data/processed/structured/PSI-159_Experimental table_CFI-G_Normal Flames_observations.jsonl",
+      "source_row_count": 179,
+      "nonempty_source_rows": 179,
+      "normalized_measurement_records": 1557,
+      "measurement_records_by_column": {
+        "XO2 before test": 179,
+        "XO2  after test": 179,
+        "approx p (bar)": 179,
+        "Xf": 179,
+        "mHC (mg/s)": 179,
+        "Tad (K)": 177,
+        "Zst": 177,
+        "burn time (sec)": 175,
+        "Peak burner T (C )": 133
+      },
+      "empty_rows_skipped": 0,
+      "rows_with_unlabeled_extra_values": [],
+      "measurements_without_explicit_unit": 0,
+      "units_policy": "Only explicit units in column headers are assigned; all other units remain null and flagged."
+    }
+  ],
+  "summary": {
+    "files": 2,
+    "normalized_measurement_records": 3246,
+    "measurements_without_explicit_unit": 0
+  }
+}

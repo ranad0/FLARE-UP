@@ -1,0 +1,119 @@
+{
+  "queries": [
+    {
+      "question": "How does cabin airflow influence flame spread in spacecraft?",
+      "route": "text",
+      "llm_status": "extractive-no-key",
+      "summary": [
+        {
+          "text": "Source excerpt: While spread rate over thin fuels is independent of the opposing flow velocity in the thermal regime, in the microgravity regime, where the opposing flow can be very mild or even completely absent in the absence of buoyancy-induced flow, the spread rate is known to decrease as the opposed flow is reduced. Under certain conditions, this can lead to flame extinguishment at a low enough flow velocity.",
+          "source_ids": [
+            "T3"
+          ],
+          "kind": "extractive"
+        }
+      ],
+      "numeric_records": 0,
+      "text_sources": 7
+    },
+    {
+      "question": "Compare burn time for normal and inverse flames in PSI-159",
+      "route": "structured",
+      "llm_status": "extractive-no-key",
+      "summary": [
+        {
+          "text": "PSI-159 \u00b7 Normal: burn time (sec) = 50 sec. Other conditions may differ.",
+          "source_ids": [
+            "R1"
+          ],
+          "kind": "structured",
+          "record_id": "5928af792e54aca81cc23521"
+        },
+        {
+          "text": "PSI-159 \u00b7 Inverse: burn time (sec) = 0 sec. Other conditions may differ.",
+          "source_ids": [
+            "R2"
+          ],
+          "kind": "structured",
+          "record_id": "60ca40771143308e6c0ced1d"
+        }
+      ],
+      "numeric_records": 16,
+      "text_sources": 0
+    },
+    {
+      "question": "Compare burn time PSI-159 at 1.1 bar and explain the experiment",
+      "route": "hybrid",
+      "llm_status": "extractive-no-key",
+      "summary": [
+        {
+          "text": "PSI-159 \u00b7 Inverse: burn time (sec) = 0 sec. Other conditions may differ.",
+          "source_ids": [
+            "R1"
+          ],
+          "kind": "structured",
+          "record_id": "60ca40771143308e6c0ced1d"
+        },
+        {
+          "text": "Source excerpt: The results identify the importance of burner temperature on the behavior of these CDFs.",
+          "source_ids": [
+            "T1"
+          ],
+          "kind": "extractive"
+        }
+      ],
+      "numeric_records": 16,
+      "text_sources": 1
+    },
+    {
+      "question": "Compare burn time PSI-98",
+      "route": "structured",
+      "llm_status": "extractive-no-key",
+      "summary": [
+        {
+          "text": "PSI-98 \u00b7 S1: Burn Time (s) = 420 s. Other conditions may differ.",
+          "source_ids": [
+            "R1"
+          ],
+          "kind": "structured",
+          "record_id": "observation_8fbaa924c069ce93fe98e351"
+        },
+        {
+          "text": "PSI-98 \u00b7 S2: Burn Time (s) = 70 s. Other conditions may differ.",
+          "source_ids": [
+            "R2"
+          ],
+          "kind": "structured",
+          "record_id": "observation_9bb74f9904ff256876a1d954"
+        }
+      ],
+      "numeric_records": 2,
+      "text_sources": 0
+    },
+    {
+      "question": "What is the SAME smoke aerosol experiment objective PSI-101?",
+      "route": "text",
+      "llm_status": "extractive-no-key",
+      "summary": [
+        {
+          "text": "Research hypothesis: In particular, it is hypothesized that liquid aerosol smokes produced in microgravity will exhibit substantially larger droplet sizes than under the same conditions in normal gravity (with a corresponding decrease in the particle number density for the same mass of smoke).",
+          "source_ids": [
+            "T4"
+          ],
+          "kind": "extractive"
+        }
+      ],
+      "numeric_records": 0,
+      "text_sources": 4
+    }
+  ],
+  "corpus_sha256": "8a7ffeda011acb47f91737eabae92dba6ea23ca90ee36d45d13de3eafd677429",
+  "semantic_index": "Local TF-IDF/LSA rebuilt successfully from current chunks (in-memory); optional MiniLM not enabled",
+  "structured_index": "12160 source records reloaded; no separate persistent index",
+  "unit_tests_passed": 27,
+  "http_checks_passed": 14,
+  "visual_checks_passed": 6,
+  "frontend_typecheck": "pass",
+  "frontend_build": "pass; existing Fire Lab bundle size advisory remains",
+  "live_groq": "pending server key; provider responses mocked for validation and failure tests"
+}

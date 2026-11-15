@@ -7,7 +7,7 @@ Show the homepage. Toggle Earth → Microgravity to demonstrate the coordinated 
 Open NASA's Mir resource in Evidence. Explain the difficulty of fire detection, ventilation and suppression in spacecraft. Cite the linked NASA account; do not present historical incidents as controlled experiments.
 
 ## 3 — NASA data is the foundation (25 seconds)
-Show the investigation catalog and provenance report: 19 microgravity investigations, 21 tables, 2,001 rows, 12,154 numeric fields and 112 selected passages. Explain that ground investigations are excluded from judged answers. Numeric fields are not separate experiments.
+Show the investigation catalog and provenance report: 19 microgravity investigations, 21 tables, 2,001 rows, 12,160 numeric fields and 113 selected passages. Explain that ground investigations are excluded from judged answers. Numeric fields are not separate experiments.
 
 ## 4 — One question, the right evidence path (40 seconds)
 Ask “How does cabin airflow influence flame spread in spacecraft?” Show the text route and source locations. Then ask “Compare burn time for normal and inverse flames in PSI-159.” Show the structured route, actual units and row links. Run the hybrid example from README if time permits.
@@ -26,3 +26,9 @@ High-level summary: FLARE UP is an interactive scientific evidence platform for 
 AI usage: local statistical semantic/lexical retrieval and deterministic routing; extractive answer assembly. Optional MiniLM neural embeddings are preserved but not enabled in the tested default. Visual scenario effects are authored illustrations, not model predictions. Code/design assistance was used to build the platform; scientific records remain sourced from NASA.
 
 References: the live catalog links each investigation; `backend/data/meta/DATA_PROVENANCE.md` documents files, hashes, exclusions and supplemental resources. Challenge: https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/?tab=resources
+
+Handoff 3 update: show `Compare burn time PSI-98` to demonstrate the newly admitted source cells.
+The answer appears before expandable measurements and sources. Show “Why these results?” for
+routing/filters and “Not Established” for limitations. If Groq is configured and `llm_status`
+is `groq-grounded`, describe it as evidence-grounded synthesis using exact citations and a separate
+entailment check. Otherwise explicitly describe the extractive fallback. No generated numbers.

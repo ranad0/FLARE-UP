@@ -169,4 +169,6 @@ def main():
                   reviewed_report_passages=[{'investigation_id':c['investigation_id'],'source_file':c['source_file'],'source_location':c['source_location'],'evidence_role':c.get('evidence_role')} for c in chunks if c['source_file'].endswith('.pdf')])
     dump(DATA/'meta/ingestion_report.json',report)
     print(json.dumps({k:report[k] for k in ('eligible_investigations','text_chunks','structured_records','pending_review_chunks')}))
+    from merge_handoff import main as merge_reviewed_handoff
+    merge_reviewed_handoff()
 if __name__=='__main__': main()

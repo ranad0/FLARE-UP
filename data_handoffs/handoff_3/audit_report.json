@@ -1,0 +1,1250 @@
+{
+  "baseline_commit": "4042f2a17bf3558b6d3ddba3c6d98d6858c585cb",
+  "archive_sha256": "b3d3158c22be7422a18112c5b1394416edda5cd521b30bcf47cc693e6d091261",
+  "categories": {
+    "NEW": [
+      "PSI-98: six scalar observations (Ignition Power, Ignition Time, Burn Time; two source rows); units explicit in CSV headers.",
+      "PSI-101: six engineering PDFs, not new investigation; review before admission.",
+      "Safety cases: separate contextual collection, not judged measurements."
+    ],
+    "UPDATED": [
+      "Optional pipeline source improvements: explicit CSV encoding, scoped finalization, OOXML extraction."
+    ],
+    "UNCHANGED": [
+      "Current application, routes, schema 3.0 outputs, existing scientific values."
+    ],
+    "DUPLICATE": [
+      "data/raw/nasa-combustion-reference/saffire/SAFFIRE-I and SAFFIRE-III DoD.docx",
+      "data/raw/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+      "data/raw/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+      "data/raw/PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.txt",
+      "data/raw/PSI-25/BASS-II data FAQ.docx",
+      "data/raw/PSI-25/BASS-II Summary Report.pdf",
+      "data/raw/PSI-25/PSI-25_Experimental table_BASS-II.csv",
+      "data/raw/PSI-26/PSI-26_Experimental table_BASS.csv",
+      "data/raw/PSI-69/PSI-69_Experimental table_FLEX.csv",
+      "data/raw/PSI-98/PSI-98_Experimental table_SAFFIRE-1.csv"
+    ],
+    "INCOMPATIBLE": [
+      "data/processed/PSI-10/PSI-10_Experimental table_Flame Design_Inverse Flame.jsonl"
+    ],
+    "NEEDS REVIEW": [
+      "data/raw/nasa-combustion-reference/bass/BASS Test Matrix 050213.xlsx",
+      "data/raw/nasa-combustion-reference/bass/BASS test matrix.xlsx",
+      "data/raw/nasa-combustion-reference/bass/DLD_BASS.pdf",
+      "data/raw/nasa-combustion-reference/bass/ISS Denver 2013-BASS.pdf",
+      "data/raw/nasa-combustion-reference/bass/SRD_BASS.pdf",
+      "data/raw/nasa-combustion-reference/nasa-combustion-research-guide/nasa-combustion-research-guide__fa3658769316.txt",
+      "data/raw/nasa-combustion-reference/nasa-combustion-science/nasa-combustion-science__7d9103d44dae.txt",
+      "data/raw/nasa-safety-cases/Safety_Dashboard_Data.json",
+      "data/raw/nasa-safety-cases/safety_full_text.md",
+      "data/raw/nasa-safety-cases/safety_overview.md",
+      "data/raw/nasa-safety-cases/Safety_Scientific_Summary.md",
+      "data/raw/nasa-safety-cases/safety_summary_for_rag.md",
+      "data/raw/PSI-101/54 7L Lampwick.pdf",
+      "data/raw/PSI-101/60089MFHA151_B.PDF",
+      "data/raw/PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.pdf",
+      "data/raw/PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.pdf",
+      "data/raw/PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.pdf",
+      "data/raw/PSI-101/SAME_Baseline Concept Description Document_001 Rev A.pdf",
+      "data/raw/PSI-159/PSI-159_metadata_PSI-159-ISA (1).zip",
+      "data/raw/PSI-159/PSI-159_metadata_PSI-159-ISA.zip",
+      "data/raw/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.txt",
+      "data/raw/PSI-25/BASS-2 Engineering Requirements.pptx",
+      "data/raw/PSI-25/BASS-II Procedure.docx",
+      "data/raw/PSI-25/BASS-II Test Matrix by PI Final.xlsx",
+      "data/raw/PSI-25/SRD_BASS-II.pdf",
+      "data/processed/nasa-safety-cases/cases.jsonl",
+      "data/processed/nasa-safety-cases/chunks.jsonl",
+      "data/processed/nasa-safety-cases/evidence.jsonl",
+      "data/processed/nasa-safety-cases/measurements.jsonl",
+      "data/processed/nasa-safety-cases/source_catalog.jsonl",
+      "data/processed/PSI-10/PSI-10_Experimental table_Flame Design_Inverse Flame.jsonl",
+      "data/processed/PSI-101/54 7L Lampwick.jsonl",
+      "data/processed/PSI-101/60089MFHA151_B.jsonl",
+      "data/processed/PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.jsonl",
+      "data/processed/PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.jsonl",
+      "data/processed/PSI-101/chunks.jsonl",
+      "data/processed/PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.jsonl",
+      "data/processed/PSI-101/SAME_Baseline Concept Description Document_001 Rev A.jsonl",
+      "data/processed/PSI-159/chunks.jsonl",
+      "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.jsonl",
+      "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.jsonl",
+      "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.jsonl",
+      "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.jsonl",
+      "data/processed/PSI-25/chunks.jsonl",
+      "data/processed/PSI-25/PSI-25_Experimental table_BASS-II.jsonl",
+      "data/processed/PSI-69/chunks.jsonl",
+      "data/processed/PSI-69/PSI-69_Experimental table_FLEX.jsonl",
+      "data/processed/PSI-98/chunks.jsonl",
+      "data/processed/PSI-98/PSI-98_Experimental table_SAFFIRE-1.jsonl"
+    ],
+    "EXCLUDED": [
+      "data/raw/nasa-combustion-reference/standards/STDCE-1 NASA Contractor Report Jun 1996.pdf",
+      "data/raw/PSI-117/PSI-117_Analyzed Data_MST_2024_Burning_history_Flame_diameter.csv",
+      "data/raw/PSI-117/PSI-117_Analyzed Data_MST_2024_Dext.csv",
+      "data/raw/PSI-117/PSI-117_Analyzed Data_ReadMe_List_of_Data.xlsx",
+      "data/raw/PSI-117/PSI-117_Presentations_PSI_Users_Group_Cool_Flames_in_Space_03302026 (8).pdf",
+      "data/processed/chunks.jsonl",
+      "data/processed/visual_annotations.jsonl",
+      "data/processed/PSI-117/PSI-117_Analyzed Data_MST_2024_Burning_history_Flame_diameter.jsonl",
+      "data/processed/PSI-117/PSI-117_Analyzed Data_MST_2024_Dext.jsonl",
+      "data/processed/PSI-117/PSI-117_Analyzed Data_ReadMe_List_of_Data.jsonl",
+      "data/processed/PSI-117/PSI-117_Presentations_PSI_Users_Group_Cool_Flames_in_Space_03302026 (8).jsonl",
+      "data/processed/structured/PSI-117_MST_2024_Burning_history_Flame_diameter_samples.jsonl",
+      "data/processed/structured/PSI-117_MST_2024_Dext_observations.jsonl",
+      "Browser binaries, profile/cache data, temporary files; never copied to application."
+    ]
+  },
+  "jsonl": [
+    {
+      "path": "data/processed/chunks.jsonl",
+      "records": 45,
+      "schema_versions": {
+        "1.1": 45
+      },
+      "record_types": {
+        "None": 45
+      },
+      "content_types": {
+        "dataset_index": 9,
+        "scientific_text": 36
+      }
+    },
+    {
+      "path": "data/processed/visual_annotations.jsonl",
+      "records": 1,
+      "schema_versions": {
+        "1.0": 1
+      },
+      "record_types": {
+        "None": 1
+      },
+      "content_types": {
+        "visual_annotation": 1
+      }
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/cases.jsonl",
+      "records": 5,
+      "schema_versions": {
+        "2.0.0": 5
+      },
+      "record_types": {
+        "safety_case_record": 5
+      },
+      "content_types": {
+        "None": 5
+      }
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/chunks.jsonl",
+      "records": 1662,
+      "schema_versions": {
+        "2.0.0": 1662
+      },
+      "record_types": {
+        "chunk": 1662
+      },
+      "content_types": {
+        "safety_case_context": 10,
+        "safety_case_evidence": 32,
+        "source_excerpt": 1620
+      }
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/evidence.jsonl",
+      "records": 32,
+      "schema_versions": {
+        "2.0.0": 32
+      },
+      "record_types": {
+        "safety_evidence_claim": 32
+      },
+      "content_types": {
+        "None": 32
+      }
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/measurements.jsonl",
+      "records": 16,
+      "schema_versions": {
+        "2.0.0": 16
+      },
+      "record_types": {
+        "safety_case_measurement": 16
+      },
+      "content_types": {
+        "None": 16
+      }
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/source_catalog.jsonl",
+      "records": 20,
+      "schema_versions": {
+        "2.0.0": 20
+      },
+      "record_types": {
+        "safety_case_source": 20
+      },
+      "content_types": {
+        "None": 20
+      }
+    },
+    {
+      "path": "data/processed/PSI-10/PSI-10_Experimental table_Flame Design_Inverse Flame.jsonl",
+      "records": 120,
+      "schema_versions": {
+        "unversioned": 120
+      },
+      "record_types": {
+        "None": 120
+      },
+      "content_types": {
+        "None": 120
+      }
+    },
+    {
+      "path": "data/processed/PSI-101/54 7L Lampwick.jsonl",
+      "records": 19,
+      "schema_versions": {
+        "2.0.0": 19
+      },
+      "record_types": {
+        "document": 1,
+        "page": 6,
+        "figure_asset": 12
+      },
+      "content_types": {
+        "None": 19
+      }
+    },
+    {
+      "path": "data/processed/PSI-101/60089MFHA151_B.jsonl",
+      "records": 2,
+      "schema_versions": {
+        "2.0.0": 2
+      },
+      "record_types": {
+        "document": 1,
+        "page": 1
+      },
+      "content_types": {
+        "None": 2
+      }
+    },
+    {
+      "path": "data/processed/PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.jsonl",
+      "records": 2,
+      "schema_versions": {
+        "2.0.0": 2
+      },
+      "record_types": {
+        "document": 1,
+        "page": 1
+      },
+      "content_types": {
+        "None": 2
+      }
+    },
+    {
+      "path": "data/processed/PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.jsonl",
+      "records": 2,
+      "schema_versions": {
+        "2.0.0": 2
+      },
+      "record_types": {
+        "document": 1,
+        "page": 1
+      },
+      "content_types": {
+        "None": 2
+      }
+    },
+    {
+      "path": "data/processed/PSI-101/chunks.jsonl",
+      "records": 180,
+      "schema_versions": {
+        "2.0.0": 180
+      },
+      "record_types": {
+        "chunk": 180
+      },
+      "content_types": {
+        "scientific_text": 180
+      }
+    },
+    {
+      "path": "data/processed/PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.jsonl",
+      "records": 924,
+      "schema_versions": {
+        "2.0.0": 924
+      },
+      "record_types": {
+        "document": 1,
+        "page": 72,
+        "figure_asset": 851
+      },
+      "content_types": {
+        "None": 924
+      }
+    },
+    {
+      "path": "data/processed/PSI-101/SAME_Baseline Concept Description Document_001 Rev A.jsonl",
+      "records": 17,
+      "schema_versions": {
+        "2.0.0": 17
+      },
+      "record_types": {
+        "document": 1,
+        "page": 15,
+        "figure_asset": 1
+      },
+      "content_types": {
+        "None": 17
+      }
+    },
+    {
+      "path": "data/processed/PSI-117/PSI-117_Analyzed Data_MST_2024_Burning_history_Flame_diameter.jsonl",
+      "records": 683,
+      "schema_versions": {
+        "unversioned": 683
+      },
+      "record_types": {
+        "None": 683
+      },
+      "content_types": {
+        "None": 683
+      }
+    },
+    {
+      "path": "data/processed/PSI-117/PSI-117_Analyzed Data_MST_2024_Dext.jsonl",
+      "records": 9,
+      "schema_versions": {
+        "unversioned": 9
+      },
+      "record_types": {
+        "None": 9
+      },
+      "content_types": {
+        "None": 9
+      }
+    },
+    {
+      "path": "data/processed/PSI-117/PSI-117_Analyzed Data_ReadMe_List_of_Data.jsonl",
+      "records": 18,
+      "schema_versions": {
+        "unversioned": 18
+      },
+      "record_types": {
+        "workbook": 1,
+        "sheet": 1,
+        "row": 16
+      },
+      "content_types": {
+        "None": 18
+      }
+    },
+    {
+      "path": "data/processed/PSI-117/PSI-117_Presentations_PSI_Users_Group_Cool_Flames_in_Space_03302026 (8).jsonl",
+      "records": 37,
+      "schema_versions": {
+        "unversioned": 37
+      },
+      "record_types": {
+        "document": 1,
+        "page": 36
+      },
+      "content_types": {
+        "None": 37
+      }
+    },
+    {
+      "path": "data/processed/PSI-159/chunks.jsonl",
+      "records": 7,
+      "schema_versions": {
+        "2.0.0": 7
+      },
+      "record_types": {
+        "chunk": 7
+      },
+      "content_types": {
+        "scientific_text": 5,
+        "dataset_index": 2
+      }
+    },
+    {
+      "path": "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.jsonl",
+      "records": 155,
+      "schema_versions": {
+        "2.0.0": 155
+      },
+      "record_types": {
+        "table": 1,
+        "table_row": 154
+      },
+      "content_types": {
+        "None": 155
+      }
+    },
+    {
+      "path": "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.jsonl",
+      "records": 180,
+      "schema_versions": {
+        "2.0.0": 180
+      },
+      "record_types": {
+        "table": 1,
+        "table_row": 179
+      },
+      "content_types": {
+        "None": 180
+      }
+    },
+    {
+      "path": "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.jsonl",
+      "records": 1,
+      "schema_versions": {
+        "2.0.0": 1
+      },
+      "record_types": {
+        "text_document": 1
+      },
+      "content_types": {
+        "None": 1
+      }
+    },
+    {
+      "path": "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.jsonl",
+      "records": 1,
+      "schema_versions": {
+        "2.0.0": 1
+      },
+      "record_types": {
+        "text_document": 1
+      },
+      "content_types": {
+        "None": 1
+      }
+    },
+    {
+      "path": "data/processed/PSI-25/chunks.jsonl",
+      "records": 1,
+      "schema_versions": {
+        "2.0.0": 1
+      },
+      "record_types": {
+        "chunk": 1
+      },
+      "content_types": {
+        "dataset_index": 1
+      }
+    },
+    {
+      "path": "data/processed/PSI-25/PSI-25_Experimental table_BASS-II.jsonl",
+      "records": 130,
+      "schema_versions": {
+        "2.0.0": 130
+      },
+      "record_types": {
+        "table": 1,
+        "table_row": 129
+      },
+      "content_types": {
+        "None": 130
+      }
+    },
+    {
+      "path": "data/processed/PSI-69/chunks.jsonl",
+      "records": 1,
+      "schema_versions": {
+        "2.0.0": 1
+      },
+      "record_types": {
+        "chunk": 1
+      },
+      "content_types": {
+        "dataset_index": 1
+      }
+    },
+    {
+      "path": "data/processed/PSI-69/PSI-69_Experimental table_FLEX.jsonl",
+      "records": 275,
+      "schema_versions": {
+        "2.0.0": 275
+      },
+      "record_types": {
+        "table": 1,
+        "table_row": 274
+      },
+      "content_types": {
+        "None": 275
+      }
+    },
+    {
+      "path": "data/processed/PSI-98/chunks.jsonl",
+      "records": 1,
+      "schema_versions": {
+        "2.0.0": 1
+      },
+      "record_types": {
+        "chunk": 1
+      },
+      "content_types": {
+        "dataset_index": 1
+      }
+    },
+    {
+      "path": "data/processed/PSI-98/PSI-98_Experimental table_SAFFIRE-1.jsonl",
+      "records": 5,
+      "schema_versions": {
+        "2.0.0": 5
+      },
+      "record_types": {
+        "table": 1,
+        "table_row": 4
+      },
+      "content_types": {
+        "None": 5
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-117_MST_2024_Burning_history_Flame_diameter_samples.jsonl",
+      "records": 1423,
+      "schema_versions": {
+        "1.0": 1423
+      },
+      "record_types": {
+        "time_series_sample": 1423
+      },
+      "content_types": {
+        "None": 1423
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-117_MST_2024_Dext_observations.jsonl",
+      "records": 19,
+      "schema_versions": {
+        "1.0": 19
+      },
+      "record_types": {
+        "numeric_observation": 19
+      },
+      "content_types": {
+        "None": 19
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-159_Experimental table_CFI-G_Inverse Flames_observations.jsonl",
+      "records": 1689,
+      "schema_versions": {
+        "2.0.0": 1689
+      },
+      "record_types": {
+        "numeric_observation": 1689
+      },
+      "content_types": {
+        "None": 1689
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-159_Experimental table_CFI-G_Normal Flames_observations.jsonl",
+      "records": 1557,
+      "schema_versions": {
+        "2.0.0": 1557
+      },
+      "record_types": {
+        "numeric_observation": 1557
+      },
+      "content_types": {
+        "None": 1557
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-69_Experimental table_FLEX_observations.jsonl",
+      "records": 2353,
+      "schema_versions": {
+        "2.0.0": 2353
+      },
+      "record_types": {
+        "numeric_observation": 2353
+      },
+      "content_types": {
+        "None": 2353
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-98_Experimental table_SAFFIRE-1_observations.jsonl",
+      "records": 14,
+      "schema_versions": {
+        "2.0.0": 14
+      },
+      "record_types": {
+        "numeric_observation": 14
+      },
+      "content_types": {
+        "None": 14
+      }
+    }
+  ],
+  "raw_files": [
+    {
+      "path": "data/raw/nasa-combustion-reference/bass/BASS Test Matrix 050213.xlsx",
+      "sha256": "e0a06f81c110efc83cb23841342734c2d0a7187e9d9cbf2c0100c78d66bab9f9",
+      "bytes": 20976,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/bass/BASS test matrix.xlsx",
+      "sha256": "850910541fc9c802d00aa9de14758205103642184249b419c09868df2fbea6e8",
+      "bytes": 111886,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/bass/DLD_BASS.pdf",
+      "sha256": "e38622cce587897c8fe5f8f5af404ee9bb682fea687f4038a67167c03b218505",
+      "bytes": 69653,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/bass/ISS Denver 2013-BASS.pdf",
+      "sha256": "6e654a3468577dd9dce8a14b61a6d0460870d6c88475bbfb18d6c2d94fbad3ea",
+      "bytes": 4640227,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/bass/SRD_BASS.pdf",
+      "sha256": "768a7c289af30d47a2d519db9ba67ef1d944b6053760da3b79efa99df9c04707",
+      "bytes": 884257,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/nasa-combustion-research-guide/nasa-combustion-research-guide__fa3658769316.txt",
+      "sha256": "fde1424870a7a4bf1e45641a8359c0b39475cdbd62aa1a5e640be8435364f766",
+      "bytes": 9715,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/nasa-combustion-science/nasa-combustion-science__7d9103d44dae.txt",
+      "sha256": "920d01d103b838c125b6ad27c3b1a4c9fa8c9d60a4dd6f0b97581cdb37eaaaed",
+      "bytes": 18321,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/saffire/SAFFIRE-I and SAFFIRE-III DoD.docx",
+      "sha256": "49c939337fa00a0473f7efa10367288f510afcbf69dd7f5405054a2617d3a66d",
+      "bytes": 65426,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/downloads/PSI-100/PSI-100_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx",
+        "backend/data/raw/downloads/PSI-98/PSI-98_Science Documents_SAFFIRE-I and SAFFIRE-III Readme.docx"
+      ]
+    },
+    {
+      "path": "data/raw/nasa-combustion-reference/standards/STDCE-1 NASA Contractor Report Jun 1996.pdf",
+      "sha256": "a20c85b5184283184d0e2711860f31ef94d5a95d501e0ebaa39fb1495e3b62d6",
+      "bytes": 10284510,
+      "status": "EXCLUDED",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/Safety_Dashboard_Data.json",
+      "sha256": "41d652a8990c4f13f53e6998bc3247a8984f29e40d49c266a2403fa5d0c217e1",
+      "bytes": 41474,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/safety_full_text.md",
+      "sha256": "df918874ed5e31a04e0aee61078ebd0a37eac3917d54beac3999591b4dbecb66",
+      "bytes": 1896618,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/safety_overview.md",
+      "sha256": "5fff8804d16b661ee9da0ccfbc6b10ed8a9fa5aaa53b88d00897c3a3d2cb3c8b",
+      "bytes": 1923,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/Safety_Scientific_Summary.md",
+      "sha256": "b12b05d9907f5d3f959f0265228adb6abfdbe6d77751b948246b5daa1274cea1",
+      "bytes": 30390,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/safety_summary_for_rag.md",
+      "sha256": "e8feb59c47913e0224d6853aa5ae7dc76e6890101241498aa37df197c298440c",
+      "bytes": 25519,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-101/54 7L Lampwick.pdf",
+      "sha256": "266897bd7888cedb08ab12c534349dc468befe59e97095692a6f7d9396eab1b9",
+      "bytes": 1608893,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-101/60089MFHA151_B.PDF",
+      "sha256": "3968aeb41d3ac690ea7500b6db620ab3a44ce5e66048e6766db5635fd45cde7c",
+      "bytes": 212840,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.pdf",
+      "sha256": "edfa693a5e489053a6b6e096ad12ea2b6e7483a1eb3ce84898a036b3f05499d8",
+      "bytes": 175857,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.pdf",
+      "sha256": "ff80b858803f12138a9196e100d9c48db5dfdd287385c300f6a06aaa43f59cf0",
+      "bytes": 162861,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.pdf",
+      "sha256": "941dca3ccf7132913bfd73e8a408f3ea558eaa822486dd53ffcdfa26127461cb",
+      "bytes": 5378409,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-101/SAME_Baseline Concept Description Document_001 Rev A.pdf",
+      "sha256": "3eed4b7ecd71f9e37a3f7a78d7e7a011ff636bb24ec8bcc72ff97a8ac41b598a",
+      "bytes": 247315,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-117/PSI-117_Analyzed Data_MST_2024_Burning_history_Flame_diameter.csv",
+      "sha256": "81e6b16c355bc64a226cf638f51156758c6a259ed10bc372c1612a0984cc7bc9",
+      "bytes": 44107,
+      "status": "EXCLUDED",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-117/PSI-117_Analyzed Data_MST_2024_Dext.csv",
+      "sha256": "2ed485fec6fad15c1409cd9b5c558ecf7bee262df29c832e9a54f3befc9c2e46",
+      "bytes": 372,
+      "status": "EXCLUDED",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-117/PSI-117_Analyzed Data_ReadMe_List_of_Data.xlsx",
+      "sha256": "a84c138d22545ba9f59c4aa336710741dd48cf3c27823124ed04ac8f91a5f4a0",
+      "bytes": 11059,
+      "status": "EXCLUDED",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-117/PSI-117_Presentations_PSI_Users_Group_Cool_Flames_in_Space_03302026 (8).pdf",
+      "sha256": "9b69c81ba20b7a9af49ca899fb7520ae8e2034f9ceadf94fc6ef22910fc417aa",
+      "bytes": 10786102,
+      "status": "EXCLUDED",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+      "sha256": "d4d44f8b9896936728748e34d1b6ad0812032a92fa5289599b708c138e3a9b39",
+      "bytes": 39422,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+        "backend/data/raw/downloads/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.csv"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+      "sha256": "d95a621c3fbd27d204dd32ed29fa17d68f2b779d6a523cde8479ed7ebaa5251a",
+      "bytes": 22166,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+        "backend/data/raw/downloads/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.csv"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-159/PSI-159_metadata_PSI-159-ISA (1).zip",
+      "sha256": "0ef60d1ee8d4d53bbe58139d56fa99e9500ca48dd7913b25ac85dc853d6710ab",
+      "bytes": 8404,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-159/PSI-159_metadata_PSI-159-ISA.zip",
+      "sha256": "0ef60d1ee8d4d53bbe58139d56fa99e9500ca48dd7913b25ac85dc853d6710ab",
+      "bytes": 8404,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.txt",
+      "sha256": "03092ce8efc68e1a8430098bf73da9b4e9ae2ef302c677c368c2c81ded355ac9",
+      "bytes": 8110,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/PSI-159-ISA.txt"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.txt",
+      "sha256": "cb9374159b9b01a83bfe53a0b8ba1a602793df86f298e0ad222615c55d200135",
+      "bytes": 56,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-25/BASS-2 Engineering Requirements.pptx",
+      "sha256": "08ab1b85ba606db728aafbb731d4a626cd3a655c59f020487c94eb1689ced4f4",
+      "bytes": 1123356,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-25/BASS-II data FAQ.docx",
+      "sha256": "69f32647792f54ab2a561e3cdafc6c87d854564fe487aed2b09265286bd84e1d",
+      "bytes": 21538,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/downloads/PSI-25/PSI-25_Science Documents_BASS-II_ReadMe.docx"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-25/BASS-II Procedure.docx",
+      "sha256": "76fb21a7c94b6f64dd8419a1993980b694ea8e8403e75268e8890a866e1c8d4a",
+      "bytes": 1111856,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-25/BASS-II Summary Report.pdf",
+      "sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "bytes": 48972416,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/downloads/PSI-25/PSI-25_Reports_BASS-II Summary Report.pdf"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-25/BASS-II Test Matrix by PI Final.xlsx",
+      "sha256": "1a3b283dd0adec861793bbc4a454aab64d398cd32d6f37d7a1ad0f642879e686",
+      "bytes": 28956,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-25/PSI-25_Experimental table_BASS-II.csv",
+      "sha256": "71e792bf6b5fb5ea620c5dd70fbbac05515992e12aefcf5dff47312caa48c042",
+      "bytes": 16590,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/downloads/PSI-25/PSI-25_Experimental table_BASS-II.csv"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-25/SRD_BASS-II.pdf",
+      "sha256": "d00a763d60719bc14004264e216452b44c3c1bf4b0c629e9d307c8abf9568e75",
+      "bytes": 1108340,
+      "status": "NEEDS REVIEW",
+      "matches": []
+    },
+    {
+      "path": "data/raw/PSI-26/PSI-26_Experimental table_BASS.csv",
+      "sha256": "ccfc3c54d948b64a1c5d2596a63c7c8019e51df0c91a1d62f039f48fa28c300f",
+      "bytes": 4726,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/downloads/PSI-26/PSI-26_Experimental table_BASS.csv"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-69/PSI-69_Experimental table_FLEX.csv",
+      "sha256": "37c88ce8ae9391b7544ff630a45ce87543d04d317cdbfbed104fe7d5c27e1b96",
+      "bytes": 24776,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/downloads/PSI-69/PSI-69_Experimental table_FLEX.csv"
+      ]
+    },
+    {
+      "path": "data/raw/PSI-98/PSI-98_Experimental table_SAFFIRE-1.csv",
+      "sha256": "c01f29c62455f0a3b512290ab85e5687ecded326733189f002f580368402308d",
+      "bytes": 469,
+      "status": "DUPLICATE",
+      "matches": [
+        "backend/data/raw/downloads/PSI-98/PSI-98_Experimental table_SAFFIRE-1.csv"
+      ]
+    }
+  ],
+  "manifest_checks": [
+    {
+      "manifest": "batch_manifest_nasa-safety-cases.json",
+      "files": 5,
+      "failed": []
+    },
+    {
+      "manifest": "batch_manifest_PSI-101.json",
+      "files": 871,
+      "failed": []
+    },
+    {
+      "manifest": "batch_manifest_PSI-159.json",
+      "files": 7,
+      "failed": []
+    },
+    {
+      "manifest": "batch_manifest_PSI-25.json",
+      "files": 2,
+      "failed": []
+    },
+    {
+      "manifest": "batch_manifest_PSI-69.json",
+      "files": 3,
+      "failed": []
+    },
+    {
+      "manifest": "batch_manifest_PSI-98.json",
+      "files": 3,
+      "failed": []
+    }
+  ],
+  "qa": [
+    {
+      "file": "qa_report.json",
+      "status": null,
+      "summary": {
+        "files_found": 4,
+        "processed": 4,
+        "failed": 0,
+        "unsupported": 0,
+        "retained_archives": 0
+      },
+      "errors": null,
+      "missing_required_fields": null
+    },
+    {
+      "file": "qa_report_nasa-safety-cases.json",
+      "status": "valid_with_source_review_flags",
+      "summary": {
+        "case_records": 5,
+        "evidence_claims": 32,
+        "historical_or_hardware_values": 16,
+        "source_catalog_entries": 20,
+        "chunks": 1662,
+        "curated_summary_chunks": 42,
+        "source_excerpt_chunks": 1620,
+        "full_text_page_markers": 640,
+        "nonempty_source_pages": 620,
+        "empty_source_pages_skipped": 20,
+        "empty_chunks": 0,
+        "duplicate_chunk_ids": false,
+        "missing_provenance_fields": 0,
+        "unknown_source_ids": 0,
+        "catalog_sources_without_url": 1,
+        "catalog_local_files_missing": 10,
+        "psi_experimental_records": 0,
+        "exact_duplicate_chunks_preserved_for_provenance": 1
+      },
+      "errors": [],
+      "missing_required_fields": null
+    },
+    {
+      "file": "qa_report_PSI-101.json",
+      "status": "structurally_valid_with_review_flags",
+      "summary": {
+        "jsonl_files": 7,
+        "records": 1146,
+        "errors": 0,
+        "missing_required_fields": 0,
+        "review_flags": {
+          "figure_captions_needing_review": 864
+        }
+      },
+      "errors": [],
+      "missing_required_fields": []
+    },
+    {
+      "file": "qa_report_PSI-159.json",
+      "status": "structurally_valid_with_review_flags",
+      "summary": {
+        "jsonl_files": 7,
+        "records": 3590,
+        "errors": 0,
+        "missing_required_fields": 0,
+        "review_flags": {
+          "records_with_unit_needing_review": 1330
+        }
+      },
+      "errors": [],
+      "missing_required_fields": []
+    },
+    {
+      "file": "qa_report_PSI-25.json",
+      "status": "structurally_valid_with_review_flags",
+      "summary": {
+        "jsonl_files": 2,
+        "records": 131,
+        "errors": 0,
+        "missing_required_fields": 0,
+        "review_flags": {}
+      },
+      "errors": [],
+      "missing_required_fields": []
+    },
+    {
+      "file": "qa_report_PSI-69.json",
+      "status": "structurally_valid_with_review_flags",
+      "summary": {
+        "jsonl_files": 3,
+        "records": 2629,
+        "errors": 0,
+        "missing_required_fields": 0,
+        "review_flags": {}
+      },
+      "errors": [],
+      "missing_required_fields": []
+    },
+    {
+      "file": "qa_report_PSI-98.json",
+      "status": "structurally_valid_with_review_flags",
+      "summary": {
+        "jsonl_files": 3,
+        "records": 20,
+        "errors": 0,
+        "missing_required_fields": 0,
+        "review_flags": {}
+      },
+      "errors": [],
+      "missing_required_fields": []
+    }
+  ],
+  "numeric_comparison": [
+    {
+      "path": "data/processed/structured/PSI-159_Experimental table_CFI-G_Inverse Flames_observations.jsonl",
+      "duplicate_same_value_unit": 1689,
+      "new": 0,
+      "conflicts": [],
+      "new_ids": [],
+      "duplicate_field_differences": {
+        "schema_version": 1689,
+        "conditions": 1689,
+        "doi": 1689,
+        "quality_flags": 616,
+        "source_relative_path": 1689
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-159_Experimental table_CFI-G_Normal Flames_observations.jsonl",
+      "duplicate_same_value_unit": 1557,
+      "new": 0,
+      "conflicts": [],
+      "new_ids": [],
+      "duplicate_field_differences": {
+        "schema_version": 1557,
+        "conditions": 1557,
+        "doi": 1557,
+        "quality_flags": 714,
+        "source_relative_path": 1557
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-69_Experimental table_FLEX_observations.jsonl",
+      "duplicate_same_value_unit": 2353,
+      "new": 0,
+      "conflicts": [],
+      "new_ids": [],
+      "duplicate_field_differences": {
+        "schema_version": 2353,
+        "conditions": 2353,
+        "doi": 2353,
+        "source_relative_path": 2353,
+        "quality_flags": 258
+      }
+    },
+    {
+      "path": "data/processed/structured/PSI-98_Experimental table_SAFFIRE-1_observations.jsonl",
+      "duplicate_same_value_unit": 8,
+      "new": 6,
+      "conflicts": [],
+      "new_ids": [
+        "observation_3e7f9a3a1574f20678085b13",
+        "observation_2e336ce816a76002500e45da",
+        "observation_8fbaa924c069ce93fe98e351",
+        "observation_198d2331e3e398a718352ba6",
+        "observation_af942b9e468c6cc1c21b29cd",
+        "observation_9bb74f9904ff256876a1d954"
+      ],
+      "duplicate_field_differences": {
+        "schema_version": 8,
+        "conditions": 8,
+        "doi": 8,
+        "source_relative_path": 8
+      }
+    }
+  ],
+  "pipeline_diff": [
+    {
+      "path": "src/chunking.py",
+      "status": "UPDATED",
+      "sha256": "70a999b797c009fbe5b7b76cbf9c170309317c5c659b30dd0eca8f67d3812baa"
+    },
+    {
+      "path": "src/csv_encoding.py",
+      "status": "NEW",
+      "sha256": "184c0fa9915aaf9ea4fe160051b340bd270bf11b0e290ab477c5d130e21271ee"
+    },
+    {
+      "path": "src/data_contract.py",
+      "status": "UNCHANGED",
+      "sha256": "526ceedea6d8e375021a1b705655cdfd58104e02ee350e0ae4d06b721c068116"
+    },
+    {
+      "path": "src/download_psi_batch.py",
+      "status": "UNCHANGED",
+      "sha256": "4be4c06d06e90dacdf6fa35dea9cd71ae3a467c4ce00f39c89bc2acb05a73da3"
+    },
+    {
+      "path": "src/download_psi_browser.py",
+      "status": "UNCHANGED",
+      "sha256": "6abef8db910a5d800f665ca51e3cfb44a4a62c834493b36b9e969d5694c73fb2"
+    },
+    {
+      "path": "src/download_psi_http.py",
+      "status": "UNCHANGED",
+      "sha256": "a212afed210144413a5f039c6d8cc137b9d45225dba35416ba5d32a1b8414ff6"
+    },
+    {
+      "path": "src/download_psi_pilot.py",
+      "status": "UNCHANGED",
+      "sha256": "86e3ef72a597568182c78fcff19cdabf6852190a0e1559ce672d2398c3129d51"
+    },
+    {
+      "path": "src/finalize_batch.py",
+      "status": "UPDATED",
+      "sha256": "60c764facb683c07c9f9461cb1aaa022c6bdbbe0488cbed785f5823cf3db2af5"
+    },
+    {
+      "path": "src/gdrive_upload.py",
+      "status": "UNCHANGED",
+      "sha256": "314198b25914fdf099a24154ec32b991be9fb6a8407a227da6a651788575b5bb"
+    },
+    {
+      "path": "src/ingest_sources.py",
+      "status": "UNCHANGED",
+      "sha256": "2dfff25826195e006a67f48f5fb2b4c5ff3f693bf09249b5c288b291ba59932f"
+    },
+    {
+      "path": "src/inspect_psi_browser.py",
+      "status": "UNCHANGED",
+      "sha256": "abfee02b275bafc2e0c9c239ba1ec7ae83ba5a2e1328529e588e7709841856f5"
+    },
+    {
+      "path": "src/inventory.py",
+      "status": "UPDATED",
+      "sha256": "0993f107ef339653c693cee0304e58948a9fecd8dd3068bcdad29873da3a6593"
+    },
+    {
+      "path": "src/inventory_psi_files.py",
+      "status": "UNCHANGED",
+      "sha256": "abcbe2795faf44a5d29f7077026945c503b6098f01617295031d971db377e8f8"
+    },
+    {
+      "path": "src/main.py",
+      "status": "UPDATED",
+      "sha256": "82ecd9e109fbb95ba7d13a674cbc40b919fd3d843e2b5fc477163bde75a77da6"
+    },
+    {
+      "path": "src/normalize_burning_history.py",
+      "status": "UNCHANGED",
+      "sha256": "75af13d98ceb2b017ad1fc5a6e012fac1dc4aeb3a27a7576e2262abe220f77d6"
+    },
+    {
+      "path": "src/normalize_dext.py",
+      "status": "UNCHANGED",
+      "sha256": "c8a501d00a03f15af1ddcbf8705268ae970eb7a20deb5ec7b93491eb1ac831ba"
+    },
+    {
+      "path": "src/normalize_experimental_csv.py",
+      "status": "UPDATED",
+      "sha256": "9eb04eac472244681df710f6561df638f7f03c50526aa869fccca23400aa2fa0"
+    },
+    {
+      "path": "src/process_manual_investigation.py",
+      "status": "UPDATED",
+      "sha256": "d95db414c94225544296463cd459736173a21befae44a1e4a533db595aafd2a6"
+    },
+    {
+      "path": "src/process_manual_reference_bundle.py",
+      "status": "NEW",
+      "sha256": "d4bd1699c66b907f8a2a0a369d727fac8f642e66e8f95a2b7bb22ff08bcf56a5"
+    },
+    {
+      "path": "src/process_safety_cases.py",
+      "status": "NEW",
+      "sha256": "f1282711d79b056ceea175788b5a7c5212e3816871a6883c9ff060642cd497df"
+    },
+    {
+      "path": "src/source_registry.py",
+      "status": "UNCHANGED",
+      "sha256": "34ce010e0705cbccea4c4eea53a8f50ddf5dadae279811034dd1dfda456d5dc8"
+    },
+    {
+      "path": "src/handlers/csv_handler.py",
+      "status": "UPDATED",
+      "sha256": "aafc2e124032cc94c00a493888b9ea988edc55c84d4cc075e3769459e34e136b"
+    },
+    {
+      "path": "src/handlers/excel_handler.py",
+      "status": "UNCHANGED",
+      "sha256": "e0198e9d90c10f02cf4dd76902d3e04b79b4aa10a504e9b55dac8f1d6b92b5ce"
+    },
+    {
+      "path": "src/handlers/json_handler.py",
+      "status": "UNCHANGED",
+      "sha256": "ff71c3f592d86ccc84bdc8f5e43e927bdde5b75ff80a76ba37e0002f2d83a061"
+    },
+    {
+      "path": "src/handlers/ooxml_handler.py",
+      "status": "NEW",
+      "sha256": "7499790c659534d4e848ba1380a402667b1fa9d6b12ca7239096c27d1662f783"
+    },
+    {
+      "path": "src/handlers/pdf_handler.py",
+      "status": "UNCHANGED",
+      "sha256": "40b36b32b66c7e6deee708dab96fe5bd37667a13b841e899c79018d7cb7bd662"
+    },
+    {
+      "path": "src/handlers/text_handler.py",
+      "status": "UNCHANGED",
+      "sha256": "02a077dca0ba0be276a69be100db2f1bea23779e3096fde7aa1571cb098a6691"
+    },
+    {
+      "path": "src/handlers/youtube_handler.py",
+      "status": "UNCHANGED",
+      "sha256": "25fd05fb1e6ae9c70549cea086b28a964f185bfcf91ffff6a0bcdf85b8c0245a"
+    },
+    {
+      "path": "src/handlers/zip_handler.py",
+      "status": "UNCHANGED",
+      "sha256": "9fe4dfe6ceebe2f7924e4aa9080448cdc2a5367a11dc69d4739a1fbbefddf8d2"
+    }
+  ],
+  "decision": "AUDIT COMPLETE. Only six PSI-98 scalar additions approved after exact source CSV/header comparison. All other new extraction remains pending; existing numeric duplicates must not be appended. No new investigation approved. Schema 2.0.0 requires explicit adapter to 3.0.",
+  "schema_review": "2.0.0→3.0 explicit adapter. Incoming conditions omit numeric sibling cells while current conditions retain them; source_row_values preserve full original row in both. Null incoming DOI is not allowed to erase existing official DOI. Original duplicate rows are not overwritten."
+}

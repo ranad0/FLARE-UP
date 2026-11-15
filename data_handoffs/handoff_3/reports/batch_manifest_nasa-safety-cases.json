@@ -1,0 +1,90 @@
+{
+  "schema_version": "2.0.0",
+  "batch_id": "batch_64213a214dce0abacccf558e",
+  "created_at_utc": "2026-11-15T14:18:33.064Z",
+  "status": "valid_with_source_review_flags",
+  "source_category": "nasa_safety_case_study",
+  "source_key": "nasa-safety-cases",
+  "psi_investigation_id": null,
+  "source_url_policy": "Per-claim citations are mapped only from the supplied source catalog and explicit Markdown links.",
+  "inputs": [
+    {
+      "path": "data/raw/nasa-safety-cases/Safety_Dashboard_Data.json",
+      "sha256": "41d652a8990c4f13f53e6998bc3247a8984f29e40d49c266a2403fa5d0c217e1",
+      "retrieval_role": "structured_input"
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/safety_summary_for_rag.md",
+      "sha256": "e8feb59c47913e0224d6853aa5ae7dc76e6890101241498aa37df197c298440c",
+      "retrieval_role": "curated_rag_input"
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/safety_full_text.md",
+      "sha256": "df918874ed5e31a04e0aee61078ebd0a37eac3917d54beac3999591b4dbecb66",
+      "retrieval_role": "source_text_input"
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/safety_overview.md",
+      "sha256": "5fff8804d16b661ee9da0ccfbc6b10ed8a9fa5aaa53b88d00897c3a3d2cb3c8b",
+      "retrieval_role": "excluded_derivative"
+    },
+    {
+      "path": "data/raw/nasa-safety-cases/Safety_Scientific_Summary.md",
+      "sha256": "b12b05d9907f5d3f959f0265228adb6abfdbe6d77751b948246b5daa1274cea1",
+      "retrieval_role": "excluded_derivative"
+    }
+  ],
+  "files": [
+    {
+      "path": "data/processed/nasa-safety-cases/cases.jsonl",
+      "sha256": "0d853234d9f5dc3b5a06f343721f6fb924d129936088401ef4d946f8a5c66ff2",
+      "record_count": 5,
+      "record_types": {
+        "safety_case_record": 5
+      },
+      "schema_version": "2.0.0",
+      "retrieval_role": "structured_lookup"
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/evidence.jsonl",
+      "sha256": "9c566d31c01db5720311ef601e8a89a71e0df000ffd9a90f9a6341795b169174",
+      "record_count": 32,
+      "record_types": {
+        "safety_evidence_claim": 32
+      },
+      "schema_version": "2.0.0",
+      "retrieval_role": "structured_lookup"
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/measurements.jsonl",
+      "sha256": "729811884b75fffd342282f51aa8a65f6d8b0f0a367101fca8ce8ce95a89048c",
+      "record_count": 16,
+      "record_types": {
+        "safety_case_measurement": 16
+      },
+      "schema_version": "2.0.0",
+      "retrieval_role": "structured_lookup"
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/source_catalog.jsonl",
+      "sha256": "0b1d46104f8fa1a99c67dbe273366b4c42df440bfcec0630ffe39aa33e156d4e",
+      "record_count": 20,
+      "record_types": {
+        "safety_case_source": 20
+      },
+      "schema_version": "2.0.0",
+      "retrieval_role": "citation_catalog"
+    },
+    {
+      "path": "data/processed/nasa-safety-cases/chunks.jsonl",
+      "sha256": "b425cc207a7744b2f5ac1eff21235007c8edcaa91996776a599ff79e817c3b77",
+      "record_count": 1662,
+      "record_types": {
+        "chunk": 1662
+      },
+      "schema_version": "2.0.0",
+      "retrieval_role": "text_chunks"
+    }
+  ],
+  "qa_report": "reports/qa_report_nasa-safety-cases.json"
+}

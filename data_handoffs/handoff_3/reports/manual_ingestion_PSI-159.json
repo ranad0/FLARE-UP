@@ -1,0 +1,57 @@
+{
+  "schema_version": "2.0.0",
+  "investigation_id": "PSI-159",
+  "investigation_id_status": "verified",
+  "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-159",
+  "processed_at_utc": "2026-11-14T19:37:19+00:00",
+  "archives": [
+    {
+      "archive": "PSI-159/PSI-159_metadata_PSI-159-ISA (1).zip",
+      "status": "extracted_once",
+      "sha256": "0ef60d1ee8d4d53bbe58139d56fa99e9500ca48dd7913b25ac85dc853d6710ab",
+      "member_count": 2,
+      "members": [
+        "i_Investigation.txt",
+        "s_PSI-159.txt"
+      ]
+    },
+    {
+      "archive": "PSI-159/PSI-159_metadata_PSI-159-ISA.zip",
+      "status": "duplicate_not_extracted",
+      "duplicate_of": "PSI-159/PSI-159_metadata_PSI-159-ISA (1).zip",
+      "sha256": "0ef60d1ee8d4d53bbe58139d56fa99e9500ca48dd7913b25ac85dc853d6710ab"
+    }
+  ],
+  "processed_files": [
+    {
+      "source_relative_path": "PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.txt",
+      "output_relative_path": "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.jsonl",
+      "status": "processed",
+      "rows_or_lines": 132,
+      "sha256": "03092ce8efc68e1a8430098bf73da9b4e9ae2ef302c677c368c2c81ded355ac9"
+    },
+    {
+      "source_relative_path": "PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.txt",
+      "output_relative_path": "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.jsonl",
+      "status": "processed",
+      "rows_or_lines": 2,
+      "sha256": "cb9374159b9b01a83bfe53a0b8ba1a602793df86f298e0ad222615c55d200135"
+    },
+    {
+      "source_relative_path": "PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.csv",
+      "output_relative_path": "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.jsonl",
+      "status": "processed",
+      "rows_or_lines": 154,
+      "sha256": "d4d44f8b9896936728748e34d1b6ad0812032a92fa5289599b708c138e3a9b39"
+    },
+    {
+      "source_relative_path": "PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.csv",
+      "output_relative_path": "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.jsonl",
+      "status": "processed",
+      "rows_or_lines": 179,
+      "sha256": "d95a621c3fbd27d204dd32ed29fa17d68f2b779d6a523cde8479ed7ebaa5251a"
+    }
+  ],
+  "raw_inventory_manifest": "reports/manifest.csv",
+  "note": "CSV rows preserve the source columns and values. ZIP members are extracted only after path and size safety checks."
+}

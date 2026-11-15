@@ -1,0 +1,150 @@
+DEPLOYMENT.md
+README.md
+backend/.env.example
+backend/app/evidence.py
+backend/app/router.py
+backend/app/structured_data.py
+backend/app/synthesis.py
+backend/data/chunks.jsonl
+backend/data/meta/catalog.json
+backend/data/meta/ingestion_report.json
+backend/data/raw/handoff_3/SAME_Baseline Concept Description Document_001 Rev A.pdf
+backend/data/structured/nasa_observations.jsonl
+data_handoffs/handoff_3/PSI-101-verified.json
+data_handoffs/handoff_3/PSI-98-verified.json
+data_handoffs/handoff_3/README.md
+data_handoffs/handoff_3/STAGED_HASHES.json
+data_handoffs/handoff_3/audit_report.json
+data_handoffs/handoff_3/data/processed/PSI-10/PSI-10_Experimental table_Flame Design_Inverse Flame.jsonl
+data_handoffs/handoff_3/data/processed/PSI-101/54 7L Lampwick.jsonl
+data_handoffs/handoff_3/data/processed/PSI-101/60089MFHA151_B.jsonl
+data_handoffs/handoff_3/data/processed/PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.jsonl
+data_handoffs/handoff_3/data/processed/PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.jsonl
+data_handoffs/handoff_3/data/processed/PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.jsonl
+data_handoffs/handoff_3/data/processed/PSI-101/SAME_Baseline Concept Description Document_001 Rev A.jsonl
+data_handoffs/handoff_3/data/processed/PSI-101/chunks.jsonl
+data_handoffs/handoff_3/data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.jsonl
+data_handoffs/handoff_3/data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.jsonl
+data_handoffs/handoff_3/data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.jsonl
+data_handoffs/handoff_3/data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.jsonl
+data_handoffs/handoff_3/data/processed/PSI-159/chunks.jsonl
+data_handoffs/handoff_3/data/processed/PSI-25/PSI-25_Experimental table_BASS-II.jsonl
+data_handoffs/handoff_3/data/processed/PSI-25/chunks.jsonl
+data_handoffs/handoff_3/data/processed/PSI-69/PSI-69_Experimental table_FLEX.jsonl
+data_handoffs/handoff_3/data/processed/PSI-69/chunks.jsonl
+data_handoffs/handoff_3/data/processed/PSI-98/PSI-98_Experimental table_SAFFIRE-1.jsonl
+data_handoffs/handoff_3/data/processed/PSI-98/chunks.jsonl
+data_handoffs/handoff_3/data/processed/nasa-safety-cases/cases.jsonl
+data_handoffs/handoff_3/data/processed/nasa-safety-cases/chunks.jsonl
+data_handoffs/handoff_3/data/processed/nasa-safety-cases/evidence.jsonl
+data_handoffs/handoff_3/data/processed/nasa-safety-cases/measurements.jsonl
+data_handoffs/handoff_3/data/processed/nasa-safety-cases/source_catalog.jsonl
+data_handoffs/handoff_3/data/processed/structured/PSI-159_Experimental table_CFI-G_Inverse Flames_observations.jsonl
+data_handoffs/handoff_3/data/processed/structured/PSI-159_Experimental table_CFI-G_Normal Flames_observations.jsonl
+data_handoffs/handoff_3/data/processed/structured/PSI-69_Experimental table_FLEX_observations.jsonl
+data_handoffs/handoff_3/data/processed/structured/PSI-98_Experimental table_SAFFIRE-1_observations.jsonl
+data_handoffs/handoff_3/data/raw/PSI-101/54 7L Lampwick.pdf
+data_handoffs/handoff_3/data/raw/PSI-101/60089MFHA151_B.PDF
+data_handoffs/handoff_3/data/raw/PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.pdf
+data_handoffs/handoff_3/data/raw/PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.pdf
+data_handoffs/handoff_3/data/raw/PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.pdf
+data_handoffs/handoff_3/data/raw/PSI-101/SAME_Baseline Concept Description Document_001 Rev A.pdf
+data_handoffs/handoff_3/data/raw/PSI-159/PSI-159_metadata_PSI-159-ISA (1).zip
+data_handoffs/handoff_3/data/raw/PSI-159/PSI-159_metadata_PSI-159-ISA.zip
+data_handoffs/handoff_3/data/raw/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.txt
+data_handoffs/handoff_3/data/raw/PSI-25/BASS-2 Engineering Requirements.pptx
+data_handoffs/handoff_3/data/raw/PSI-25/BASS-II Procedure.docx
+data_handoffs/handoff_3/data/raw/PSI-25/BASS-II Test Matrix by PI Final.xlsx
+data_handoffs/handoff_3/data/raw/PSI-25/SRD_BASS-II.pdf
+data_handoffs/handoff_3/data/raw/nasa-combustion-reference/bass/BASS Test Matrix 050213.xlsx
+data_handoffs/handoff_3/data/raw/nasa-combustion-reference/bass/BASS test matrix.xlsx
+data_handoffs/handoff_3/data/raw/nasa-combustion-reference/bass/DLD_BASS.pdf
+data_handoffs/handoff_3/data/raw/nasa-combustion-reference/bass/ISS Denver 2013-BASS.pdf
+data_handoffs/handoff_3/data/raw/nasa-combustion-reference/bass/SRD_BASS.pdf
+data_handoffs/handoff_3/data/raw/nasa-combustion-reference/nasa-combustion-research-guide/nasa-combustion-research-guide__fa3658769316.txt
+data_handoffs/handoff_3/data/raw/nasa-combustion-reference/nasa-combustion-science/nasa-combustion-science__7d9103d44dae.txt
+data_handoffs/handoff_3/data/raw/nasa-safety-cases/Safety_Dashboard_Data.json
+data_handoffs/handoff_3/data/raw/nasa-safety-cases/Safety_Scientific_Summary.md
+data_handoffs/handoff_3/data/raw/nasa-safety-cases/safety_full_text.md
+data_handoffs/handoff_3/data/raw/nasa-safety-cases/safety_overview.md
+data_handoffs/handoff_3/data/raw/nasa-safety-cases/safety_summary_for_rag.md
+data_handoffs/handoff_3/reports/batch_manifest_PSI-101.json
+data_handoffs/handoff_3/reports/batch_manifest_PSI-159.json
+data_handoffs/handoff_3/reports/batch_manifest_PSI-25.json
+data_handoffs/handoff_3/reports/batch_manifest_PSI-69.json
+data_handoffs/handoff_3/reports/batch_manifest_PSI-98.json
+data_handoffs/handoff_3/reports/batch_manifest_nasa-safety-cases.json
+data_handoffs/handoff_3/reports/chunking_report_PSI-101.json
+data_handoffs/handoff_3/reports/chunking_report_PSI-159.json
+data_handoffs/handoff_3/reports/chunking_report_PSI-25.json
+data_handoffs/handoff_3/reports/chunking_report_PSI-69.json
+data_handoffs/handoff_3/reports/chunking_report_PSI-98.json
+data_handoffs/handoff_3/reports/manual_ingestion_PSI-101.json
+data_handoffs/handoff_3/reports/manual_ingestion_PSI-159.json
+data_handoffs/handoff_3/reports/manual_ingestion_PSI-25.json
+data_handoffs/handoff_3/reports/manual_ingestion_PSI-69.json
+data_handoffs/handoff_3/reports/manual_ingestion_PSI-98.json
+data_handoffs/handoff_3/reports/normalization_PSI-159.json
+data_handoffs/handoff_3/reports/normalization_PSI-69.json
+data_handoffs/handoff_3/reports/normalization_PSI-98.json
+data_handoffs/handoff_3/reports/qa_report.json
+data_handoffs/handoff_3/reports/qa_report_PSI-101.json
+data_handoffs/handoff_3/reports/qa_report_PSI-159.json
+data_handoffs/handoff_3/reports/qa_report_PSI-25.json
+data_handoffs/handoff_3/reports/qa_report_PSI-69.json
+data_handoffs/handoff_3/reports/qa_report_PSI-98.json
+data_handoffs/handoff_3/reports/qa_report_nasa-safety-cases.json
+data_handoffs/handoff_3/review_decisions.json
+data_handoffs/handoff_3/zip_inventory.json
+docs/ARCHITECTURE.md
+docs/DEMO_SCRIPT.md
+docs/HANDOFF_3_REPORT.md
+docs/JUDGING_MAP.md
+frontend/src/components/AnswerPanel.tsx
+frontend/src/types/flare.ts
+pipeline/README.md
+pipeline/config/settings.py
+pipeline/docs/DATA_CONTRACT.md
+pipeline/docs/RAG_TEAM_HANDOFF.md
+pipeline/docs/chunking.md
+pipeline/docs/nasa_source_link_audit.md
+pipeline/docs/psi_browser_adapter.md
+pipeline/docs/source_ingestion.md
+pipeline/docs/structured_data.md
+pipeline/requirements.txt
+pipeline/src/chunking.py
+pipeline/src/csv_encoding.py
+pipeline/src/data_contract.py
+pipeline/src/download_psi_batch.py
+pipeline/src/download_psi_browser.py
+pipeline/src/download_psi_http.py
+pipeline/src/download_psi_pilot.py
+pipeline/src/finalize_batch.py
+pipeline/src/gdrive_upload.py
+pipeline/src/handlers/csv_handler.py
+pipeline/src/handlers/excel_handler.py
+pipeline/src/handlers/json_handler.py
+pipeline/src/handlers/ooxml_handler.py
+pipeline/src/handlers/pdf_handler.py
+pipeline/src/handlers/text_handler.py
+pipeline/src/handlers/youtube_handler.py
+pipeline/src/handlers/zip_handler.py
+pipeline/src/ingest_sources.py
+pipeline/src/inspect_psi_browser.py
+pipeline/src/inventory.py
+pipeline/src/inventory_psi_files.py
+pipeline/src/main.py
+pipeline/src/normalize_burning_history.py
+pipeline/src/normalize_dext.py
+pipeline/src/normalize_experimental_csv.py
+pipeline/src/process_manual_investigation.py
+pipeline/src/process_manual_reference_bundle.py
+pipeline/src/process_safety_cases.py
+pipeline/src/requirements.txt
+pipeline/src/source_registry.py
+scripts/build_corpus.py
+scripts/merge_handoff.py
+tests/test_handoff_synthesis.py
+tests/test_http.py
+docs/HANDOFF_3_VALIDATION.json
+docs/HANDOFF_3_CHANGED_FILES.txt

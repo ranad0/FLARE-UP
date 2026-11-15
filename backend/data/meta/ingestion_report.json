@@ -53,11 +53,11 @@
       "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-62"
     }
   ],
-  "text_chunks": 112,
-  "structured_records": 12154,
+  "text_chunks": 113,
+  "structured_records": 12160,
   "pending_review_chunks": 1641,
-  "downloaded_bytes": 87291029,
-  "downloaded_files": 40,
+  "downloaded_bytes": 87538344,
+  "downloaded_files": 41,
   "experimental_tables": 21,
   "experimental_table_rows": 2001,
   "numeric_records_with_unknown_units": 2737,
@@ -435,7 +435,7 @@
       "investigation_id": "PSI-98",
       "source_file": "PSI-98_Experimental table_SAFFIRE-1.csv",
       "rows": 4,
-      "numeric_records": 8,
+      "numeric_records": 14,
       "headers": [
         "Sample Number",
         "Material",
@@ -1213,6 +1213,16 @@
       "ingestion_status": "fully_transcribed_table",
       "extracted_pages_or_rows_or_characters": 15,
       "sparse_or_image_pages_not_ocrd": []
+    },
+    {
+      "investigation_id": "PSI-101",
+      "local_path": "backend/data/raw/handoff_3/SAME_Baseline Concept Description Document_001 Rev A.pdf",
+      "bytes": 247315,
+      "sha256": "3eed4b7ecd71f9e37a3f7a78d7e7a011ff636bb24ec8bcc72ff97a8ac41b598a",
+      "status": "downloaded",
+      "acquisition": "data-team handoff; official resource name checked against archived PSI payload",
+      "ingestion_status": "one_reviewed_objective_other_passages_pending",
+      "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101"
     }
   ],
   "limitations": [
@@ -1545,5 +1555,14 @@
       "source_location": "PDF page:10; reviewed segment:1",
       "evidence_role": "preliminary_flight_results"
     }
-  ]
+  ],
+  "handoff_3": {
+    "audit": "data_handoffs/handoff_3/audit_report.json",
+    "adapter": "handoff-2.0.0-to-app-3.0-v1",
+    "approved_scalar_records": 6,
+    "reviewed_text_additions": 1,
+    "new_investigations": 0,
+    "review_collection": "data_handoffs/handoff_3/data/processed",
+    "scope": "One historical design objective, not a measured result; six exact CSV scalars. Other extraction pending."
+  }
 }

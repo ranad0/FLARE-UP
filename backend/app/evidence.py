@@ -1,4 +1,4 @@
-"""Offline latent semantic retrieval and evidence assembly. No remote inference."""
+"""Local retrieval and evidence assembly, followed by optional grounded synthesis."""
 import json, re, os, hashlib
 from functools import lru_cache
 import numpy as np
@@ -95,10 +95,13 @@ def ask_flare_up(question):
     if flags: parts.append('Source quality notes: '+ '; '.join(flags))
     if 'dext' in question.lower() or 'psi-117' in question.lower():
         parts.append('The supplied PSI-117 comparison is excluded: NASA classifies that investigation as Ground Investigation. It is retained only in the legacy regression fixture.')
-    return {'question':question,'route':route,'routing_reason':decision['reason'],'answer':'\n\n'.join(parts),
-            'llm_status':'local-extractive','sources':sources,'structured_query':structured['parsed'],
+    from app.synthesis import synthesize, render_answer
+    summary=synthesize(question,route,sources,records)
+    return {'question':question,'route':route,'routing_reason':decision['reason'],'answer':render_answer(summary),
+            'extractive_evidence':'\n\n'.join(parts),'synthesis':summary,
+            'llm_status':summary['status'],'sources':sources,'structured_query':structured['parsed'],
             'structured_results':records,'structured_total':structured.get('total_matches',len(records)),
-            'notes':['Retrieval: '+', '.join(sorted({s.get('retrieval_method','unknown') for s in sources})),'Extractive evidence, not a generated scientific conclusion.',structured.get('warning',''),
+            'notes':['Retrieval: '+', '.join(sorted({s.get('retrieval_method','unknown') for s in sources})),'Summary mode: '+summary['status']+'. Numerical values are rendered from structured records only.',structured.get('warning',''),
                      'Unknown units remain unknown. Ground investigations are excluded.']}
 
 def investigations_catalog():
@@ -106,5 +109,5 @@ def investigations_catalog():
     return data if isinstance(data,list) else data.get('investigations',[])
 
 def retrieval_stats():
-    return {'chunk_count':len(chunks()),'method':os.getenv('RETRIEVAL_MODE','local'),'generation':'extractive; no language model',
+    return {'chunk_count':len(chunks()),'method':os.getenv('RETRIEVAL_MODE','local'),'generation':'Groq grounded synthesis with extractive fallback' if os.getenv('GROQ_API_KEY') else 'extractive fallback; Groq key not configured',
             'corpus':'microgravity / reduced-gravity only'}

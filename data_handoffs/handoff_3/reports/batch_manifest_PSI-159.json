@@ -1,0 +1,76 @@
+{
+  "schema_version": "2.0.0",
+  "pipeline_version": "0.2.0",
+  "batch_id": "batch_1f9e640624c7233c6368b00a",
+  "created_at_utc": "2026-11-14T20:09:25+00:00",
+  "status": "structurally_valid_with_review_flags",
+  "investigation_filter": "PSI-159",
+  "files": [
+    {
+      "path": "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/i_Investigation.jsonl",
+      "sha256": "c30f5478743601d632abea3533962b89bf854aa745934767dccd2d9739c10059",
+      "record_count": 1,
+      "record_types": {
+        "text_document": 1
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/PSI-159/_archive_contents/0ef60d1ee8d4d53b/s_PSI-159.jsonl",
+      "sha256": "9c58d785384d28be677fe2ec7710d661e84f0b3bf84f3a9dd5cf3ef5c16332d5",
+      "record_count": 1,
+      "record_types": {
+        "text_document": 1
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/PSI-159/chunks.jsonl",
+      "sha256": "0dba09fcd69676427631cda724dd843ac597eb7de59e7040e490c6f531731733",
+      "record_count": 7,
+      "record_types": {
+        "chunk": 7
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Inverse Flames.jsonl",
+      "sha256": "f58e1b58dadc4ae213094ca224404d1dc8208d01aea40e75e9aeca651a0cc89c",
+      "record_count": 155,
+      "record_types": {
+        "table": 1,
+        "table_row": 154
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/PSI-159/PSI-159_Experimental table_CFI-G_Normal Flames.jsonl",
+      "sha256": "db03ccbb4e0707462b07db1802d7daa237cc3c909c309fecc025a96ca1eac6ab",
+      "record_count": 180,
+      "record_types": {
+        "table": 1,
+        "table_row": 179
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/structured/PSI-159_Experimental table_CFI-G_Inverse Flames_observations.jsonl",
+      "sha256": "b1366e3f76586dbfd58b41170d834732fad299cc81e9702b866b6a7801d4f0a9",
+      "record_count": 1689,
+      "record_types": {
+        "numeric_observation": 1689
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/structured/PSI-159_Experimental table_CFI-G_Normal Flames_observations.jsonl",
+      "sha256": "6032384d5a0741f104a57dd0505c2d2bf7c7b1595703fd884f9f5471f7279f42",
+      "record_count": 1557,
+      "record_types": {
+        "numeric_observation": 1557
+      },
+      "schema_version": "2.0.0"
+    }
+  ],
+  "qa_report": "reports/qa_report_PSI-159.json"
+}

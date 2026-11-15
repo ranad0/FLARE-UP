@@ -1,0 +1,39 @@
+{
+  "schema_version": "2.0.0",
+  "pipeline_version": "0.2.0",
+  "batch_id": "batch_1f9531fb92062374a71be04a",
+  "created_at_utc": "2026-11-15T12:21:21+00:00",
+  "status": "structurally_valid_with_review_flags",
+  "investigation_filter": "PSI-98",
+  "files": [
+    {
+      "path": "data/processed/PSI-98/chunks.jsonl",
+      "sha256": "c00ea1cebc23e49df13e821911a40ea8a74e97c4ffdbc24962703daa8f00e619",
+      "record_count": 1,
+      "record_types": {
+        "chunk": 1
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/PSI-98/PSI-98_Experimental table_SAFFIRE-1.jsonl",
+      "sha256": "e3ce6c0d25d8a01fafd4005900305f34b9e0d7b926957b10e871a561735cd265",
+      "record_count": 5,
+      "record_types": {
+        "table": 1,
+        "table_row": 4
+      },
+      "schema_version": "2.0.0"
+    },
+    {
+      "path": "data/processed/structured/PSI-98_Experimental table_SAFFIRE-1_observations.jsonl",
+      "sha256": "4f2d120ac98c3af25cbaf1982eb7e1a40cb2208b345fa24e92fd62e0903c64b4",
+      "record_count": 14,
+      "record_types": {
+        "numeric_observation": 14
+      },
+      "schema_version": "2.0.0"
+    }
+  ],
+  "qa_report": "reports/qa_report_PSI-98.json"
+}

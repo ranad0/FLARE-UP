@@ -2,6 +2,7 @@
 import re
 NUMERIC_TERMS = {'compare','measured','measurements','measurement','values','value','numeric','diameter','dext','dext_cool','dext_hot','dflame','tad','zst','burn time','burn duration','burn rate','burning rate','flow rate','which fuels','what fuels','fuels tested','قارن','قياسات'}
 INTERPRETIVE_TERMS = {'why','explain','interpret','implication','implications','meaning','how','لماذا','اشرح','كيف','فسر','ليش'}
+NUMERIC_TERMS.update({'ignition power','ignition time'})
 def _contains(text,term):
     return bool(re.search(r'(?<!\w)'+re.escape(term)+r'(?!\w)',text))
 def route_question(question):

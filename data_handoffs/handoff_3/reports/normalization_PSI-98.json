@@ -1,0 +1,35 @@
+{
+  "schema_version": "2.0.0",
+  "investigation_id": "PSI-98",
+  "generated_at_utc": "2026-11-15T12:21:20+00:00",
+  "files": [
+    {
+      "schema_version": "2.0.0",
+      "investigation_id": "PSI-98",
+      "source_file": "PSI-98_Experimental table_SAFFIRE-1.csv",
+      "source_relative_path": "PSI-98/PSI-98_Experimental table_SAFFIRE-1.csv",
+      "output": "data/processed/structured/PSI-98_Experimental table_SAFFIRE-1_observations.jsonl",
+      "source_row_count": 4,
+      "nonempty_source_rows": 4,
+      "normalized_measurement_records": 14,
+      "measurement_records_by_column": {
+        "Sample Thickness (cm)": 2,
+        "Sample Length (cm)": 2,
+        "Sample Width (cm)": 2,
+        "Air Flow (cm/s)": 2,
+        "Ignition Power (W)": 2,
+        "Ignition Time (s)": 2,
+        "Burn Time (s)": 2
+      },
+      "empty_rows_skipped": 0,
+      "rows_with_unlabeled_extra_values": [],
+      "measurements_without_explicit_unit": 0,
+      "units_policy": "Only explicit units in column headers are assigned; all other units remain null and flagged."
+    }
+  ],
+  "summary": {
+    "files": 1,
+    "normalized_measurement_records": 14,
+    "measurements_without_explicit_unit": 0
+  }
+}

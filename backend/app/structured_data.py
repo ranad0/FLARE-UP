@@ -11,6 +11,8 @@ from typing import Any
 from app.config import STRUCTURED_DIR
 
 TARGET_ALIASES: dict[str, tuple[str, ...]] = {
+    "ignition_power": ("ignition power",),
+    "ignition_time": ("ignition time",),
     "extinction_diameter": ("visible flame extinction diameter", "extinction diameter"),
     "droplet_initial_diameter": ("droplet initial diameter", "initial droplet diameter"),
     "dflame": ("flame diameter", "dflame", "flame size"),
@@ -219,6 +221,8 @@ def _quantity_matches(target: str | None, name: Any) -> bool:
     if target == "Dext_hot":
         return normalized in {"dext hot", "dext hot expt"}
     rules = {
+        "ignition_power": lambda n: n.startswith("ignition power"),
+        "ignition_time": lambda n: n.startswith("ignition time"),
         "extinction_diameter": lambda n: "extinction diameter" in n,
         "droplet_initial_diameter": lambda n: "droplet initial diameter" in n,
         "dflame": lambda n: "dflame" in n or "flame diameter" in n,

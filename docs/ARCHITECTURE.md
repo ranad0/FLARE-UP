@@ -1,7 +1,7 @@
 # Architecture and data compatibility
 
 ## Request path
-React/TypeScript → FastAPI `/ask` → deterministic router → text retrieval / structured filtering / both → extractive answer + source records.
+React/TypeScript → FastAPI `/ask` → deterministic router → text retrieval / structured filtering / both → evidence bundle → optional grounded Groq synthesis / extractive fallback → answer + source records.
 
 `app/router.py` retains the original decision fields: `route`, `reason`, `numeric_term_hits`, `has_number`, `has_unit`, `has_measurement_target`, `asks_interpretation`. Target-word matching is tightened so general questions about an experiment or airflow do not automatically become numeric requests.
 
@@ -50,3 +50,17 @@ Install `scripts/requirements-ingestion.txt` in an isolated environment. `fetch_
 `GET /health`, `/stats`, `/investigations`, `/provenance`, `/resources`; `POST /route`, `/search`, `/structured-search`, `/resources/search`, `/scenario/analyze`. `/docs` documents schemas.
 
 Scenario analysis is explicit about evidence gaps: only gaseous-fuel microgravity conditions are linked to nearby CFI-G pressure records, and fuel composition, oxygen, geometry and flow are not claimed to match. Earth/solid scenarios return context without numeric matches. Visuals have no calibrated physical solver.
+
+## Handoff compatibility and optional synthesis
+
+The teammate `pipeline/` owns ingestion. `scripts/merge_handoff.py` explicitly adapts approved
+2.0.0 records into application 3.0, preserving complete originals and checking source cells.
+`data_handoffs/handoff_3` is a review snapshot, never a retrieval input directory.
+See [the handoff report](HANDOFF_3_REPORT.md) for exact boundaries.
+
+`app/synthesis.py` adds Groq `openai/gpt-oss-20b` after retrieval. It checks exact quotes/source IDs,
+rejects numerical prose, and runs a separate entailment review. The model cannot supply numeric
+summary values: the server renders those from retrieved records. Automated entailment is a
+safeguard, not scientific certification. Two calls can add latency; each has an 18-second timeout.
+No key or failed checks → extractive fallback. Existing `/ask` fields remain; additive fields
+`synthesis` and `extractive_evidence` expose the answer sections and original retrieval assembly.

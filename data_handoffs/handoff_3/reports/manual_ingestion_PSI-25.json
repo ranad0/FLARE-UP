@@ -1,0 +1,22 @@
+{
+  "schema_version": "2.0.0",
+  "investigation_id": "PSI-25",
+  "investigation_id_status": "verified",
+  "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-25",
+  "processed_at_utc": "2026-11-15T12:12:53+00:00",
+  "archives": [],
+  "processed_files": [
+    {
+      "source_relative_path": "PSI-25/PSI-25_Experimental table_BASS-II.csv",
+      "output_relative_path": "data/processed/PSI-25/PSI-25_Experimental table_BASS-II.jsonl",
+      "status": "processed",
+      "rows_or_lines": 129,
+      "details": {
+        "rows": 129
+      },
+      "sha256": "71e792bf6b5fb5ea620c5dd70fbbac05515992e12aefcf5dff47312caa48c042"
+    }
+  ],
+  "raw_inventory_manifest": "reports/manifest.csv",
+  "note": "CSV rows preserve source columns and values. PDFs preserve page numbers and extracted image references. ZIP members are extracted only after path and size safety checks."
+}

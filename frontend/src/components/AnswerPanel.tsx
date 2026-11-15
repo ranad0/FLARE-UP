@@ -21,23 +21,34 @@ function previewPassage(passage: string, question: string) {
   return best.length > 650 ? best.slice(0,650).replace(/\s+\S*$/, '') + ' […]' : best;
 }
 
-/** Presentation only: source wording, numeric values and backend routing are unchanged. */
+/** Answer first; progressively disclose the unchanged retrieval evidence. */
 export function AnswerPanel({ response, arabic }: { response: AskResponse; arabic: boolean }) {
   const [allRows, setAllRows] = useState(false);
   const sources = (response.sources || []).filter((s): s is SourceItem => typeof s !== 'string');
   const rows = (Array.isArray(response.structured_results) ? response.structured_results : []) as StructuredResultRow[];
   const answer = text(response.answer);
+  const summary = response.synthesis;
   // Keep abstentions, exclusions and quality warnings visible; the repeated record/passage prose lives below.
-  const notices = answer.split(/\n\n/).filter(p => /^(No validated|No sufficiently|Source quality notes:|The supplied PSI-117)/.test(p));
+  const notices = text(response.extractive_evidence || answer).split(/\n\n/).filter(p => /^(No validated|No sufficiently|Source quality notes:|The supplied PSI-117)/.test(p));
   const choose = (en: string, ar: string) => arabic ? ar : en;
   const sourceUrl = (source: SourceItem) => text(source.citation_url || source.url || source.link);
   return <div className="answer-reading mt-6 space-y-6">
     <header className="space-y-2">
       <h2 className="text-lg font-medium leading-relaxed text-[#F5F1FA] sm:text-xl">{text(response.question) || choose('Your evidence', 'الأدلة المسترجعة')}</h2>
-      <p className="text-sm text-[#B8A9CE]">{choose(`${sources.length} source passages · ${rows.length} records returned`, `${sources.length} مقاطع مصدرية · ${rows.length} سجلات مسترجعة`)}</p>
     </header>
+    {summary && <section aria-label="Answer summary" className="space-y-4 rounded-xl border border-[#78CFFF]/20 bg-white/[0.025] p-5 sm:p-6">
+      <h3 className="text-xs font-semibold uppercase tracking-widest text-[#E1B983]">{choose('Reported by Sources', 'ما ورد في المصادر')}</h3>
+      {summary.reported_by_sources.map((claim,i) => <p key={i} className="text-base leading-8 text-[#EEE7F7]">{claim.text} <span className="inline-flex gap-1">{claim.source_ids.map(id => {
+        const source=summary.sources.find(s=>s.id===id);
+        return <a key={id} className="text-xs text-[#78CFFF] underline" href={source?.url} target="_blank" rel="noreferrer" title={`${source?.source_file || ''} · ${source?.source_location || ''}`}>[{id}]</a>;
+      })}</span></p>)}
+      {!summary.reported_by_sources.length && <p className="text-base leading-8 text-[#EEE7F7]">{choose('The available evidence does not establish an answer to this question.', 'لا تثبت الأدلة المتاحة إجابة لهذا السؤال.')}</p>}
+      {summary.interpretation.length > 0 && <div className="border-t border-white/10 pt-4"><h4 className="mb-2 text-xs font-semibold text-[#B8A9CE]">{choose('Interpretation', 'التفسير')}</h4>{summary.interpretation.map((c,i)=><p key={i} className="text-sm leading-7 text-[#D6CBE8]">{c.text} <span className="text-xs text-[#78CFFF]">{c.source_ids.map(id=>`[${id}]`).join(' ')}</span></p>)}</div>}
+      <details className="text-xs leading-6 text-[#B8A9CE]"><summary className="cursor-pointer">{choose('Not Established · answer limits', 'ما لم يُثبت · حدود الإجابة')}</summary><div className="mt-2 space-y-2">{summary.not_established.map((s,i)=><p key={i}>{s}</p>)}<p>{summary.status==='groq-grounded' ? choose('AI synthesis checked against cited passages. Check the original context; automated checks are not scientific validation.', 'تلخيص آلي فُحص مقابل المقاطع المستشهد بها. راجع السياق الأصلي؛ الفحص الآلي ليس تحققاً علمياً.') : choose('Extractive fallback: source wording and structured values, without generated conclusions.', 'استجابة استخراجية: نص المصدر والقيم المنظمة دون استنتاجات مولدة.')}</p></div></details>
+    </section>}
     {notices.map((notice, i) => <p key={i} className="rounded-lg border border-amber-200/20 bg-amber-200/5 p-4 text-sm leading-7 text-[#F5D6A3]">{notice}</p>)}
-    {rows.length > 0 && <section aria-label="Reported measurements">
+    {rows.length > 0 && <details aria-label="Reported measurements" className="rounded-xl border border-white/10 p-4">
+      <summary className="cursor-pointer text-sm text-[#D6CBE8]">{choose(`Inspect measurements (${rows.length})`, `فحص القياسات (${rows.length})`)}</summary>
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2">
         <h3 className="text-sm font-semibold text-[#E1B983]">{choose('Reported measurements', 'القياسات الواردة في المصادر')}</h3>
         <span className="text-xs text-[#B8A9CE]">{choose('Source records, not predictions', 'سجلات مصدرية وليست تنبؤات')}</span>
@@ -69,8 +80,9 @@ export function AnswerPanel({ response, arabic }: { response: AskResponse; arabi
       </div>
       {rows.length > 4 && <button type="button" className="mt-3 rounded-md px-2 py-1 text-sm text-[#78CFFF] hover:underline" onClick={() => setAllRows(!allRows)} aria-expanded={allRows}>{allRows ? choose('Show fewer records', 'عرض سجلات أقل') : choose(`Show all ${rows.length} returned records`, `عرض جميع السجلات المسترجعة (${rows.length})`)}</button>}
       <p className="mt-2 text-xs leading-6 text-[#B8A9CE]">{choose('Different rows may have different fuels or conditions. Open Evidence before comparing values.', 'قد تختلف أنواع الوقود والظروف بين الصفوف. افتح الدليل قبل مقارنة القيم.')}</p>
-    </section>}
-    {sources.length > 0 && <section>
+    </details>}
+    {sources.length > 0 && <details className="rounded-xl border border-white/10 p-4">
+      <summary className="mb-3 cursor-pointer text-sm text-[#D6CBE8]">{choose(`Sources · read supporting passages (${sources.length})`, `المصادر · قراءة المقاطع الداعمة (${sources.length})`)}</summary>
       <div className="mb-3 flex flex-wrap items-baseline justify-between gap-2"><h3 className="text-sm font-semibold text-[#E1B983]">{choose('What the sources say', 'ما تقوله المصادر')}</h3><span className="text-xs text-[#B8A9CE]">{choose('Ranked by query relevance', 'مرتبة حسب صلتها بالسؤال')}</span></div>
       <p className="mb-4 text-xs leading-6 text-[#B8A9CE]">{choose('Source excerpts, not an AI-generated conclusion. Objectives and hypotheses are research intent—not established findings.', 'مقتطفات مصدرية وليست استنتاجاً مولداً. الأهداف والفرضيات تعبّر عن نية البحث ولا تمثل نتائج مثبتة.')}</p>
       <div className="space-y-3">{sources.slice(0, 3).map((source, i) => {
@@ -86,7 +98,7 @@ export function AnswerPanel({ response, arabic }: { response: AskResponse; arabi
           </details>
         </article>;
       })}</div>
-    </section>}
+    </details>}
     <details className="rounded-xl border border-[#78CFFF]/20 p-4 text-sm text-[#B8A9CE]"><summary className="cursor-pointer text-[#D6CBE8]">{choose('Why these results?', 'لماذا ظهرت هذه النتائج؟')}</summary>
       <div className="mt-4 space-y-4 text-xs leading-6">
         <div><h4 className="font-semibold text-[#E1B983]">{choose('Search path', 'مسار البحث')}</h4><p>{text(response.routing_reason)}</p></div>

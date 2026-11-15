@@ -1,0 +1,25 @@
+{
+  "adapter_version": "handoff-2.0.0-to-app-3.0-v1",
+  "approved_numeric": [
+    "observation_3e7f9a3a1574f20678085b13",
+    "observation_2e336ce816a76002500e45da",
+    "observation_8fbaa924c069ce93fe98e351",
+    "observation_198d2331e3e398a718352ba6",
+    "observation_af942b9e468c6cc1c21b29cd",
+    "observation_9bb74f9904ff256876a1d954"
+  ],
+  "reviewed_passages": [
+    {
+      "investigation_id": "PSI-101",
+      "source_file": "SAME_Baseline Concept Description Document_001 Rev A.pdf",
+      "source_sha256": "3eed4b7ecd71f9e37a3f7a78d7e7a011ff636bb24ec8bcc72ff97a8ac41b598a",
+      "page_number": 7,
+      "printed_page": "3",
+      "source_location": "PDF page:7; printed page:3; section 2.3 opening paragraph",
+      "text": "The major goal of this experiment is to quantify the sizes that the liquid smoke particulates achieve in microgravity and to relate the droplet size and distribution to the smoke generation and smoke transport conditions in the experiment. This will be accomplished by extending the Comparative Soot Diagnostics (CSD) concept to provide a particulate count and mass density determination to the diagnostic array used to analyze these liquid smokes. The experimental design and practical application of this data will be enhanced by the development of a numerical code that will predict the smoke droplet growth as a function of the fuel pyrolysis rate, the thermodynamic properties of the pyrolysis vapor, and the flow environment.",
+      "evidence_role": "research_objective",
+      "review_note": "Read document scope and full page. Historical SAME design objective archived under SAME-R; not a reflight result, not measured evidence. Numeric objectives and Earth comparison excluded."
+    }
+  ],
+  "policy": "No other handoff text/figures/safety measurements approved for judged retrieval."
+}

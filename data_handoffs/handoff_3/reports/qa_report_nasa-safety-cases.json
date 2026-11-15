@@ -1,0 +1,88 @@
+{
+  "schema_version": "2.0.0",
+  "pipeline_version": "safety-case-bundle-1.0",
+  "generated_at_utc": "2026-11-15T14:18:33.064Z",
+  "source_category": "nasa_safety_case_study",
+  "status": "valid_with_source_review_flags",
+  "summary": {
+    "case_records": 5,
+    "evidence_claims": 32,
+    "historical_or_hardware_values": 16,
+    "source_catalog_entries": 20,
+    "chunks": 1662,
+    "curated_summary_chunks": 42,
+    "source_excerpt_chunks": 1620,
+    "full_text_page_markers": 640,
+    "nonempty_source_pages": 620,
+    "empty_source_pages_skipped": 20,
+    "empty_chunks": 0,
+    "duplicate_chunk_ids": false,
+    "missing_provenance_fields": 0,
+    "unknown_source_ids": 0,
+    "catalog_sources_without_url": 1,
+    "catalog_local_files_missing": 10,
+    "psi_experimental_records": 0,
+    "exact_duplicate_chunks_preserved_for_provenance": 1
+  },
+  "errors": [],
+  "missing_provenance": [],
+  "review_flags": {
+    "source_ids_without_direct_url": [
+      "A1-BR"
+    ],
+    "referenced_local_source_files_not_in_bundle": [
+      {
+        "source_id": "A1-SEN",
+        "local_file_reference": "../sources/07-senate-final-report.pdf"
+      },
+      {
+        "source_id": "A1-NUM",
+        "local_file_reference": "../sources/01-apollo-by-the-numbers.pdf"
+      },
+      {
+        "source_id": "A1-H1",
+        "local_file_reference": "../sources/02-house-1.pdf"
+      },
+      {
+        "source_id": "A1-H2",
+        "local_file_reference": "../sources/03-house-2.pdf"
+      },
+      {
+        "source_id": "A1-S1",
+        "local_file_reference": "../sources/04-senate-1.pdf"
+      },
+      {
+        "source_id": "A1-S2",
+        "local_file_reference": "../sources/05-senate-2.pdf"
+      },
+      {
+        "source_id": "A1-S3",
+        "local_file_reference": "../sources/06-senate-3.pdf"
+      },
+      {
+        "source_id": "A1-PH",
+        "local_file_reference": "../sources/08-phillips-report.md"
+      },
+      {
+        "source_id": "A1-BT",
+        "local_file_reference": "../sources/09-baron-testimony.txt"
+      },
+      {
+        "source_id": "A1-BR",
+        "local_file_reference": "../sources/10-baron-report-excerpt.md"
+      }
+    ],
+    "excluded_derivative_inputs": [
+      {
+        "path": "data/raw/nasa-safety-cases/safety_overview.md",
+        "reason": "Short navigation overview; overlaps the curated RAG summary."
+      },
+      {
+        "path": "data/raw/nasa-safety-cases/Safety_Scientific_Summary.md",
+        "reason": "Long derivative summary; overlaps the claim-level RAG summary and source excerpts."
+      }
+    ],
+    "note": "Local source files and URLs are never inferred or downloaded. Evidence may retain a source ID and locator without a direct link.",
+    "exact_duplicate_chunks_preserved": 1
+  }
+}

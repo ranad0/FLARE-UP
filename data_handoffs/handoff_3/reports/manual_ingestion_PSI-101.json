@@ -1,0 +1,78 @@
+{
+  "schema_version": "2.0.0",
+  "investigation_id": "PSI-101",
+  "investigation_id_status": "verified",
+  "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-101",
+  "processed_at_utc": "2026-11-15T10:47:39+00:00",
+  "archives": [],
+  "processed_files": [
+    {
+      "source_relative_path": "PSI-101/54 7L Lampwick.pdf",
+      "output_relative_path": "data/processed/PSI-101/54 7L Lampwick.jsonl",
+      "status": "processed",
+      "rows_or_lines": 6,
+      "details": {
+        "pages": 6,
+        "images_extracted": 12
+      },
+      "sha256": "266897bd7888cedb08ab12c534349dc468befe59e97095692a6f7d9396eab1b9"
+    },
+    {
+      "source_relative_path": "PSI-101/60089MFHA151_B.PDF",
+      "output_relative_path": "data/processed/PSI-101/60089MFHA151_B.jsonl",
+      "status": "processed",
+      "rows_or_lines": 1,
+      "details": {
+        "pages": 1,
+        "images_extracted": 0
+      },
+      "sha256": "3968aeb41d3ac690ea7500b6db620ab3a44ce5e66048e6766db5635fd45cde7c"
+    },
+    {
+      "source_relative_path": "PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.pdf",
+      "output_relative_path": "data/processed/PSI-101/60089MFHA411 Teflon Ignitor Wire Coil Assembly.jsonl",
+      "status": "processed",
+      "rows_or_lines": 1,
+      "details": {
+        "pages": 1,
+        "images_extracted": 0
+      },
+      "sha256": "edfa693a5e489053a6b6e096ad12ea2b6e7483a1eb3ce84898a036b3f05499d8"
+    },
+    {
+      "source_relative_path": "PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.pdf",
+      "output_relative_path": "data/processed/PSI-101/60089MFHD509 P-Trak Condenser Tube Modification.jsonl",
+      "status": "processed",
+      "rows_or_lines": 1,
+      "details": {
+        "pages": 1,
+        "images_extracted": 0
+      },
+      "sha256": "ff80b858803f12138a9196e100d9c48db5dfdd287385c300f6a06aaa43f59cf0"
+    },
+    {
+      "source_relative_path": "PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.pdf",
+      "output_relative_path": "data/processed/PSI-101/SAME EIRD Rev 2.00 02-25-05 HIgh Q.jsonl",
+      "status": "processed",
+      "rows_or_lines": 72,
+      "details": {
+        "pages": 72,
+        "images_extracted": 851
+      },
+      "sha256": "941dca3ccf7132913bfd73e8a408f3ea558eaa822486dd53ffcdfa26127461cb"
+    },
+    {
+      "source_relative_path": "PSI-101/SAME_Baseline Concept Description Document_001 Rev A.pdf",
+      "output_relative_path": "data/processed/PSI-101/SAME_Baseline Concept Description Document_001 Rev A.jsonl",
+      "status": "processed",
+      "rows_or_lines": 15,
+      "details": {
+        "pages": 15,
+        "images_extracted": 1
+      },
+      "sha256": "3eed4b7ecd71f9e37a3f7a78d7e7a011ff636bb24ec8bcc72ff97a8ac41b598a"
+    }
+  ],
+  "raw_inventory_manifest": "reports/manifest.csv",
+  "note": "CSV rows preserve source columns and values. PDFs preserve page numbers and extracted image references. ZIP members are extracted only after path and size safety checks."
+}
