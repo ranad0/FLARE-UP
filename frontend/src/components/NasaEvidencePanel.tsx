@@ -325,7 +325,7 @@ export function NasaEvidencePanel({
           {limited && <p className="text-xs leading-6 text-[#E1B983]">{t.evidence.limitedEvidenceBanner}</p>}
           {Array.isArray(notEstablished) ? (
             <ul className="space-y-1 text-xs leading-relaxed text-[#D6CBE8]">
-              {notEstablished.map((line, i) => (
+              {notEstablished.filter(line => !limited || String(line)!=='Direct evidence for this exact scenario is not available.').map((line, i) => (
                 <li key={i}>• {String(line)}</li>
               ))}
             </ul>

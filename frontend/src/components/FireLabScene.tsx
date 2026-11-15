@@ -348,14 +348,14 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
         _camUp.setFromMatrixColumn(camera.matrixWorld, 1).normalize();
 
         // Map screen velocity into world disturbance vector
-        const strength = 18.0 * proximity;
-        const ix = THREE.MathUtils.clamp((_camRight.x * dx + _camUp.x * dy) * strength, -2.4, 2.4);
-        const iy = THREE.MathUtils.clamp((_camRight.y * dx + _camUp.y * dy) * strength * 0.45, -0.8, 0.8);
-        const iz = THREE.MathUtils.clamp((_camRight.z * dx + _camUp.z * dy) * strength, -2.4, 2.4);
+        const strength = 3.0 * proximity;
+        const ix = THREE.MathUtils.clamp((_camRight.x * dx + _camUp.x * dy) * strength, -0.18, 0.18);
+        const iy = THREE.MathUtils.clamp((_camRight.y * dx + _camUp.y * dy) * strength * 0.25, -0.05, 0.05);
+        const iz = THREE.MathUtils.clamp((_camRight.z * dx + _camUp.z * dy) * strength, -0.18, 0.18);
 
-        cursorImpulse.x = THREE.MathUtils.clamp(cursorImpulse.x + ix, -1.65, 1.65);
-        cursorImpulse.y = THREE.MathUtils.clamp(cursorImpulse.y + iy, -0.6, 0.6);
-        cursorImpulse.z = THREE.MathUtils.clamp(cursorImpulse.z + iz, -1.65, 1.65);
+        cursorImpulse.x = THREE.MathUtils.clamp(cursorImpulse.x + ix, -0.20, 0.20);
+        cursorImpulse.y = THREE.MathUtils.clamp(cursorImpulse.y + iy, -0.06, 0.06);
+        cursorImpulse.z = THREE.MathUtils.clamp(cursorImpulse.z + iz, -0.20, 0.20);
       }
     };
 
@@ -468,7 +468,7 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
       // Second-order spring-damper for cursor disturbance
       cursorImpulse.multiplyScalar(Math.exp(-5.4 * dt));
       const stiffness = 38.0;
-      const damping = 7.4;
+      const damping = 12.4;
 
       cursorVel.x += ((cursorImpulse.x - cursorPos.x) * stiffness - cursorVel.x * damping) * dt;
       cursorVel.y += ((cursorImpulse.y - cursorPos.y) * stiffness - cursorVel.y * damping) * dt;

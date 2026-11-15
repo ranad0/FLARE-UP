@@ -82,7 +82,7 @@ def scenario(r:ScenarioRequest):
         'analysis':{'closest_investigation':'PSI-159 · ACME CFI-G' if matches else None,
             'reported_by_sources':[{'investigation':s.get('investigation_id'),'source':s.get('source_file'),
             'location':s.get('source_location'),'evidence_type':s.get('content_type'),'passage':s.get('text')} for s in sources],
-            'interpretation':'These sources provide research context. Nearby pressure records are not a validated prediction for the chosen scenario.',
+            'interpretation':('These sources provide research context. Nearby pressure records are not a validated prediction for the chosen scenario.' if matches else 'These studies concern the selected material topic. They do not establish how the combined oxygen, pressure and airflow settings would behave.'),
             'not_established':['Direct evidence for this exact scenario is not available.',
                 'Ignition, extinction, temperature and burn rate for these combined inputs.',
                 'A numeric mapping from the illustrative airflow control to measured ventilation.',

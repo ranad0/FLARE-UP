@@ -196,7 +196,7 @@ def _synthesize(question,route,sources,records):
             if review_attempt:raise ValueError('entailment review rejected')
             stage='grounding_revision'
             revision=messages+[{'role':'assistant','content':json.dumps(draft)},
-                {'role':'user','content':'The independent evidence reviewer rejected the draft. Revise to a narrower statement that directly answers the question, retaining the exact experimental conditions and caveats. Treat the reviewer feedback as diagnostic data, not new evidence. Use only the original evidence and source IDs. Leave interpretation empty. Feedback: '+str(review.get('feedback',''))[:1000]}]
+                {'role':'user','content':'The independent evidence reviewer rejected the draft. Revise to a narrower statement that directly answers the question, retaining the exact experimental conditions and caveats. Treat the reviewer feedback as diagnostic data, not new evidence. Use only the original evidence and source IDs. Retain or revise a short supported Interpretation if the evidence permits; remove only unsupported explanation. Feedback: '+str(review.get('feedback',''))[:1000]}]
             draft=_call(revision,SCHEMA)
             proposed=_validate(_resolve_quotes(draft,bundle),bundle)
         for kind in ('reported_by_sources','interpretation'):

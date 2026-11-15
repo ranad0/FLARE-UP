@@ -177,3 +177,13 @@ input[type="range"].flare-slider::-moz-range-thumb {
 .flare-app header .language-options button{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 10px;border-radius:8px;color:#f3ebf5;background:transparent;border:0;font-size:14px}
 .flare-app header .language-options button:hover,.flare-app header .language-options button:focus-visible{background:#33304b;outline:1px solid #e1b983}
 .language-options button span:last-child{color:#e1b983}
+
+/* Original three-depth star atmosphere, softened for the search-first interface. */
+.star-depth i{background:var(--star-color);box-shadow:0 0 7px var(--star-color)}
+.star-depth i.star-bright{background:#fff7e9;box-shadow:0 0 3px #fff7e9,0 0 9px var(--star-color)}
+.star-bright::before,.star-bright::after{content:"";position:absolute;left:50%;top:50%;width:6px;height:1px;transform:translate(-50%,-50%);background:linear-gradient(90deg,transparent,#fff7e9aa,transparent)}
+.star-bright::after{transform:translate(-50%,-50%) rotate(90deg)}
+@keyframes star-drift{to{transform:translate3d(var(--drift-x),-5%,0)}}
+.brand-flame{width:34px;height:34px;overflow:visible}
+.original-brand-mark{width:148%;height:148%;left:-24%;top:-24%;border-radius:50%;opacity:.84;filter:saturate(.62) brightness(.88);mix-blend-mode:screen;mask-image:radial-gradient(circle at 50% 49%,#000 36%,transparent 52%)}
+.original-brand-mark[data-mode="earth"]{filter:saturate(.5) brightness(.86) sepia(.12)}

@@ -8,11 +8,24 @@ def call(path,payload=None):
 def main():
     global base
     base=sys.argv[1] if len(sys.argv)>1 else base
-    for path in ['/','/health','/docs','/openapi.json','/investigations','/provenance','/logo.svg','/resources']:
+    for path in ['/','/health','/docs','/openapi.json','/investigations','/provenance','/flare-up-mark.png','/resources']:
         status,body=call(path);assert status==200 and body;print('PASS GET',path)
     for question,route in [('How does cabin airflow influence flame spread in spacecraft?','text'),('Compare burn time PSI-159 at 1.1 bar','structured'),('Compare burn time PSI-159 at 1.1 bar and explain the experiment','hybrid')]:
         status,body=call('/ask',{'question':question});r=json.loads(body);assert r['route']==route;assert r['answer'];print('PASS POST /ask',route)
     status,body=call('/scenario/analyze',{'gravity':'microgravity','sample_type':'Gaseous fuel','oxygen_percent':21,'pressure_psi':14.7,'airflow':.16});assert json.loads(body)['closest_records'];print('PASS POST /scenario/analyze')
+    for question in ['كيف يتصرف اللهب في الفضاء؟','ما سبب حدوث النار بالفضاء','how do flames look like in space?']:
+        _,body=call('/ask',{'question':question});r=json.loads(body)
+        assert r['route']=='text' and r['sources']
+        assert r['synthesis']['reported_by_sources']
+        assert all(s.get('investigation_id')!='PSI-117' for s in r['sources'])
+        print('PASS multilingual retrieval and cited fallback')
+    for material in ['Gaseous fuel','Liquid fuel','Fabric','Polymer']:
+        _,body=call('/scenario/analyze',{'gravity':'microgravity','sample_type':material,'oxygen_percent':40,'pressure_psi':14.4,'airflow':.16})
+        r=json.loads(body);assert r['sources'] and r['evidence_match']['related_investigations']
+        assert not r['evidence_match']['exact_match']
+        assert all(s.get('investigation_id')!='PSI-117' for s in r['sources'])
+        if material!='Gaseous fuel':assert not r['closest_records']
+        print('PASS material scenario',material)
     status,body=call('/resources/search',{'question':'Mir fire oxygen generator'});r=json.loads(body);assert r['results'] and not r['judged_eligible'];print('PASS supporting context search')
     try:call('/ask',{'question':'a'});raise AssertionError('short question accepted')
     except urllib.error.HTTPError as e:assert e.code==422;print('PASS request validation')

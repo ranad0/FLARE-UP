@@ -56,6 +56,20 @@ class SynthesisTests(unittest.TestCase):
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':True}]):
             r=synthesize('airflow','text',self.sources,[])
             self.assertEqual(r['status'],'groq-grounded');self.assertEqual(r['reported_by_sources'][0]['source_ids'],['T1'])
+    def test_grounding_revision_preserves_supported_explanation(self):
+        draft=json.loads(json.dumps(self.valid))
+        draft['reported_by_sources'][0]['supports']=[{'source_id':'T1'}]
+        revised=json.loads(json.dumps(draft))
+        revised['interpretation']=[{'text':'The reported airflow finding is limited to the tested conditions.', 'supports':[{'source_id':'T1'}]}]
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':False,'feedback':'Clarify scope.'},revised,{'supported':True,'feedback':''}]) as call:
+            r=synthesize('airflow','text',self.sources,[])
+        self.assertEqual(r['status'],'groq-grounded')
+        self.assertTrue(r['interpretation'])
+        self.assertEqual(r['interpretation'][0]['source_ids'],['T1'])
+        revision_prompt=call.call_args_list[2].args[0][-1]['content']
+        self.assertNotIn('Leave interpretation empty',revision_prompt)
+        self.assertIn('supported Interpretation',revision_prompt)
+
     def test_rejected_entailment_falls_back(self):
         draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':False}]):
