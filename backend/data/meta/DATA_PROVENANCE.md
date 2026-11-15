@@ -6,10 +6,10 @@ Retrieved 15 November 2026 from the public NASA PSI service used by the official
 
 19 **Microgravity Investigations** in **Combustion Science** are eligible: PSI-10, PSI-20, PSI-21, PSI-22, PSI-23, PSI-25, PSI-26, PSI-39, PSI-47, PSI-68, PSI-69, PSI-98, PSI-99, PSI-100, PSI-101, PSI-102, PSI-106, PSI-107 and PSI-159. No reduced-gravity-only investigation was returned by this search.
 
-- 40 downloaded science files, 87,291,029 bytes.
+- 41 active science source files, 87,538,344 bytes: 40 existing downloads and one verified handoff PDF.
 - 21 original experimental CSV tables; 2,001 nonblank source rows transcribed.
-- 12,154 scalar numeric cells, each retaining the original field name, raw value, source row, conditions, DOI, URL and SHA-256.
-- 112 active text chunks: investigation objectives/approaches/hypotheses with explicit evidence roles, and reviewed report passages.
+- 12,160 scalar numeric cells, each retaining the original field name, raw value, source row, conditions, DOI, URL and SHA-256.
+- 113 active text chunks: investigation objectives/approaches/hypotheses with explicit evidence roles, and reviewed report passages.
 - 2,001 original table-row text chunks in `review/table_rows_audit_only.jsonl`, excluded from descriptive retrieval. The structured path serves permitted numerical columns.
 - 1,641 report/readme text chunks extracted into `review/report_chunks_pending_review.jsonl`. This archival extraction overlaps the reviewed excerpts; it is not 1,641 additional independent findings. Unreviewed passages remain excluded from judged retrieval.
 
@@ -80,3 +80,7 @@ python scripts/verify_corpus.py
 ```
 
 The first two commands require internet access. The supplemental fetcher needs internet only for missing snapshots; it reuses archived files. The builder and verifier work offline. Consult `ingestion_report.json`, `download_ledger.json` and `file_download_ledger.json` for complete per-file results. The downloader is intentionally restricted to public, visible reports/readmes and experimental tables below 60 MB each. Broader raw sensor/video ingestion requires additional format-specific parsing and gravity/conditions review.
+
+## Handoff 3 update
+
+Six exact Saffire source cells and one historical SAME design-objective paragraph were admitted through an explicit schema adapter. See [the full audit and migrations](../../../../docs/HANDOFF_3_REPORT.md). Other new extraction stays in isolated review storage.

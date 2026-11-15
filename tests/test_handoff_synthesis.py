@@ -4,7 +4,7 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'backend'))
 from app.evidence import ask_flare_up,chunks
 from app.structured_data import load_structured_records,search_structured
-from app.synthesis import synthesize,_validate
+from app.synthesis import synthesize,_validate,_resolve_quotes
 
 class HandoffTests(unittest.TestCase):
     def test_new_saffire_fields_exact(self):
@@ -50,15 +50,18 @@ class SynthesisTests(unittest.TestCase):
             call.assert_not_called();self.assertEqual(r['status'],'extractive-no-key');self.assertTrue(r['reported_by_sources'])
             self.assertIn('do not establish',r['reported_by_sources'][0]['text'])
     def test_grounded_synthesis(self):
-        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[self.valid,{'supported':True}]):
+        draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':True}]):
             r=synthesize('airflow','text',self.sources,[])
             self.assertEqual(r['status'],'groq-grounded');self.assertEqual(r['reported_by_sources'][0]['source_ids'],['T1'])
     def test_rejected_entailment_falls_back(self):
-        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[self.valid,{'supported':False}]):
+        draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':False}]):
             self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'extractive-fallback')
     def test_invalid_claims_fall_back(self):
         for bad in ('Flames burn for 20 seconds.','Flames burn for twenty seconds.','Airflow doubles the spread rate.'):
             claim=json.loads(json.dumps(self.valid));claim['reported_by_sources'][0]['text']=bad
+            claim['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
             with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[claim,{'supported':False}]):
                 self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'extractive-fallback')
     def test_fabricated_quote_and_id_rejected(self):
@@ -68,6 +71,17 @@ class SynthesisTests(unittest.TestCase):
     def test_network_failure_falls_back(self):
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=TimeoutError):
             self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'extractive-fallback')
+    def test_quote_ids_resolve_to_source_text(self):
+        d={'reported_by_sources':[{'text':'A supported claim.','supports':[{'source_id':'T1','quote_id':'T1.S1'}]}],'interpretation':[]}
+        r=_resolve_quotes(d,{'T1':{'quotations':{'T1.S1':self.sources[0]['text']}}})
+        self.assertEqual(r['reported_by_sources'][0]['supports'][0]['quote'],self.sources[0]['text'])
+        with self.assertRaises(ValueError):_resolve_quotes(d,{'T1':{'quotations':{}}})
+    def test_bounded_repair_keeps_checks(self):
+        draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
+        bad=json.loads(json.dumps(draft));bad['reported_by_sources'][0]['text']='The flame burns for twenty seconds.'
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[bad,draft,{'supported':True}]) as call:
+            self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'groq-grounded')
+            self.assertEqual(call.call_count,3)
     def test_unknown_unit_stays_unknown_in_summary(self):
         with patch.dict(os.environ,{'GROQ_API_KEY':''}):r=ask_flare_up('Compare Zst PSI-159')
         self.assertTrue(r['structured_results']);self.assertTrue(all(x['unit'] is None for x in r['structured_results']))
