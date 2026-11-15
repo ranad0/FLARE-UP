@@ -36,10 +36,10 @@ The active research corpus covers **19 verified NASA Combustion Science Microgra
 | Original experimental CSV tables | 21 |
 | Structured source rows | 2,001 |
 | Scalar numeric records | 12,160 |
-| Selected text passages | 113 |
+| Selected text passages | 123 |
 | Separate NASA supporting resources | 10 entries / 122 passages |
 
-Scalar records include experimental conditions and reported observations; they are not separate experiments. The text collection contains 61 official investigation metadata passages and 52 reviewed PDF passages, with objectives, hypotheses, methods, and findings labelled distinctly. Coverage is selective, not complete ingestion of NASA PSI or of every investigation.
+Scalar records include experimental conditions and reported observations; they are not separate experiments. The text collection contains 61 official investigation metadata passages and 62 reviewed PDF passages, with objectives, hypotheses, methods, and findings labelled distinctly. Coverage is selective, not complete ingestion of NASA PSI or of every investigation. The [latest reviewed expansion](docs/EVIDENCE_EXPANSION.md) adds context for flame appearance, buoyancy, fabric and polymer combustion.
 
 Each admitted record retains source traceability: investigation identity, source URL, DOI where available, original filename, page or row location, and file hash. Ground investigations—including PSI-117—and pending-review extractions are excluded from default judged retrieval. Unknown units remain unknown. Historical safety cases and educational resources remain separate from experimental measurements.
 

@@ -71,13 +71,20 @@ def scenario(r:ScenarioRequest):
     topic={'gaseous fuel':'spherical cool diffusion flames','liquid fuel':'FLEX droplet extinction',
            'fabric':'BASS fabric flame spread ventilation','polymer':'BASS PMMA flame spread'}[r.sample_type.lower()]
     sources=search_text(topic,4)
+    related=list(dict.fromkeys(s.get('investigation_id') for s in sources if s.get('investigation_id')))
+    summary=('Related NASA research and pressure-comparable records found. The full combination of conditions is not matched.' if matches else
+        'Related NASA research found for this material topic. The full combination of conditions is not matched.' if sources else
+        'No related passage was found in the reviewed corpus for this material topic.')
     return {'scenario':r.model_dump(),'evidence_match':{'level':'partial' if matches else 'context only','limited':True,'exact_match':False,
-        'summary':'Direct evidence for this exact scenario is not available.'},'closest_records':matches,
+        'summary':summary,'related_passages':len(sources),'related_investigations':related,
+        'matching_scope':'Gaseous fuel category and nearest reported pressure only.' if matches else 'Material-topic relevance only; experimental conditions are not matched.'},'closest_records':matches,
         'visual_state':{'illustrative':True,'gravity':r.gravity,'airflow':r.airflow,'oxygen_percent':r.oxygen_percent},
-        'analysis':{'reported_by_sources':[{'investigation':s.get('investigation_id'),'source':s.get('source_file'),
+        'analysis':{'closest_investigation':'PSI-159 · ACME CFI-G' if matches else None,
+            'reported_by_sources':[{'investigation':s.get('investigation_id'),'source':s.get('source_file'),
             'location':s.get('source_location'),'evidence_type':s.get('content_type'),'passage':s.get('text')} for s in sources],
             'interpretation':'These sources provide research context. Nearby pressure records are not a validated prediction for the chosen scenario.',
-            'not_established':['Ignition, extinction, temperature and burn rate for these combined inputs.',
+            'not_established':['Direct evidence for this exact scenario is not available.',
+                'Ignition, extinction, temperature and burn rate for these combined inputs.',
                 'A numeric mapping from the illustrative airflow control to measured ventilation.',
                 'A universal flame colour or shape for every material in microgravity.'], 'limited_evidence':True},
         'sources':sources,'scientific_disclaimer':'Evidence-informed visualization — not a numerical combustion simulation.'}

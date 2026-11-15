@@ -9,7 +9,7 @@ Retrieved 15 November 2026 from the public NASA PSI service used by the official
 - 41 active science source files, 87,538,344 bytes: 40 existing downloads and one verified handoff PDF.
 - 21 original experimental CSV tables; 2,001 nonblank source rows transcribed.
 - 12,160 scalar numeric cells, each retaining the original field name, raw value, source row, conditions, DOI, URL and SHA-256.
-- 113 active text chunks: investigation objectives/approaches/hypotheses with explicit evidence roles, and reviewed report passages.
+- 123 active text chunks: 61 investigation metadata passages with explicit evidence roles and 62 reviewed report passages. The additional 10 reviewed sections are controlled by `review_additions_2026-11-15.json` with original-file hashes, text hashes, page locations, scope notes and official eligibility verification.
 - 2,001 original table-row text chunks in `review/table_rows_audit_only.jsonl`, excluded from descriptive retrieval. The structured path serves permitted numerical columns.
 - 1,641 report/readme text chunks extracted into `review/report_chunks_pending_review.jsonl`. This archival extraction overlaps the reviewed excerpts; it is not 1,641 additional independent findings. Unreviewed passages remain excluded from judged retrieval.
 

@@ -8,6 +8,7 @@ from sklearn.preprocessing import normalize
 from app.config import CHUNKS_PATH, TOP_K, DATA_META_DIR, LOCAL_VECTOR_INDEX
 from app.structured_data import search_structured
 from app.router import route_question
+from app.query_language import expand_query
 
 ALLOWED = {'Microgravity Investigation', 'Reduced Gravity Investigation'}
 
@@ -26,8 +27,7 @@ def index():
 def _local_search(question,limit=None):
     if not chunks(): return []
     # Curated topic translation preserves English scientific source wording.
-    glossary={'حريق':'fire','النار':'fire','لهب':'flame','الدخان':'smoke','دخان':'smoke','الأكسجين':'oxygen','التهوية':'ventilation airflow','تدفق':'flow','انطفاء':'extinction','إطفاء':'suppression','الجاذبية':'gravity microgravity','وقود':'fuel','ضغط':'pressure','انتشار':'spread'}
-    question=question+' '+' '.join(v for k,v in glossary.items() if k in question)
+    question=expand_query(question)
     vec,matrix,svd,latent=index()
     query=vec.transform([question])
     if query.nnz==0: return []

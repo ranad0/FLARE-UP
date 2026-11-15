@@ -1,0 +1,156 @@
+{
+  "schema_version": "1.0",
+  "review_date": "2026-11-15",
+  "classification": {
+    "NEW": 10,
+    "UPDATED": 0,
+    "UNCHANGED": "All numeric records, units and original source files",
+    "DUPLICATE": 0,
+    "INCOMPATIBLE": 0,
+    "NEEDS_REVIEW": "All unselected report text",
+    "EXCLUDED": "Ground-study comparisons, equation/table extraction, unreviewed figure measurements, CFI chemical-name inconsistency on page 7"
+  },
+  "scientific_contract": "Text evidence only; no inferred measurements, units, safety limits or visual predictions. Original pipeline unchanged; reviewed selection added to current corpus adapter.",
+  "verification": [
+    {
+      "accession": "PSI-23",
+      "title": "Advanced Combustion via Microgravity Experiments-Structure and Response of Spherical Diffusion Flames",
+      "projectType": "Microgravity Investigation",
+      "researchArea": "Combustion Science",
+      "doi": "10.60555/k57n-p030",
+      "version": 4,
+      "verification_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-23"
+    },
+    {
+      "accession": "PSI-25",
+      "title": "Burning and Suppression of Solids - II",
+      "projectType": "Microgravity Investigation",
+      "researchArea": "Combustion Science",
+      "doi": "10.60555/4qc4-de67",
+      "version": 4,
+      "verification_url": "https://psi.nasa.gov/geode-py/ws/repo/investigations/PSI-25"
+    }
+  ],
+  "passages": [
+    {
+      "investigation_id": "PSI-23",
+      "source_file": "PSI-23_Reports_s_Flame_final_report_20210729.pdf",
+      "source_sha256": "2056f8f85291f49c1446981541e4689dc6df8ad02ef7ac0fddbd84e956968a3b",
+      "page": 3,
+      "start": "The basic flame configuration",
+      "end": "The primary goals",
+      "text_sha256": "b0eef68141e992fd71c140e852ffd57ecf4e06a6873948deaca9c3e3d99e6a8c",
+      "evidence_role": "research_design_rationale",
+      "review_note": "Historical science design, not a measured finding.",
+      "characters": 343
+    },
+    {
+      "investigation_id": "PSI-23",
+      "source_file": "PSI-23_Reports_s_Flame_final_report_20210729.pdf",
+      "source_sha256": "2056f8f85291f49c1446981541e4689dc6df8ad02ef7ac0fddbd84e956968a3b",
+      "page": 4,
+      "start": "We seek to make observations",
+      "end": "The minimum sizes",
+      "text_sha256": "855930b90fe67329050542e1565e58c2783879acd929a4ab1e6f4f0fc60066f5",
+      "evidence_role": "research_rationale",
+      "review_note": "Microgravity buoyancy rationale; excludes terrestrial measurement comparisons.",
+      "characters": 310
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 9,
+      "start": "The Burning and Suppression of Solids (BASS) experiment hardware",
+      "end": "BASS–II also utilized",
+      "text_sha256": "248286db6f314e28574374de5ebda129d8a03a89fee0579c13587a1834af2491",
+      "evidence_role": "flight_experiment_method",
+      "review_note": "ISS apparatus and tested variables; not a prediction for user controls.",
+      "characters": 1250
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 19,
+      "start": "As part of the Burning and Suppression",
+      "end": "1.7 Acknowledgments",
+      "text_sha256": "dd885e0601b91522da40a5cdf92be7b037499b45838a4f8a26c56d463ad596bf",
+      "evidence_role": "flight_report_conclusion",
+      "review_note": "Reported ISS observations and explicitly identified estimates; no scalar extraction.",
+      "characters": 1344
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 28,
+      "start": "In a microgravity environment",
+      "end": "In this work",
+      "text_sha256": "8916404d9785e0dba209b3acc2c44a1ceba4281263271c0146c6065b17fd3670",
+      "evidence_role": "flight_science_background",
+      "review_note": "Retains oxygen dependence and quiescent-flow qualification; literature background in flight report.",
+      "characters": 1014
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 36,
+      "start": "Recently conducted space-based",
+      "end": "A two-dimensional",
+      "text_sha256": "36616f34f73049f57e3206bd9fa8957a967d00ddf058ccc2ae9962e4db5b709c",
+      "evidence_role": "flight_report_opposed_flow_conclusions",
+      "review_note": "ISS results only; excludes subsequent model expression and preceding table.",
+      "characters": 438
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 54,
+      "start": "The three Nomex",
+      "end": "Figure 3.1.—",
+      "text_sha256": "90e3e731fe10d92dd4a5b61eb7d288448b6b85ac48118d01bff5b1a7ed72de8c",
+      "evidence_role": "flight_report_material_and_flame_appearance",
+      "review_note": "Test-specific Nomex and wax-candle observations; no universal material safety claim; no image digitization.",
+      "characters": 797
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 72,
+      "start": "For the first time",
+      "end": "A critical Damköhler",
+      "text_sha256": "886724ded95973a8e37240b716faa30c807dbaa760346d7fdd0ebc0d0a9b2b27",
+      "evidence_role": "flight_report_polymer_quenching_observations",
+      "review_note": "ISS PMMA rod observations; excludes subsequent model-derived quantities.",
+      "characters": 983
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 97,
+      "start": "6.1.6 Conclusions",
+      "end": "As flow speed",
+      "text_sha256": "65721c295fc6503f716fdbde61a7e514ee75cbaadd076f352cf8724c05a3f215",
+      "evidence_role": "flight_report_polymer_ignition_and_appearance",
+      "review_note": "ISS PMMA observations; excludes preceding normal-gravity comparison and following model discussion.",
+      "characters": 1016
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_sha256": "5ffa911fd9b6356f204646003fb9342e341810dcdfdf5cb15756e7f01ec5f770",
+      "page": 109,
+      "start": "Concurrent flame growth",
+      "end": "7.1.6 References",
+      "text_sha256": "537cd70d82701a258a8507f9ef56a79352edee2be1cc5ac1c30de9c7e37c240a",
+      "evidence_role": "flight_report_fabric_conclusions",
+      "review_note": "Cotton-fiberglass composite results, not all fabrics; retains model-comparison qualification.",
+      "characters": 1526
+    }
+  ]
+}

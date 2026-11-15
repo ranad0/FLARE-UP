@@ -47,6 +47,8 @@ export function NasaEvidencePanel({
   errorMessage,
   onClose,
 }: NasaEvidencePanelProps) {
+  const arabic=/[\u0600-\u06ff]/.test(t.evidence.panelTitle);
+  const choose=(en:string,ar:string)=>arabic?ar:en;
   const renderRecordNumericalRows = (records: EvidenceRecord[]) => {
     return records.map((rec, idx) => {
       const sourceLabel =
@@ -163,6 +165,8 @@ export function NasaEvidencePanel({
     const analysisObj = data.analysis && typeof data.analysis === 'object' ? data.analysis : null;
     const analysisStr = typeof data.analysis === 'string' ? data.analysis : null;
     const records = Array.isArray(data.closest_records) ? data.closest_records : [];
+    const relatedSources=(data.sources || []).filter((s):s is SourceItem=>typeof s!=='string');
+    const relatedIds=[...new Set(relatedSources.map(s=>String(s.investigation_id || s.investigation || '')).filter(Boolean))];
 
     // 1. Evidence Match
     const evidenceMatchText =
@@ -216,31 +220,26 @@ export function NasaEvidencePanel({
 
     return (
       <div className="space-y-5">
-        {limited && (
-          <div className="rounded-lg border border-[#C88B00]/60 bg-[#C88B00]/12 p-3.5">
-            <div className="flex items-start gap-2.5 text-[#F4D08D]">
-              <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-[#E1B983]" />
-              <p className="text-xs font-semibold leading-relaxed sm:text-sm">
-                {t.evidence.limitedEvidenceBanner}
-              </p>
-            </div>
-          </div>
-        )}
+        {relatedSources.length > 0 && <div className="rounded-lg border border-[#22D3EE]/25 bg-[#22D3EE]/5 p-4 space-y-2">
+          <p className="text-sm font-medium text-[#F5F1FA]">{choose('Related NASA evidence found', 'تم العثور على أدلة ناسا مرتبطة')}</p>
+          <p className="text-xs leading-6 text-[#B8A9CE]">{choose(`${relatedSources.length} passages · ${relatedIds.join(', ')}`, `${relatedSources.length} مقاطع · ${relatedIds.join('، ')}`)}</p>
+          <p className="text-xs leading-6 text-[#D6CBE8]">{records.length ? choose('Reported pressure records are available. Oxygen, fuel composition and airflow are not matched.', 'تتوفر سجلات ضغط منشورة. لم تتم مطابقة الأكسجين وتركيب الوقود وتدفق الهواء.') : choose('These studies relate to the selected material. Your combined settings are not an experimentally validated match.', 'تتعلق هذه الدراسات بنوع العينة المختار، لكن مجموعة إعداداتك لا تطابق تجربة متحققاً منها.')}</p>
+        </div>}
 
         {/* Evidence Match */}
         <section className="space-y-1 border-b border-[#7A5498]/20 pb-3.5">
           <h3 className="text-xs font-semibold text-[#E1B983]">
             {t.evidence.sections.evidenceMatch}
           </h3>
-          <p className="text-sm text-[#F5F1FA]">{String(evidenceMatchText)}</p>
+          <p className="text-sm leading-6 text-[#F5F1FA]">{arabic && relatedSources.length ? (records.length ? 'أدلة مرتبطة مع سجلات ضغط قريبة؛ لا يوجد تطابق كامل للشروط.' : 'أدلة مرتبطة بنوع العينة؛ لا يوجد تطابق كامل للشروط.') : String(evidenceMatchText)}</p>
         </section>
 
         {/* Closest NASA investigation */}
         <section className="space-y-1 border-b border-[#7A5498]/20 pb-3.5">
           <h3 className="text-xs font-semibold text-[#E1B983]">
-            {t.evidence.sections.closestInvestigation}
+            {records.length ? t.evidence.sections.closestInvestigation : choose('Related NASA investigations', 'تحقيقات ناسا المرتبطة')}
           </h3>
-          <p className="text-sm font-medium text-[#F5F1FA]">{String(closestInvestigation)}</p>
+          <p className="text-sm font-medium text-[#F5F1FA]">{records.length ? String(closestInvestigation) : relatedIds.join(' · ') || t.evidence.notSpecified}</p>
         </section>
 
         {/* Closest experimental conditions */}
@@ -269,7 +268,7 @@ export function NasaEvidencePanel({
               )}
             </div>
           ) : (
-            <p className="text-xs text-[#9D8EC0]">{t.evidence.notSpecified}</p>
+            <p className="text-xs leading-6 text-[#9D8EC0]">{choose('The selected oxygen, pressure and airflow combination is not matched. See the source passages for their experimental scope.', 'لم تتم مطابقة مجموعة الأكسجين والضغط وتدفق الهواء المختارة. راجع المقاطع المصدرية لمعرفة نطاق تجاربها.')}</p>
           )}
         </section>
 
@@ -283,11 +282,13 @@ export function NasaEvidencePanel({
             <ul className="space-y-1.5 text-xs text-[#D6CBE8]">
               {reportedBySources.map((item, idx) => (
                 <li key={idx} className="rounded-md bg-[#1B102B]/60 px-3 py-2">
-                  {typeof item === 'string'
-                    ? item
-                    : formatKeyValuePairs(item)
-                        .map((p) => `${p.label}: ${p.value}`)
-                        .join(' · ')}
+                  {typeof item === 'string' ? item : item.passage ? <div className="space-y-2 leading-6">
+                    <p className="font-semibold text-[#78CFFF]">{String(item.investigation || '')}</p>
+                    <p className="text-[11px] text-[#B8A9CE]">{String(item.evidence_type || '').replaceAll('_',' ')}</p>
+                    <p>{String(item.passage).length > 320 ? String(item.passage).slice(0,320).replace(/\s+\S*$/, '')+' […]' : String(item.passage)}</p>
+                    <details><summary className="cursor-pointer text-[#78CFFF]">{choose('Read full source passage', 'قراءة المقطع المصدري الكامل')}</summary><p className="mt-2">{String(item.passage)}</p></details>
+                    <p className="break-words text-[11px] text-[#9D8EC0]">{String(item.source || '')} · {String(item.location || '')}</p>
+                  </div> : formatKeyValuePairs(item).map(p=>`${p.label}: ${p.value}`).join(' · ')}
                 </li>
               ))}
             </ul>
@@ -321,6 +322,7 @@ export function NasaEvidencePanel({
           <h3 className="text-xs font-semibold text-[#E1B983]">
             {t.evidence.sections.notEstablished}
           </h3>
+          {limited && <p className="text-xs leading-6 text-[#E1B983]">{t.evidence.limitedEvidenceBanner}</p>}
           {Array.isArray(notEstablished) ? (
             <ul className="space-y-1 text-xs leading-relaxed text-[#D6CBE8]">
               {notEstablished.map((line, i) => (

@@ -62,6 +62,8 @@ def main():
                     chunks.append(chunk(base(d,path,f'JSON field:{field}; segment:{i+1}',typ),text,evidence_role=typ))
         catalog.append({'id':d['accession'],'title':d['title'],'acronym':d.get('investigationAcronym'),'project_type':d['projectType'],'doi':d.get('doi') or None,'citation_url':'https://psi.nasa.gov/physci/repo/data/investigations/'+d['accession'],'summary':clean(d.get('objective'))[:400],'platform':d.get('flightProgram'),'identity_status':'verified','status':'partially_ingested','version':d.get('version')})
     ledger=json.loads((DATA/'meta/file_download_ledger.json').read_text())
+    review_manifest=DATA/'meta/review_additions_2026-11-15.json'
+    additional_reviews=json.loads(review_manifest.read_text(encoding='utf8'))['passages'] if review_manifest.exists() else []
     for item in ledger:
         if item['status']!='downloaded': files.append({**item,'ingestion_status':'download_failed'}); continue
         path=ROOT/item['local_path']; d=docs[item['investigation_id']]; ext=path.suffix.lower(); status='downloaded_not_parsed'; count=0; sparse_pages=[]
@@ -144,9 +146,18 @@ def main():
                 if d['accession']=='PSI-102' and 'Final' in path.name:
                     t=pages[24]; selected.append((25,t[t.index('5.  Test Results and Discussions'):],'flight_results_and_detector_response'))
                     t=pages[28]; selected.append((29,t[t.index('6.  Closing Remarks'):],'flight_report_conclusion'))
+                for approved in additional_reviews:
+                    if approved['investigation_id']!=d['accession'] or approved['source_file']!=path.name:continue
+                    assert file_digest(path)==approved['source_sha256'],'Reviewed source changed'
+                    page_text=clean(pages[approved['page']-1])
+                    a=page_text.index(approved['start']);z=page_text.index(approved['end'],a)
+                    reviewed_text=page_text[a:z].strip()
+                    assert digest(reviewed_text.encode())==approved['text_sha256'],'Reviewed passage changed'
+                    selected.append((approved['page'],reviewed_text,approved['evidence_role']))
                 for no,text,role in selected:
                     for i,block in enumerate(split_text(text)):
-                        chunks.append(chunk(base(d,path,f'PDF page:{no}; reviewed segment:{i+1}',role),block,evidence_role=role,gravity_scope='ISS flight experiment; context may explicitly compare Earth',scope_review='passage_read_in_context_2026-11-15'))
+                        approval=next((a for a in additional_reviews if a['source_file']==path.name and a['page']==no and a['evidence_role']==role),None)
+                        chunks.append(chunk(base(d,path,f'PDF page:{no}; reviewed segment:{i+1}',role),block,evidence_role=role,gravity_scope='ISS flight experiment; context may explicitly compare Earth',scope_review=approval['review_note'] if approval else 'passage_read_in_context_2026-11-15',**({'review_manifest':'meta/review_additions_2026-11-15.json'} if approval else {})))
             except Exception as e: status='extraction_failed_'+type(e).__name__
         elif ext=='.docx':
             with zipfile.ZipFile(path) as z:

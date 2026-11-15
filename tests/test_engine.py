@@ -55,6 +55,26 @@ class EvidenceTests(unittest.TestCase):
         matches=[r for r in records if _matches(r,parse_structured_question(q))]
         self.assertEqual({r['series_type'] for r in matches},{'model','experiment'})
     def test_arabic_topic(self): self.assertTrue(search_text('كيف يؤثر تدفق الهواء على انتشار اللهب في الجاذبية الصغرى'))
+    def test_reported_arabic_questions_have_evidence_and_fallback(self):
+        for q in ('كيف يتصرف اللهب في الفضاء؟','ما سبب حدوث النار بالفضاء'):
+            r=ask_flare_up(q)
+            self.assertEqual(r['route'],'text');self.assertTrue(r['sources'])
+            self.assertTrue(r['synthesis']['reported_by_sources'])
+    def test_all_sample_types_show_related_evidence_without_false_matches(self):
+        signatures=[]
+        for sample in ('Gaseous fuel','Liquid fuel','Fabric','Polymer'):
+            r=scenario(ScenarioRequest(sample_type=sample,oxygen_percent=40,pressure_psi=14.4,airflow=.15))
+            self.assertTrue(r['sources']);self.assertTrue(r['evidence_match']['related_investigations'])
+            self.assertFalse(r['evidence_match']['exact_match'])
+            self.assertNotIn('PSI-117',r['evidence_match']['related_investigations'])
+            signatures.append(tuple(s['chunk_id'] for s in r['sources']))
+        self.assertGreater(len(set(signatures)),1)
+    def test_reviewed_expansion_keeps_text_separate(self):
+        added=[r for r in chunks() if r.get('review_manifest')=='meta/review_additions_2026-11-15.json']
+        self.assertEqual(len(added),10)
+        self.assertEqual({r['investigation_id'] for r in added},{'PSI-23','PSI-25'})
+        self.assertTrue(all(r['source_location'].startswith('PDF page:') for r in added))
+        self.assertEqual(len(load_structured_records()),12160)
     def test_scenario_no_false_match(self):
         r=scenario(ScenarioRequest(gravity='earth',sample_type='Fabric'))
         self.assertEqual(r['closest_records'],[]);self.assertFalse(r['evidence_match']['exact_match'])

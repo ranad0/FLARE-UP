@@ -53,7 +53,7 @@
       "source_url": "https://psi.nasa.gov/physci/repo/data/investigations/PSI-62"
     }
   ],
-  "text_chunks": 113,
+  "text_chunks": 123,
   "structured_records": 12160,
   "pending_review_chunks": 1641,
   "downloaded_bytes": 87538344,
@@ -1496,6 +1496,18 @@
       "evidence_role": "flight_research_goals_and_test_matrix"
     },
     {
+      "investigation_id": "PSI-23",
+      "source_file": "PSI-23_Reports_s_Flame_final_report_20210729.pdf",
+      "source_location": "PDF page:3; reviewed segment:1",
+      "evidence_role": "research_design_rationale"
+    },
+    {
+      "investigation_id": "PSI-23",
+      "source_file": "PSI-23_Reports_s_Flame_final_report_20210729.pdf",
+      "source_location": "PDF page:4; reviewed segment:1",
+      "evidence_role": "research_rationale"
+    },
+    {
       "investigation_id": "PSI-25",
       "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
       "source_location": "PDF page:27; reviewed segment:1",
@@ -1506,6 +1518,54 @@
       "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
       "source_location": "PDF page:101; reviewed segment:1",
       "evidence_role": "flight_report_concurrent_flow_abstract"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:9; reviewed segment:1",
+      "evidence_role": "flight_experiment_method"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:19; reviewed segment:1",
+      "evidence_role": "flight_report_conclusion"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:28; reviewed segment:1",
+      "evidence_role": "flight_science_background"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:36; reviewed segment:1",
+      "evidence_role": "flight_report_opposed_flow_conclusions"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:54; reviewed segment:1",
+      "evidence_role": "flight_report_material_and_flame_appearance"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:72; reviewed segment:1",
+      "evidence_role": "flight_report_polymer_quenching_observations"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:97; reviewed segment:1",
+      "evidence_role": "flight_report_polymer_ignition_and_appearance"
+    },
+    {
+      "investigation_id": "PSI-25",
+      "source_file": "PSI-25_Reports_BASS-II Summary Report.pdf",
+      "source_location": "PDF page:109; reviewed segment:1",
+      "evidence_role": "flight_report_fabric_conclusions"
     },
     {
       "investigation_id": "PSI-39",
