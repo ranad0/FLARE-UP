@@ -10,3 +10,7 @@
   for = "/config.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+# Public evidence service; no credentials are required.
+[context.production.environment]
+  VITE_API_BASE_URL = "https://flare-up-ranad0.onrender.com"

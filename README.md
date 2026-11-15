@@ -3,6 +3,13 @@
 
 A search-first, bilingual web exhibit backed by NASA PSI evidence. Ask descriptive questions, retrieve source measurements, combine both paths, and explore an illustrative 3D Fire Lab.
 
+## Live project
+- App: https://flare-up-ranad0.onrender.com/
+- Source: https://github.com/ranad0/FLARE-UP
+- API documentation: https://flare-up-ranad0.onrender.com/docs
+
+The free service sleeps after inactivity. Open it before the demo and allow a minute or more for startup. No paid inference or API keys are required.
+
 ## Run the included build (Windows)
 Python 3.11+ is required. Open PowerShell in this extracted `FLARE_UP` folder:
 

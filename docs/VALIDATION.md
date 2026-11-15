@@ -23,3 +23,6 @@ Screenshots: `home-preview.jpg`, `mobile-preview.jpg`, `lab-preview.jpg`.
 - Browser Ask returns sourced text; lab returns Evidence Match, Reported by Sources, Interpretation and Not Established. Existing HTTP checks cover text/structured/hybrid routes.
 - SHA-256 comparison confirms all 123 protected backend/data/scripts/existing-test files unchanged. Corpus QA and all 15 backend tests pass again.
 - See VISUAL_STATE.md for test scope and JUDGING_MAP.md for presentation mapping.
+
+## Public deployment verification — 2026-11-15
+Render Docker deployment succeeded. `tests/test_http.py https://flare-up-ranad0.onrender.com` passed all 14 checks (eight GET endpoints, three answer routes, scenario analysis, supporting-resource separation and request validation). The 120-second frontend timeout accommodates free-host wake-up; backend and data files remain unchanged.

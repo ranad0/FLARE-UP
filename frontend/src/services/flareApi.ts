@@ -21,7 +21,7 @@ async function postJson<T>(path: string, payload: unknown, signal?: AbortSignal)
   }
 
   const controller = new AbortController();
-  const timeoutId = window.setTimeout(() => controller.abort(), 20000);
+  const timeoutId = window.setTimeout(() => controller.abort(), 120000);
 
   const onExternalAbort = () => controller.abort();
   if (signal) {

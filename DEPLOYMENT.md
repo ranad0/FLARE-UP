@@ -9,14 +9,14 @@ Serve the built frontend from FastAPI on the same origin. This avoids separate A
 4. Set `RETRIEVAL_MODE=local`. The Docker startup uses the host's `PORT` (default 8010).
 5. Visit `/health`, `/docs`, then run the three README demo questions on the public site.
 
-This package prepares deployment; it has not been published or tested on a hosting account. Official reference: https://render.com/docs/deploy-fastapi . The Docker route builds Node assets before starting the same FastAPI server described there.
+Published and verified on Render on 2026-11-15: https://flare-up-ranad0.onrender.com/ . GitHub: https://github.com/ranad0/FLARE-UP . The free Docker service uses health check `/health` and `OPENBLAS_NUM_THREADS=1`. Text, structured, hybrid, scenario and supporting-resource HTTP checks passed against this public origin. The free instance sleeps when idle and Render reports wake-up delays of 50 seconds or more. Frontend requests allow up to 120 seconds; open the service before presenting. Official reference: https://render.com/docs/deploy-fastapi . The Docker route builds Node assets before starting the same FastAPI server described there.
 
 Local container commands:
 ```sh
 docker build -t flare-up .
 docker run --rm -p 8010:8010 flare-up
 ```
-Docker build itself has not been run in this environment.
+Docker was built successfully by Render; it was not built locally.
 
 ## Optional split deployment
 - Frontend: Netlify, base directory `frontend`, build `npm ci && npm run build`, publish `dist`.
