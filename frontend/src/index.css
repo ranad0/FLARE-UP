@@ -162,3 +162,18 @@ input[type="range"].flare-slider::-moz-range-thumb {
 @media(max-width:520px){.gravity-switch{margin-bottom:22px}.gravity-switch button{padding:8px 19px}.hero-orb>div:first-child{height:240px}.hero-copy{--tw-space-y-reverse:0}}
 @media(hover:none){.cursor-atmosphere{display:none}}
 @media(prefers-reduced-motion:reduce){.star-depth,.star-depth i{animation:none!important}.cursor-atmosphere{display:none}.flare-app *,.flare-app *::before,.flare-app *::after{transition:none!important}}
+
+/* Reference palette; approved hierarchy and page spacing remain unchanged. */
+.flare-app{--accent:#e1b983;--accent-strong:#edc897;--edge:#8584b366;--surface:#20203bdd;--surface-deep:#1c1c34ef;--field-shadow:#6b8cff26}
+.flare-app[data-visual-mode="earth"]{--accent:#e1b983;--accent-strong:#f0c995;--edge:#b28ba270;--surface:#29213cdd;--surface-deep:#251832ef;--field-shadow:#dc714c28}
+.sky-cool-halo{background:radial-gradient(ellipse 57% 64% at 50% 32%,#253f9c66,#20224942 53%,transparent 90%)}
+.sky-warm-halo{background:radial-gradient(ellipse 35% 55% at 50% 31%,#d3623a36,#dc714c12 52%,transparent 90%)}
+.brand-flame{width:44px;height:44px;border-radius:50%;overflow:hidden;position:relative}
+.original-brand-mark{position:absolute;width:180%;height:180%;max-width:none;left:-40%;top:-40%;object-fit:cover;mix-blend-mode:screen;transition:filter var(--transition)}
+.original-brand-mark[data-mode="earth"]{filter:drop-shadow(0 -2px 3px #e1b98388)}
+.language-picker{position:relative}
+.flare-app header .language-trigger{width:40px;height:40px;border-radius:50%;border:1px solid #e1b983;background:transparent;color:#e1b983;display:flex;align-items:center;justify-content:center}
+.language-options{position:absolute;inset-inline-end:0;top:calc(100% + 12px);width:150px;background:#202039;border:1px solid #555179;border-radius:14px;padding:8px;box-shadow:0 15px 40px #08081866;z-index:50}
+.flare-app header .language-options button{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 10px;border-radius:8px;color:#f3ebf5;background:transparent;border:0;font-size:14px}
+.flare-app header .language-options button:hover,.flare-app header .language-options button:focus-visible{background:#33304b;outline:1px solid #e1b983}
+.language-options button span:last-child{color:#e1b983}

@@ -10,7 +10,6 @@ export function HomeFlameScene({mode,hintText,compact=false}:{mode:VisualMode;hi
     const motion=matchMedia('(prefers-reduced-motion: reduce)');
     let frame=0,last=performance.now(),mix=target.current==='micro'?1:0,from=mix,to=mix,changed=last;
     let x=0,y=0,vx=0,vy=0,gx=0,gy=0,px=0,py=0,pt=0;
-    const rgb=(a:number[],b:number[],m:number,alpha=1)=>`rgba(${a.map((v,i)=>Math.round(v+(b[i]-v)*m)).join(',')},${alpha})`;
     function draw(now:number){
       const c=ctx!,w=canvas.clientWidth,h=canvas.clientHeight,dpr=Math.min(devicePixelRatio||1,2);
       if(!w||!h)return;
@@ -23,44 +22,35 @@ export function HomeFlameScene({mode,hintText,compact=false}:{mode:VisualMode;hi
         vx+=(-x*40-vx*9)*dt;vy+=(-y*40-vy*9)*dt;x+=vx*dt;y+=vy*dt;
         gx+=(x-gx)*Math.min(1,dt*5);gy+=(y-gy)*Math.min(1,dt*5);
       }
-      const t=motion.matches?0:now/1000,r=Math.min(w*.24,h*(compact?.32:.29)),cx=w/2,cy=h*.51;
-      const warm=[240,138,61],cool=[74,112,255];
-      const glow=c.createRadialGradient(cx+gx*.5,cy+gy*.5,0,cx+gx*.5,cy+gy*.5,r*(1.7+mix*.7));
-      glow.addColorStop(0,rgb(warm,cool,mix,.28));glow.addColorStop(.45,rgb(warm,cool,mix,.13));glow.addColorStop(1,rgb(warm,cool,mix,0));
-      c.fillStyle=glow;c.fillRect(0,0,w,h);
-      c.save();c.translate(cx,cy);
-      // A continuous silhouette morph avoids swapping assets or flashing the canvas.
-      const shape=()=>{
-        c.beginPath();
-        for(let i=0;i<=160;i++){
-          const a=i/160*Math.PI*2,top=(1+Math.cos(a))/2;
-          const earthWidth=.5*(1-.72*Math.cos(a));
-          const ripple=compact?0:Math.sin(a*3-t*(2.7-2*mix))*.012+Math.sin(a*5+t)*.006;
-          const xx=Math.sin(a)*r*(earthWidth*(1-mix)+mix)*(1+ripple)+x*top*1.3;
-          const yy=-Math.cos(a)*r*(1.38*(1-mix)+mix)*(1+ripple)+y*top*.85+(1-mix)*Math.sin(t*2+a)*r*.012;
-          if(i===0)c.moveTo(xx,yy);else c.lineTo(xx,yy);
-        }c.closePath();
+      const t=motion.matches?0:now/1000, scale=Math.min(w/580,h/560)*1.28;
+      const pulse=1+Math.sin(t*2.1)*.025+Math.sin(t*5.3)*.012;
+      const radial=(xx:number,yy:number,r:number,stops:[number,string][])=>{
+        const paint=c.createRadialGradient(xx,yy,0,xx,yy,r);
+        stops.forEach(([offset,color])=>paint.addColorStop(offset,color));return paint;
       };
-      // Earth: hot cream/amber upper body and a subtle blue base.
-      const earth=c.createLinearGradient(0,-r*1.4,0,r*1.4);
-      earth.addColorStop(0,'#F27C3530');earth.addColorStop(.28,'#FFF3BB');earth.addColorStop(.55,'#FFB55B');earth.addColorStop(.8,'#DC714C');earth.addColorStop(.94,'#4A70FF');earth.addColorStop(1,'#78A8FF20');
-      c.globalAlpha=1-mix;c.fillStyle=earth;c.shadowColor='#F08A3D';c.shadowBlur=compact?3:24;shape();c.fill();
-      if(!compact){
-        c.save();shape();c.clip();c.shadowBlur=0;
-        for(let j=0;j<4;j++){
-          const travel=(t*.55+j*.25)%1,yy=r*.9-travel*r*2.2,xx=Math.sin(t*1.5+j)*r*.1+x*(1-travel)*.3;
-          const light=c.createRadialGradient(xx,yy,0,xx,yy,r*.5);
-          light.addColorStop(0,'#fff3bb');light.addColorStop(1,'#fff3bb00');
-          c.globalAlpha=(1-mix)*Math.sin(travel*Math.PI)*.22;c.fillStyle=light;c.fillRect(-r,-r*1.5,r*2,r*3);
-        }c.restore();
-      }
-      // Microgravity: full spherical blue shell, dark violet centre, cyan rim.
-      const micro=c.createRadialGradient(x*.35,y*.25,r*.12,x*.35,y*.25,r*1.04);
-      micro.addColorStop(0,'#13166660');micro.addColorStop(.45,'#30257F90');micro.addColorStop(.77,'#182FB9c0');micro.addColorStop(.91,'#3266FF');micro.addColorStop(.97,'#79E5FF');micro.addColorStop(1,'#3266FF10');
-      c.globalAlpha=mix;c.fillStyle=micro;c.shadowColor='#3266FF';c.shadowBlur=compact?4:27;shape();c.fill();
-      c.globalAlpha=.5;c.shadowBlur=compact?2:14;c.strokeStyle=rgb([255,181,91],[120,168,255],mix);c.lineWidth=compact?.65:1.2;shape();c.stroke();
-      // A quiet enclosing arc gives the navbar mark the same circular identity.
-      if(compact){c.globalAlpha=.65;c.strokeStyle=rgb([255,201,131],[112,207,255],mix);c.beginPath();c.arc(0,0,r*1.35,-1.3,4.6);c.stroke();}
+      const glow=(xx:number,yy:number,r:number,color:string)=>{c.fillStyle=radial(xx,yy,r,[[0,color],[1,'transparent']]);c.fillRect(xx-r,yy-r,r*2,r*2);};
+      c.save();c.translate(w/2,h*.66);c.scale(scale,scale);
+      // Original Fireline artwork with smooth mode blending and damped cursor airflow.
+      c.save();c.translate(gx*.6/scale,gy*.4/scale);
+      c.globalAlpha=1-mix;glow(0,-60,230*pulse,'#d3623a47');glow(0,-20,180*pulse,'#f08a3d55');
+      c.globalAlpha=mix;glow(0,-35,250*pulse,'#4a70ff82');glow(0,-10,195*pulse,'#6b8cff85');c.restore();
+      c.transform(1,0,-x/260,1,x*.2/scale,y*.3/scale);
+      c.globalAlpha=1-mix;
+      const tip=Math.sin(t*3.4)*6;
+      glow(0,-95,153,'#ee7a344d');
+      const paint=c.createLinearGradient(0,-210,0,20);
+      ([[0,'#b2401400'],[.19,'#f27c35df'],[.43,'#fff3bb'],[.68,'#ffb55b'],[.85,'#dc714c80'],[1,'#3b73ffdb']] as [number,string][]).forEach(([stop,color])=>paint.addColorStop(stop,color));
+      c.fillStyle=paint;c.shadowBlur=30;c.shadowColor='#ff9a49b5';
+      c.beginPath();c.moveTo(0,14);c.bezierCurveTo(-49,12,-41,-118,tip,-206);c.bezierCurveTo(38+tip,-124,51,9,0,14);c.fill();
+      glow(0,-98,73,'#fff0c443');
+      c.save();c.globalAlpha=mix;
+      const width=94+Math.sin(t*2.3)*2;
+      c.scale(1.2,.96);c.shadowBlur=34;c.shadowColor='#5279ff';
+      c.fillStyle=radial(0,0,width,[[0,'#131666'],[.65,'#182fb9'],[.80,'#3266ff'],[.91,'#78a8ff'],[1,'#1c37ff00']]);
+      c.beginPath();c.arc(0,0,width,Math.PI,Math.PI*2);c.ellipse(0,0,width,20,0,0,Math.PI);c.fill();
+      glow(0,-8,47,'#253bc645');c.restore();
+      c.globalAlpha=1;c.shadowBlur=0;c.fillStyle='#110e24c7';
+      c.beginPath();c.moveTo(-5,15);c.quadraticCurveTo(-4,-39,6,-33);c.lineTo(5,15);c.fill();
       c.restore();c.globalAlpha=1;c.shadowBlur=0;
       if(!document.hidden&&!motion.matches)frame=requestAnimationFrame(draw);
     }
