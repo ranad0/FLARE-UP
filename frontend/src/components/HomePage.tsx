@@ -153,6 +153,14 @@ export function HomePage({ t, mode, onModeChange, onOpenLab }: HomePageProps) {
         </section>
       )}
 
+      <section aria-label={t.nav.home==='Home'?'Explore Fire Lab':'استكشف مختبر النار'} className="mt-16 flex flex-col items-start justify-between gap-6 rounded-2xl border px-6 py-8 sm:flex-row sm:items-center sm:px-8" style={{borderColor:'var(--edge)',background:'var(--surface)',transition:'background-color var(--transition), border-color var(--transition)'}}>
+        <div className="space-y-2">
+          <h2 className="text-xl font-medium text-[#F5F1FA] sm:text-2xl">{t.nav.home==='Home'?'Step into the Fire Lab':'انتقل إلى مختبر النار'}</h2>
+          <p className="text-sm leading-6 text-[#B8A9CE]">{t.nav.home==='Home'?'Change the conditions. Explore the NASA evidence.':'غيّر الظروف واستكشف أدلة ناسا المرتبطة بها.'}</p>
+        </div>
+        <button type="button" onClick={onOpenLab} className="min-h-12 w-full shrink-0 rounded-lg px-6 py-3 text-sm font-semibold text-[#151529] focus-visible:outline-2 focus-visible:outline-offset-4 sm:w-auto" style={{background:'var(--accent)',transition:'background-color var(--transition)'}}>{t.nav.home==='Home'?'Open Fire Lab →':'افتح مختبر النار ←'}</button>
+      </section>
+
       {/* Unobtrusive Scientific Honesty Statement */}
       <footer className="mt-8 border-t border-[#7A5498]/20 pt-4 text-center">
         <p className="text-xs text-[#9D8EC0]">{t.honestyNotice}</p>

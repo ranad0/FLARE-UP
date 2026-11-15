@@ -14,6 +14,7 @@ export default function App() {
   const [mode, setMode] = useState<VisualMode>('micro');
   const [page, setPage] = useState<PageView>('home');
   const [lang, setLang] = useState<Language>('en');
+  useEffect(()=>{window.scrollTo({top:0,behavior:'auto'});},[page]);
 
   useEffect(() => {
     document.documentElement.lang = lang;
