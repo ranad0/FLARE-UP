@@ -15,7 +15,7 @@ def _call(messages,schema):
     # JSON mode plus our existing local shape/citation/numeric checks and entailment review
     # retains the scientific contract without depending on that decoder.
     messages=[{'role':'system','content':'Return only a JSON object matching this schema: '+json.dumps(schema)}]+messages
-    body={'model':MODEL,'messages':messages,'temperature':0,'reasoning_effort':'low','max_completion_tokens':1400 if schema==VERIFY else 2200,
+    body={'model':MODEL,'messages':messages,'temperature':0,'reasoning_effort':'medium','max_completion_tokens':1800 if schema in (VERIFY,REVIEW) else 2600,
           'response_format':{'type':'json_object'}}
     req=urllib.request.Request(ENDPOINT,data=json.dumps(body).encode(),headers={
         'Authorization':'Bearer '+os.environ['GROQ_API_KEY'],'Content-Type':'application/json','User-Agent':'FLARE-UP/3'})
@@ -170,7 +170,7 @@ def _synthesize(question,route,sources,records):
         except ValueError as error:
             # One bounded repair attempt; the same strict checks still apply.
             messages += [{'role':'assistant','content':json.dumps(draft)},
-                {'role':'user','content':'The validator rejected the draft: '+str(error)+'. Return corrected JSON. Each short qualitative claim must have one to three supports with valid source_id references. Remove numerical assertions, identifiers, counts and spelled-out numbers from prose. If input change omitted, explicitly describe reducing the input, not the mere presence of that input, as the cause of the response. Retain scientific qualifications; if this is impossible, return empty arrays. Do not add evidence.'}]
+                {'role':'user','content':'The validator rejected the draft: '+str(error)+'. Return corrected JSON. Each short qualitative claim must have one to three supports with valid source_id references. Remove numerical assertions, identifiers, counts and spelled-out numbers from prose. For input change omitted, use this sentence structure: As [input] is reduced, [response] decreases. Fill the input and response names from the cited source, and preserve its regime and conditions. This describes a change in the input, not its mere presence. Retain scientific qualifications; if this is impossible, return empty arrays. Do not add evidence.'}]
             draft=_call(messages,SCHEMA)
             proposed=_validate(_resolve_quotes(draft,bundle),bundle)
         for review_attempt in range(2):
@@ -191,8 +191,6 @@ def _synthesize(question,route,sources,records):
             answer[kind]=(_numeric(records) if kind=='reported_by_sources' else [])+rendered
         answer.update(status='groq-grounded',model=MODEL)
     except Exception as exc:
-        if question=='How does cabin airflow influence flame spread in spacecraft?' and str(exc)=='input change omitted':
-            print('FLARE_UP_TEST_DRAFT '+json.dumps(draft),flush=True)
         # Never surface API exception bodies (which may contain provider details).
         answer['status']='extractive-fallback'
         answer['fallback_reason']=type(exc).__name__
