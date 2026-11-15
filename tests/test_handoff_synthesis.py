@@ -110,6 +110,16 @@ class SynthesisTests(unittest.TestCase):
             self.assertNotIn('quotations',prompt['evidence']['T1'])
             review=json.loads(call.call_args_list[1].args[0][1]['content'])
             self.assertEqual(review['evidence']['T1']['text'],self.sources[0]['text'])
+    def test_hybrid_prose_question_keeps_numbers_out_of_generation(self):
+        draft={'reported_by_sources':[{'text':self.valid['reported_by_sources'][0]['text'],'supports':[{'source_id':'T1'}]}],'interpretation':[]}
+        records=[{'value':1.25,'value_raw':'1.25','unit':None,'quantity_name':'reported duration','record_id':'test-record'}]
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':True,'feedback':''}]) as call:
+            r=synthesize('Compare duration at 1.1 bar and explain the experiment','hybrid',self.sources,records)
+            prompt=json.loads(call.call_args_list[0].args[0][1]['content'])
+            self.assertEqual(prompt['question'],'explain the experiment')
+            self.assertTrue(prompt['structured_measurements_displayed_separately'])
+            self.assertNotIn('1.25',json.dumps(prompt))
+            self.assertIn('1.25 (unit unknown)',r['reported_by_sources'][0]['text'])
     def test_quote_ids_resolve_to_source_text(self):
         d={'reported_by_sources':[{'text':'A supported claim.','supports':[{'source_id':'T1','quote_id':'T1.S1'}]}],'interpretation':[]}
         r=_resolve_quotes(d,{'T1':{'quotations':{'T1.S1':self.sources[0]['text']}}})
