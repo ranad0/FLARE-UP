@@ -31,12 +31,6 @@ const SAMPLE_BASE_Y: Record<SampleType, number> = {
   polymer: 0.28,
 };
 
-const SAMPLE_SMOKE_FACTOR: Record<SampleType, number> = {
-  gaseous: 0.35,
-  liquid: 0.68,
-  fabric: 0.78,
-  polymer: 0.96,
-};
 
 const DEFAULT_CAMERA_POS = new THREE.Vector3(3.15, 2.05, 3.75);
 const DEFAULT_TARGET = new THREE.Vector3(0, 0.86, 0);
@@ -51,8 +45,6 @@ const _earthLightCol = new THREE.Color(0xe1b983);
 const _microLightCol = new THREE.Color(0x22d3ee);
 const _smokeEarthCol = new THREE.Color(0x8e839c);
 const _smokeMicroCol = new THREE.Color(0x6e85a8);
-const _emberEarthCol = new THREE.Color(0xf0b865);
-const _emberMicroCol = new THREE.Color(0x38bdf8);
 
 export function FireLabScene({ params, resetSignal, cursorHint }: FireLabSceneProps) {
   const mountRef = useRef<HTMLDivElement | null>(null);
@@ -196,10 +188,10 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
     haloMesh.renderOrder = 5;
     flameGroup.add(haloMesh);
 
-    // Lightweight Particle Systems (Smoke Wisps & Luminous Embers)
+    // Illustrative smoke tracers only; no inferred soot yield or sparks.
     const spriteTex = createParticleSpriteTexture();
 
-    const SMOKE_COUNT = 78;
+    const SMOKE_COUNT = 32;
     const smokePositions = new Float32Array(SMOKE_COUNT * 3);
     const smokeVel = new Float32Array(SMOKE_COUNT * 3);
     const smokeLife = new Float32Array(SMOKE_COUNT);
@@ -212,7 +204,7 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
       smokePositions[i * 3 + 1] = 0.25 + Math.random() * 0.25;
       smokePositions[i * 3 + 2] = Math.sin(angle) * rad;
       smokeVel[i * 3] = (Math.random() - 0.5) * 0.08;
-      smokeVel[i * 3 + 1] = 0.25 + Math.random() * 0.22;
+      smokeVel[i * 3 + 1] = (Math.random() - 0.5) * 0.08;
       smokeVel[i * 3 + 2] = (Math.random() - 0.5) * 0.08;
       smokeMaxLife[i] = 1.6 + Math.random() * 1.4;
       smokeLife[i] = randomAge ? Math.random() * smokeMaxLife[i] : 0;
@@ -224,9 +216,9 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
     const smokeMat = new THREE.PointsMaterial({
       map: spriteTex,
       color: 0x8e839c,
-      size: 0.24,
+      size: 0.18,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.07,
       depthWrite: false,
       blending: THREE.NormalBlending,
       sizeAttenuation: true,
@@ -234,42 +226,6 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
     const smokePoints = new THREE.Points(smokeGeo, smokeMat);
     smokePoints.renderOrder = 8;
     flameGroup.add(smokePoints);
-
-    const EMBER_COUNT = 52;
-    const emberPositions = new Float32Array(EMBER_COUNT * 3);
-    const emberVel = new Float32Array(EMBER_COUNT * 3);
-    const emberLife = new Float32Array(EMBER_COUNT);
-    const emberMaxLife = new Float32Array(EMBER_COUNT);
-
-    const resetEmberParticle = (i: number, randomAge = false) => {
-      const angle = Math.random() * Math.PI * 2;
-      const rad = Math.random() * 0.1;
-      emberPositions[i * 3] = Math.cos(angle) * rad;
-      emberPositions[i * 3 + 1] = 0.06 + Math.random() * 0.16;
-      emberPositions[i * 3 + 2] = Math.sin(angle) * rad;
-      emberVel[i * 3] = (Math.random() - 0.5) * 0.12;
-      emberVel[i * 3 + 1] = 0.35 + Math.random() * 0.3;
-      emberVel[i * 3 + 2] = (Math.random() - 0.5) * 0.12;
-      emberMaxLife[i] = 0.8 + Math.random() * 0.9;
-      emberLife[i] = randomAge ? Math.random() * emberMaxLife[i] : 0;
-    };
-    for (let i = 0; i < EMBER_COUNT; i++) resetEmberParticle(i, true);
-
-    const emberGeo = new THREE.BufferGeometry();
-    emberGeo.setAttribute('position', new THREE.BufferAttribute(emberPositions, 3));
-    const emberMat = new THREE.PointsMaterial({
-      map: spriteTex,
-      color: 0xf0b865,
-      size: 0.075,
-      transparent: true,
-      opacity: 0.72,
-      depthWrite: false,
-      blending: THREE.AdditiveBlending,
-      sizeAttenuation: true,
-    });
-    const emberPoints = new THREE.Points(emberGeo, emberMat);
-    emberPoints.renderOrder = 9;
-    flameGroup.add(emberPoints);
 
     if (!isSoftwareGl) {
       renderer.compile(scene, camera);
@@ -282,7 +238,6 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
     let smoothAirflow = paramsRef.current.airflow;
     let smoothDirRad = THREE.MathUtils.degToRad(paramsRef.current.airflowDirectionDegrees);
     let smoothBaseY = SAMPLE_BASE_Y[paramsRef.current.sampleType];
-    let smoothSmokeFactor = SAMPLE_SMOKE_FACTOR[paramsRef.current.sampleType];
 
     // Cursor disturbance spring state
     const cursorPos = new THREE.Vector3(0, 0, 0);
@@ -455,12 +410,6 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
       smoothDirRad += dirDiff * (1 - Math.exp(-6.5 * dt));
 
       smoothBaseY = THREE.MathUtils.damp(smoothBaseY, SAMPLE_BASE_Y[p.sampleType], 7.0, dt);
-      smoothSmokeFactor = THREE.MathUtils.damp(
-        smoothSmokeFactor,
-        SAMPLE_SMOKE_FACTOR[p.sampleType],
-        4.5,
-        dt
-      );
       flameGroup.position.y = smoothBaseY;
 
       chamber.setAirflowDirection(THREE.MathUtils.radToDeg(smoothDirRad), smoothAirflow);
@@ -514,8 +463,9 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
       flameLight.position.set(_targetFlow.x * 0.14, smoothBaseY + 0.36, _targetFlow.z * 0.14);
 
       // Update smoke particles (buoyancy vs airflow-driven in microgravity + cursor swirl)
-      const upwardBuoyancy = THREE.MathUtils.lerp(0.78, 0.12, smoothGravity);
-      smokeMat.opacity = (0.1 + smoothSmokeFactor * 0.24) * (0.75 + smoothAirflow * 0.25);
+      const upwardBuoyancy = THREE.MathUtils.lerp(0.48, 0, smoothGravity);
+      // Fixed artistic visibility, not smoke concentration inferred from the controls.
+      smokeMat.opacity = 0.07;
       smokeMat.color.copy(_smokeEarthCol).lerp(_smokeMicroCol, smoothGravity);
 
       for (let i = 0; !prefersReduced && i < SMOKE_COUNT; i++) {
@@ -524,10 +474,10 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
           resetSmokeParticle(i, false);
         } else {
           const i3 = i * 3;
-          const swirl = Math.sin(elapsed * 2.2 + i) * 0.12;
+          const swirl = Math.sin(elapsed * 2.2 + i) * 0.025;
           const vx = _targetFlow.x * (0.85 + smoothGravity * 0.45) + swirl + smokeVel[i3] * 0.4;
           const vy = upwardBuoyancy + _targetFlow.y * 0.45 + smokeVel[i3 + 1] * 0.35;
-          const vz = _targetFlow.z * (0.85 + smoothGravity * 0.45) + Math.cos(elapsed * 1.9 + i) * 0.12 + smokeVel[i3 + 2] * 0.4;
+          const vz = _targetFlow.z * (0.85 + smoothGravity * 0.45) + Math.cos(elapsed * 1.9 + i) * 0.025 + smokeVel[i3 + 2] * 0.4;
 
           smokePositions[i3] += vx * dt;
           smokePositions[i3 + 1] += vy * dt;
@@ -535,34 +485,12 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
 
           // Keep smoke contained smoothly within chamber radius
           const rSq = smokePositions[i3] ** 2 + smokePositions[i3 + 2] ** 2;
-          if (rSq > 1.32 * 1.32 || smokePositions[i3 + 1] > 1.88) {
+          if (rSq > 1.32 * 1.32 || smokePositions[i3 + 1] > 1.88 || smokePositions[i3 + 1] < 0.04) {
             resetSmokeParticle(i, false);
           }
         }
       }
       smokeGeo.attributes.position.needsUpdate = true;
-
-      // Update luminous ember particles
-      emberMat.color.copy(_emberEarthCol).lerp(_emberMicroCol, smoothGravity);
-      emberMat.opacity = 0.38 + smoothOxygen * 0.5;
-      const emberRise = THREE.MathUtils.lerp(0.95, 0.22, smoothGravity);
-
-      for (let i = 0; !prefersReduced && i < EMBER_COUNT; i++) {
-        emberLife[i] += dt;
-        if (emberLife[i] >= emberMaxLife[i]) {
-          resetEmberParticle(i, false);
-        } else {
-          const i3 = i * 3;
-          const vx = _targetFlow.x * 1.15 + emberVel[i3] * (0.5 + smoothOxygen * 0.7);
-          const vy = emberRise * (0.65 + smoothOxygen * 0.5) + _targetFlow.y * 0.6 + emberVel[i3 + 1] * 0.35;
-          const vz = _targetFlow.z * 1.15 + emberVel[i3 + 2] * (0.5 + smoothOxygen * 0.7);
-
-          emberPositions[i3] += vx * dt;
-          emberPositions[i3 + 1] += vy * dt;
-          emberPositions[i3 + 2] += vz * dt;
-        }
-      }
-      emberGeo.attributes.position.needsUpdate = true;
 
       // Camera reset glide + subtle parallax
       if (resettingCamera) {
@@ -643,8 +571,6 @@ export function FireLabScene({ params, resetSignal, cursorHint }: FireLabScenePr
       haloMat.dispose();
       smokeGeo.dispose();
       smokeMat.dispose();
-      emberGeo.dispose();
-      emberMat.dispose();
       spriteTex.dispose();
       envRT.dispose();
       renderer.dispose();
