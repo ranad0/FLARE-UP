@@ -105,6 +105,11 @@ def synthesize(question,route,sources,records):
         # Never surface API exception bodies (which may contain provider details).
         answer['status']='extractive-fallback'
         answer['fallback_reason']=type(exc).__name__
+        # Safe, fixed diagnostic codes only; never expose provider response bodies.
+        known={'sections','claim limit','claim shape','numeric or oversized prose','model citation',
+               'missing support','invalid quotation','empty or long answer','entailment review rejected'}
+        if isinstance(exc,ValueError) and str(exc) in known:
+            answer['fallback_reason']=str(exc)
     return answer
 def render_answer(summary):
     sections=[]
