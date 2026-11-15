@@ -10,7 +10,7 @@ We built FLARE UP to turn NASA microgravity combustion research into an interact
 
 [**Explore the live experience →**](https://flare-up-ranad0.netlify.app/) · [Full-app mirror](https://flare-up-ranad0.onrender.com/) · [NASA Space Apps challenge](https://www.spaceappschallenge.org/2026/challenges/flame-in-freefall/)
 
-![FLARE UP: an interactive microgravity flame and a search-first research experience](docs/flare-up-preview.jpg)
+![FLARE UP: an interactive microgravity flame and a search-first research experience](docs/flare-up-preview-current.png)
 
 ## Why FLARE UP?
 
@@ -69,7 +69,6 @@ The public service uses free hosting and may need a short wake-up period after i
 
 We address the NASA Space Apps challenge through accessible investigation discovery, traceable comparisons, evidence-grounded explanations, and an interactive scientific exhibit. Its intended impact is to make spacecraft fire research more understandable and easier to interrogate—not to issue operational safety advice.
 
-[Seven-slide presentation and demo](docs/DEMO_SCRIPT.md) · [Challenge alignment](docs/JUDGING_MAP.md) · [Architecture](docs/ARCHITECTURE.md) · [Validation and limitations](docs/VALIDATION.md)
 
 ## Team & contributors
 
