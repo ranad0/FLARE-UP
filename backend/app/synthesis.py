@@ -11,8 +11,12 @@ ENDPOINT='https://api.groq.com/openai/v1/chat/completions'
 NUMBER_WORDS=re.compile(r'\b(zero|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve|thirteen|fourteen|fifteen|sixteen|seventeen|eighteen|nineteen|twenty|thirty|forty|fifty|sixty|seventy|eighty|ninety|hundred|thousand|million|percent|percentage|double[ds]?|triple[ds]?|twice|half)\b',re.I)
 def numeric_prose(text): return bool(re.search(r'\d',text) or NUMBER_WORDS.search(text))
 def _call(messages,schema):
+    # Groq's strict decoder can reject otherwise valid generation with json_validate_failed.
+    # JSON mode plus our existing local shape/citation/numeric checks and entailment review
+    # retains the scientific contract without depending on that decoder.
+    messages=[{'role':'system','content':'Return only a JSON object matching this schema: '+json.dumps(schema)}]+messages
     body={'model':MODEL,'messages':messages,'temperature':0,'reasoning_effort':'low','max_completion_tokens':1400 if schema==VERIFY else 2200,
-          'response_format':{'type':'json_schema','json_schema':{'name':'grounded_answer','strict':True,'schema':schema}}}
+          'response_format':{'type':'json_object'}}
     req=urllib.request.Request(ENDPOINT,data=json.dumps(body).encode(),headers={
         'Authorization':'Bearer '+os.environ['GROQ_API_KEY'],'Content-Type':'application/json','User-Agent':'FLARE-UP/3'})
     for attempt in range(2):

@@ -1,4 +1,5 @@
 import json,os,sys,unittest
+import io,urllib.error
 from pathlib import Path
 from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'backend'))
@@ -81,6 +82,22 @@ class SynthesisTests(unittest.TestCase):
     def test_network_failure_falls_back(self):
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=TimeoutError):
             self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'extractive-fallback')
+    def test_provider_diagnostics_do_not_expose_error_message(self):
+        error=urllib.error.HTTPError('https://api.groq.com',429,'rate limit',{},io.BytesIO(json.dumps({'error':{'code':'rate_limit_exceeded','message':'private organization details (TPM)'}}).encode()))
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=error):
+            r=synthesize('airflow','text',self.sources,[])
+            self.assertEqual(r['fallback_reason'],'provider_http_429')
+            self.assertEqual(r['provider_limit_scope'],'TPM')
+            self.assertNotIn('private organization',json.dumps(r))
+            self.assertFalse(_CACHE)
+    def test_prompt_does_not_duplicate_source_text(self):
+        draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':True}]) as call:
+            synthesize('airflow','text',self.sources,[])
+            prompt=json.loads(call.call_args_list[0].args[0][1]['content'])
+            self.assertNotIn('text',prompt['evidence']['T1'])
+            review=json.loads(call.call_args_list[1].args[0][1]['content'])
+            self.assertEqual(review['evidence']['T1']['text'],self.sources[0]['text'])
     def test_quote_ids_resolve_to_source_text(self):
         d={'reported_by_sources':[{'text':'A supported claim.','supports':[{'source_id':'T1','quote_id':'T1.S1'}]}],'interpretation':[]}
         r=_resolve_quotes(d,{'T1':{'quotations':{'T1.S1':self.sources[0]['text']}}})
