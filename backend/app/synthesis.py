@@ -150,7 +150,8 @@ def _synthesize(question,route,sources,records):
             'A planned objective or hypothesis is not a result. Do not give safety recommendations. No URLs or citation markers in claim text. '
             'Do not put investigation identifiers, numbered lists, counts, or chemical formulas with digits in prose; citations are separate. '
             'If evidence is inadequate return empty arrays. Keep each claim below forty words and total prose below eighty words.')
-        payload={'question':question,'route':route,'structured_measurements_displayed_separately':bool(records),'evidence':{sid:{'role':s['role'],'quotations':s['quotations']} for sid,s in selected.items()}}
+        prompt+=' The only valid source_id values are: '+', '.join(selected)+'. Do not use investigation names or sentence IDs as source_id.'
+        payload={'question':question,'route':route,'structured_measurements_displayed_separately':bool(records),'evidence':{sid:{'role':s['role'],'text':s['text']} for sid,s in selected.items()}}
         messages=[{'role':'system','content':prompt},{'role':'user','content':json.dumps(payload)}]
         draft=_call(messages,SCHEMA)
         try:

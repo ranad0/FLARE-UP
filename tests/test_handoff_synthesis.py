@@ -100,7 +100,8 @@ class SynthesisTests(unittest.TestCase):
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':True}]) as call:
             synthesize('airflow','text',self.sources,[])
             prompt=json.loads(call.call_args_list[0].args[0][1]['content'])
-            self.assertNotIn('text',prompt['evidence']['T1'])
+            self.assertEqual(prompt['evidence']['T1']['text'],self.sources[0]['text'])
+            self.assertNotIn('quotations',prompt['evidence']['T1'])
             review=json.loads(call.call_args_list[1].args[0][1]['content'])
             self.assertEqual(review['evidence']['T1']['text'],self.sources[0]['text'])
     def test_quote_ids_resolve_to_source_text(self):
@@ -108,6 +109,11 @@ class SynthesisTests(unittest.TestCase):
         r=_resolve_quotes(d,{'T1':{'quotations':{'T1.S1':self.sources[0]['text']}}})
         self.assertEqual(r['reported_by_sources'][0]['supports'][0]['quote'],self.sources[0]['text'])
         with self.assertRaises(ValueError):_resolve_quotes(d,{'T1':{'quotations':{}}})
+    def test_source_ids_resolve_to_full_immutable_passages(self):
+        d={'reported_by_sources':[{'text':'A supported claim.','supports':[{'source_id':'T1'},{'source_id':'T1'}]}],'interpretation':[]}
+        r=_resolve_quotes(d,{'T1':self.sources[0]})
+        self.assertEqual(r['reported_by_sources'][0]['supports'],[{'source_id':'T1','quote':self.sources[0]['text']}])
+        with self.assertRaises(ValueError):_resolve_quotes(d,{'T2':self.sources[0]})
     def test_bounded_repair_keeps_checks(self):
         draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
         bad=json.loads(json.dumps(draft));bad['reported_by_sources'][0]['text']='The flame burns for twenty seconds.'
