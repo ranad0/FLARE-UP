@@ -4,7 +4,7 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1];sys.path.insert(0,str(ROOT/'backend'))
 from app.evidence import ask_flare_up,chunks
 from app.structured_data import load_structured_records,search_structured
-from app.synthesis import synthesize,_validate,_resolve_quotes
+from app.synthesis import synthesize,_validate,_resolve_quotes,_CACHE
 
 class HandoffTests(unittest.TestCase):
     def test_new_saffire_fields_exact(self):
@@ -42,6 +42,7 @@ class HandoffTests(unittest.TestCase):
 
 class SynthesisTests(unittest.TestCase):
     def setUp(self):
+        _CACHE.clear()
         self.sources=[{'text':'Airflow influences flame spread under the tested conditions. These findings do not establish safe operating limits.','evidence_role':'flight_results','citation_url':'https://psi.nasa.gov/physci/repo/data/investigations/PSI-25','source_file':'report.pdf','source_location':'page:27'}]
         self.valid={'reported_by_sources':[{'text':'Airflow influences flame spread under the tested conditions.','supports':[{'source_id':'T1','quote':self.sources[0]['text']}]}],'interpretation':[]}
     def test_missing_key_never_calls_provider(self):
@@ -58,6 +59,15 @@ class SynthesisTests(unittest.TestCase):
         draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
         with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':False}]):
             self.assertEqual(synthesize('airflow','text',self.sources,[])['status'],'extractive-fallback')
+    def test_verified_cache_is_bound_to_evidence(self):
+        draft=json.loads(json.dumps(self.valid));draft['reported_by_sources'][0]['supports']=[{'source_id':'T1','quote_id':'T1.S1'}]
+        with patch.dict(os.environ,{'GROQ_API_KEY':'test-not-a-real-key'}),patch('app.synthesis._call',side_effect=[draft,{'supported':True},TimeoutError]) as call:
+            first=synthesize('airflow','text',self.sources,[])
+            self.assertEqual(first,synthesize('airflow','text',self.sources,[]))
+            self.assertEqual(call.call_count,2)
+            changed=[{**self.sources[0],'text':self.sources[0]['text']+' Additional context.'}]
+            self.assertEqual(synthesize('airflow','text',changed,[])['status'],'extractive-fallback')
+            self.assertEqual(call.call_count,3)
     def test_invalid_claims_fall_back(self):
         for bad in ('Flames burn for 20 seconds.','Flames burn for twenty seconds.','Airflow doubles the spread rate.'):
             claim=json.loads(json.dumps(self.valid));claim['reported_by_sources'][0]['text']=bad

@@ -28,6 +28,8 @@ export function AnswerPanel({ response, arabic }: { response: AskResponse; arabi
   const rows = (Array.isArray(response.structured_results) ? response.structured_results : []) as StructuredResultRow[];
   const answer = text(response.answer);
   const summary = response.synthesis;
+  const citedIds = new Set(summary ? [...summary.reported_by_sources, ...summary.interpretation].flatMap(c => c.source_ids) : []);
+  const citedSources = summary?.sources.filter(s => citedIds.has(s.id)) || [];
   // Keep abstentions, exclusions and quality warnings visible; the repeated record/passage prose lives below.
   const notices = text(response.extractive_evidence || answer).split(/\n\n/).filter(p => /^(No validated|No sufficiently|Source quality notes:|The supplied PSI-117)/.test(p));
   const choose = (en: string, ar: string) => arabic ? ar : en;
@@ -37,7 +39,8 @@ export function AnswerPanel({ response, arabic }: { response: AskResponse; arabi
       <h2 className="text-lg font-medium leading-relaxed text-[#F5F1FA] sm:text-xl">{text(response.question) || choose('Your evidence', 'الأدلة المسترجعة')}</h2>
     </header>
     {summary && <section aria-label="Answer summary" className="space-y-4 rounded-xl border border-[#78CFFF]/20 bg-white/[0.025] p-5 sm:p-6">
-      <h3 className="text-xs font-semibold uppercase tracking-widest text-[#E1B983]">{choose('Reported by Sources', 'ما ورد في المصادر')}</h3>
+      <div className="flex flex-wrap items-baseline justify-between gap-2"><h3 className="text-lg font-medium text-[#F5F1FA]">{choose('Answer', 'الإجابة')}</h3><span className="text-xs text-[#B8A9CE]">{summary.status === 'groq-grounded' ? choose('Groq · grounded in NASA evidence', 'Groq · مستند إلى أدلة ناسا') : summary.status === 'structured-only' ? choose('Validated source records', 'سجلات مصدرية متحقق منها') : choose('Source excerpts · AI summary unavailable', 'مقتطفات مصدرية · التلخيص الآلي غير متاح')}</span></div>
+      <h4 className="text-xs font-semibold uppercase tracking-widest text-[#E1B983]">{choose('Reported by Sources', 'ما ورد في المصادر')}</h4>
       {summary.reported_by_sources.map((claim,i) => <p key={i} className="text-base leading-8 text-[#EEE7F7]">{claim.text} <span className="inline-flex gap-1">{claim.source_ids.map(id => {
         const source=summary.sources.find(s=>s.id===id);
         return <a key={id} className="text-xs text-[#78CFFF] underline" href={source?.url} target="_blank" rel="noreferrer" title={`${source?.source_file || ''} · ${source?.source_location || ''}`}>[{id}]</a>;
@@ -45,6 +48,13 @@ export function AnswerPanel({ response, arabic }: { response: AskResponse; arabi
       {!summary.reported_by_sources.length && <p className="text-base leading-8 text-[#EEE7F7]">{choose('The available evidence does not establish an answer to this question.', 'لا تثبت الأدلة المتاحة إجابة لهذا السؤال.')}</p>}
       {summary.interpretation.length > 0 && <div className="border-t border-white/10 pt-4"><h4 className="mb-2 text-xs font-semibold text-[#B8A9CE]">{choose('Interpretation', 'التفسير')}</h4>{summary.interpretation.map((c,i)=><p key={i} className="text-sm leading-7 text-[#D6CBE8]">{c.text} <span className="text-xs text-[#78CFFF]">{c.source_ids.map(id=>`[${id}]`).join(' ')}</span></p>)}</div>}
       <details className="text-xs leading-6 text-[#B8A9CE]"><summary className="cursor-pointer">{choose('Not Established · answer limits', 'ما لم يُثبت · حدود الإجابة')}</summary><div className="mt-2 space-y-2">{summary.not_established.map((s,i)=><p key={i}>{s}</p>)}<p>{summary.status==='groq-grounded' ? choose('AI synthesis checked against cited passages. Check the original context; automated checks are not scientific validation.', 'تلخيص آلي فُحص مقابل المقاطع المستشهد بها. راجع السياق الأصلي؛ الفحص الآلي ليس تحققاً علمياً.') : choose('Extractive fallback: source wording and structured values, without generated conclusions.', 'استجابة استخراجية: نص المصدر والقيم المنظمة دون استنتاجات مولدة.')}</p></div></details>
+    </section>}
+    {citedSources.length > 0 && <section aria-label="NASA sources" className="space-y-3 px-1">
+      <h3 className="text-xs font-semibold uppercase tracking-widest text-[#B8A9CE]">{choose('NASA sources', 'مصادر ناسا')}</h3>
+      <ul className="space-y-2">{citedSources.map(source => <li key={source.id} className="text-xs leading-6 text-[#B8A9CE]">
+        <a href={source.url} target="_blank" rel="noreferrer" className="text-[#78CFFF] underline decoration-[#78CFFF]/30 underline-offset-4">[{source.id}] {source.source_file || choose('NASA investigation', 'تحقيق ناسا')} ↗</a>
+        <span className="block">{source.source_location}</span>
+      </li>)}</ul>
     </section>}
     {notices.map((notice, i) => <p key={i} className="rounded-lg border border-amber-200/20 bg-amber-200/5 p-4 text-sm leading-7 text-[#F5D6A3]">{notice}</p>)}
     {rows.length > 0 && <details aria-label="Reported measurements" className="rounded-xl border border-white/10 p-4">
