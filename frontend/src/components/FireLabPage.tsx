@@ -22,7 +22,7 @@ const DEFAULT_PARAMS: FireLabParams = {
   gravity: 'microgravity',
   oxygenPercent: 21,
   pressurePsi: 14.7,
-  airflow: 0.15,
+  airflow: 0,
   airflowDirectionDegrees: 90,
   sampleType: 'gaseous',
 };
@@ -391,6 +391,7 @@ export function FireLabPage({ t, mode, onModeChange }: FireLabPageProps) {
       {/* Clear & unobtrusive Scientific Honesty Notice */}
       <footer className="text-center">
         <p className="text-xs text-[#9D8EC0]">{t.honestyNotice}</p>
+        <p className="mt-2 text-[11px] text-[#9D8EC0]">{t.nav.home==='Home'?'Gravity and airflow illustrate transport. Oxygen and pressure are evidence-query inputs, not measured predictions of flame appearance.':'الجاذبية والتهوية توضحان حركة اللهب والدخان. الأكسجين والضغط مدخلات للبحث في الأدلة، وليسا تنبؤًا مقاسًا لشكل اللهب.'}</p>
       </footer>
     </main>
   );

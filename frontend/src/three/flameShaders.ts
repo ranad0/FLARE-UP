@@ -150,11 +150,11 @@ export function createFlameMaterial(uniforms: FlameUniforms): THREE.ShaderMateri
 
         vec3 noiseCoord = vec3(
           shaped.x * 2.6 - uFlowVec.x * 0.9,
-          shaped.y * 2.1 - uTime * turbRate,
+          shaped.y * 2.1 - uTime * turbRate * (1.0 - uGravityMix),
           shaped.z * 2.6 - uFlowVec.z * 0.9
         );
         float n1 = snoise(noiseCoord);
-        float n2 = snoise(noiseCoord * 2.1 + vec3(3.1, -uTime * turbRate * 0.6, 1.7));
+        float n2 = snoise(noiseCoord * 2.1 + vec3(3.1 + sin(uTime * .4) * uGravityMix, -uTime * turbRate * 0.6 * (1.0 - uGravityMix), 1.7 + cos(uTime * .4) * uGravityMix));
         float turb = n1 * 0.65 + n2 * 0.35;
         vNoise = turb;
 
@@ -166,7 +166,7 @@ export function createFlameMaterial(uniforms: FlameUniforms): THREE.ShaderMateri
         shaped.z += n2 * turbAmp;
         shaped.y += turb * turbAmp * mix(0.45, 0.25, uGravityMix);
 
-        // Strong, physical bending from combined steady airflow + cursor disturbance
+        // Illustrative downstream bending from combined steady airflow + cursor disturbance
         float bendFactor = pow(h, mix(1.25, 1.05, uGravityMix));
         // Anchor base at y=0 so root stays seated on the fuel sample
         float rootLock = smoothstep(0.02, 0.28, h);
@@ -232,7 +232,7 @@ export function createFlameMaterial(uniforms: FlameUniforms): THREE.ShaderMateri
 
         // Brighten core with oxygen
         float oxLum = mix(0.68, 1.48, uOxygenNorm);
-        float coreBoost = mix(1.0, 1.45, uIsCore);
+        float coreBoost = mix(1.0, 0.9, uIsCore);
 
         // Vertical & root fade so flame blends cleanly into burner/sample
         float bottomFade = smoothstep(0.0, 0.12, vHeight);
@@ -241,7 +241,7 @@ export function createFlameMaterial(uniforms: FlameUniforms): THREE.ShaderMateri
         // Subtle noise shimmer
         float shimmer = 0.88 + 0.18 * vNoise;
 
-        float alpha = rimFade * bottomFade * topFade * shimmer * oxLum * mix(0.68, 0.85, uIsCore);
+        float alpha = rimFade * bottomFade * topFade * shimmer * oxLum * mix(0.58, 0.35, uIsCore);
         alpha = clamp(alpha, 0.0, 0.95);
 
         gl_FragColor = vec4(col * oxLum * coreBoost, alpha);
