@@ -71,6 +71,13 @@ def _validate(d,bundle):
                 source=bundle.get(s.get('source_id'));quote=s.get('quote')
                 if not source or not isinstance(quote,str) or len(quote)<30 or _normal(quote) not in _normal(source['text']):raise ValueError('invalid quotation')
             evidence=' '.join(bundle[s['source_id']]['text'] for s in c['supports'])
+            # Live regression: near-quenching PMMA observations are not a universal
+            # description of flames, and geometry alone does not establish a cause.
+            if re.search(r'buoyan|طفو',t,re.I) and not re.search(r'buoyan|طفو',evidence,re.I):
+                raise ValueError('unsupported buoyancy explanation')
+            if re.search(r'PMMA|polymethylmethacrylate',evidence,re.I) and re.search(r'hemispher|blue|oscillat',t,re.I):
+                if not re.search(r'PMMA|polymer|rod|بوليمر|قضيب|قضبان',t,re.I) or not re.search(r'quench|extinguish|extinction|انطفاء|الانطفاء',t,re.I):
+                    raise ValueError('polymer quenching scope omitted')
             # Conservative regression guard: a response to reducing flow is not an
             # effect of flow itself. The entailment model missed this distinction live.
             if re.search(r'decreas\w* as [^.]{0,70}flow is reduced',evidence,re.I) and re.search(r'\bspread\b',t,re.I) and re.search(r'\b(?:airflow|flow)\b',t,re.I) and re.search(r'\b(?:reduces?|decreases?|slows?)\b',t,re.I):
@@ -164,7 +171,7 @@ def _synthesize(question,route,sources,records):
             'Write qualitative prose only: no numbers, number words, percentages, numerical comparisons or invented confidence. The server separately displays structured measurements. '
             'For a hybrid question, answer ONLY its descriptive part (for example, explain the experiment); the numerical comparison is already handled separately by the server. Do not return an empty answer merely because the question also asks for values. '
             'Use plain language for a general audience: replace technical jargon with its everyday meaning without changing the science. Return one direct, concise Reported by Sources claim; a second only if essential. Also include one short Interpretation explaining what the finding means in simple terms when supported by the evidence. This explanation must not introduce a new cause, generalize beyond the experiment, or repeat the answer. Leave it empty only when no supported explanation is possible. Each claim needs one to three supports, each containing only source_id, selected from the supplied evidence. The server attaches the exact full source passages; do not generate quotations. '
-            'Preserve conditions, caveats, uncertainty, research objectives versus findings and ground comparisons versus flight findings. '
+            'Preserve conditions, caveats, uncertainty, research objectives versus findings and ground comparisons versus flight findings. Name the studied material and regime when describing flame appearance: PMMA rod near-quenching observations are not universal microgravity flame behavior. Do not explain observations by buoyancy unless the cited passages explicitly discuss buoyancy. '
             'For a trend, explicitly state which variable changes and its direction, the response direction, and the applicable regime. Never turn reducing X causes Y into X causes Y. Do not generalize a specific experimental configuration to all spacecraft. '
             'A planned objective or hypothesis is not a result. Do not give safety recommendations. No URLs or citation markers in claim text. '
             'Do not put investigation identifiers, numbered lists, counts, or chemical formulas with digits in prose; citations are separate. '
@@ -221,7 +228,7 @@ def _synthesize(question,route,sources,records):
             except (ValueError,AttributeError):pass
         # Safe, fixed diagnostic codes only; never expose provider response bodies.
         known={'sections','claim limit','claim shape','numeric or oversized prose','model citation',
-               'missing support','invalid quotation','empty or long answer','entailment review rejected','review shape','input change omitted'}
+               'missing support','invalid quotation','empty or long answer','entailment review rejected','review shape','input change omitted','unsupported buoyancy explanation','polymer quenching scope omitted'}
         if isinstance(exc,ValueError) and str(exc) in known:
             answer['fallback_reason']=str(exc)
     return answer

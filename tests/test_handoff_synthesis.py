@@ -155,3 +155,14 @@ class SynthesisTests(unittest.TestCase):
         self.assertTrue(r['structured_results']);self.assertTrue(all(x['unit'] is None for x in r['structured_results']))
         self.assertIn('unit unknown',r['synthesis']['reported_by_sources'][0]['text'])
 if __name__=='__main__':unittest.main()
+
+class AppearanceScopeTests(unittest.TestCase):
+    def test_near_quenching_requires_material_and_regime(self):
+        quote='The PMMA rods formed hemispherical blue flames just before quenching extinction.'
+        bundle={'T1':{'text':quote}}
+        def draft(text):return {'reported_by_sources':[{'text':text,'supports':[{'source_id':'T1','quote':quote}]}],'interpretation':[]}
+        with self.assertRaisesRegex(ValueError,'scope omitted'):
+            _validate(draft('Flames in microgravity are hemispherical blue shapes.'),bundle)
+        _validate(draft('In the PMMA rod tests, flames became hemispherical and blue before quenching.'),bundle)
+        with self.assertRaisesRegex(ValueError,'unsupported buoyancy'):
+            _validate(draft('Without buoyancy, flames become spherical.'),bundle)
